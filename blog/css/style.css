@@ -1,8 +1,42 @@
-footer{
-  position: fixed;
-  width:100%;
-  height: 1em;
+body{
+  margin:0;
+  padding:0;
+}
+
+footer {
+  display: inline-flex;
+  width: 100%;
+  font-size: 1em;
+  height: 2em;
   bottom: 0;
   text-align: center;
+  justify-content: center;
+}
+footer .copyright{
+  color: #ACACAC;
+  display: flex;
+}
+h1{
+  font-size:2em;
+  margin:0;
+}
+h2{
+  font-size:1.5em;
+  margin:0;
+}
+.firstView{
+  background-color: #AEAEAE;
+  min-height:100vh;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+.step0{
+
+}
+.step1{
+
+}
+.step2{
 
 }
