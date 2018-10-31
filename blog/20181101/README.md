@@ -67,7 +67,34 @@ and show your ssh key with enter
 ```
 cat ~/.ssh/id_rsa.pub
 ```
-now copy your ssh key and open github on browser
+now copy your ssh key and open github on browser   
 
+go to setting in your github account  
+![setting](img/pic0.png)
+
+choice SSH and GPG keys
+![ssh keys](img/pic1.png)
+
+add new SSH key
+![new ssh key](img/pic2.png)
+
+give a ssh title and paste the key you just copied
+![new ssh key](img/pic3.png)
+
+go back to terminal check is it connect
+```
+$ ssh -T git@github.com
+```
+
+### Step 3- Git your repository
+create a new repository that you wanna git with and copy
+![git](img/pic4.png)
+
+in terminal go to the folder where you're going to place your repository
+and type
+```
+git clone git@github.com:yourGithubID/repository.git
+```
+now you can git to your github lol
 
 it's really taking me a lot time for setting up. writing this note to make sure we can save lots of time next time.
