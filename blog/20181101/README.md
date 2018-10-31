@@ -1,4 +1,4 @@
-## git from nothing
+## git from nothing to connecting github with macOS
 `#atom` `#git` `#github` `#macOS`
 
 ### Step 0- INSTALL HOMEBREW 
@@ -45,6 +45,29 @@ you need to link the git to homebrew's version by typing in terminal
 ```
 $ brew link git
 ```
+
+### Step 2- Set ssh key
+open terminal and key down:
+```
+$ ssh-keygen -t rsa -C "account@example.com"
+```
+it will show 
+```
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/account/.ssh/id_rsa): [press return]
+Created directory '/Users/account/.ssh'.
+Enter passphrase (empty for no passphrase): [press return or a password for ssh]
+Enter same passphrase again: [return or password again]
+Your identification has been saved in /Users/account/.ssh/id_rsa.
+Your public key has been saved in /Users/account/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA....
+```
+and show your ssh key with enter
+```
+cat ~/.ssh/id_rsa.pub
+```
+now copy your ssh key and open github on browser
 
 
 it's really taking me a lot time for setting up. writing this note to make sure we can save lots of time next time.
