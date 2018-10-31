@@ -1,8 +1,8 @@
 ## git from nothing to connecting github with macOS
 `#atom` `#git` `#github` `#macOS`
 
-### Step 0- INSTALL HOMEBREW 
-open a terminal and paste this 
+### Step 0- INSTALL HOMEBREW
+open a terminal and paste this
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
@@ -51,7 +51,7 @@ open terminal and key down:
 ```
 $ ssh-keygen -t rsa -C "account@example.com"
 ```
-it will show 
+it will show
 ```
 Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/account/.ssh/id_rsa): [press return]
@@ -96,5 +96,8 @@ and type
 git clone git@github.com:yourGithubID/repository.git(this is what you just copied)
 ```
 now you can git to your github lol
-
+```
+to push your file
+$ git add -A
+```
 it's really taking me a lot time for setting up. writing this note to make sure we can save lots of time next time.
