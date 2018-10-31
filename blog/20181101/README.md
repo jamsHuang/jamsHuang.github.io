@@ -1,3 +1,6 @@
+## git from nothing
+`#atom` `#git` `#github` `#macOS`
+
 ### Step 0- INSTALL HOMEBREW 
 open a terminal and paste this 
 ```
@@ -21,14 +24,27 @@ and install the command line tools after that hit any key to finish installing
 [homebrew](https://brew.sh/index_zh-tw)
 
 ### Step 1- INSTALL or Upgrade Git
-open terminal and paste this
+open terminal and upgrade or install git
 ```
-`upgrade`
+**upgrade**
 $ brew upgrade git   
 
-`install`
+**install**
 $ brew install git
 ```    
-    
-    
+check git version
+```
+$ git version
+```
+check git is in the right folder
+```
+$ which git
+```
+if it didn't show as '/usr/local/bin/git'
+you need to link the git to homebrew's version by typing in terminal
+```
+$ brew link git
+```
+
+
 it's really taking me a lot time for setting up. writing this note to make sure we can save lots of time next time.
