@@ -7,17 +7,18 @@ open a terminal and paste this
 
 it will ask you to keyDown RETURN to continue installing, but you might be stop by asking for Command line tools
 by showing up the msg like
-"""xcode-select: note: install requested for command line developer tools
-Press any key when the installation has completed."""
-
-
+```
+xcode-select: note: install requested for command line developer tools
+Press any key when the installation has completed.
+```
 in macOS Mojave Version 10.14, might be meeting the problem with cannot find xcode-select
-it shows the error message like
-
+```
+xcode-select: error: invalid developer directory '/Library/Developer/CommandLineTools'
+Failed during: /usr/bin/sudo /usr/bin/xcode-select --switch /Library/Developer/CommandLineTools
+```
 unfortunately, we need to install command line tools by ourself
 find the file here https://developer.apple.com/download/more/
-and install the command line tools after that hit any 
-
+and install the command line tools after that hit any key to finish installing
 
 [homebrew](https://brew.sh/index_zh-tw)
 
