@@ -99,5 +99,11 @@ now you can git to your github lol
 ```
 to push your file
 $ git add -A
+$ git commit -m "msg"
+$ git push
+to pull your file
+$ git fetch
+$ git marge
+$ git pull
 ```
 it's really taking me a lot time for setting up. writing this note to make sure we can save lots of time next time.
