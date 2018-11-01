@@ -1,5 +1,6 @@
-$red: #AA0000;
-
-.copyright{
-  color:$red;
-}
+@import 'mixin/mixin';
+@import 'reset/reset';
+@import 'extends/extends';
+@import 'layout/layout';
+@import 'modules/modules';
+@import 'pages/pages';
