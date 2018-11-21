@@ -86,7 +86,6 @@ window.ARThreeOnLoad = function() {
 		// });
 		var tick = function() {
 			arScene.process();
-			//console.log(arScene.process());
 			rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
 			sphere.rotation.z += rotationV;
 			rotationV *= 0.8;
