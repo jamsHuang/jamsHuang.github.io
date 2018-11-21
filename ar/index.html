@@ -28,22 +28,18 @@ html,body {
 <!-- <script src="js/vendor/jsartoolkit5/build/artoolkit.min.js"></script> -->
 <script src="js/vendor/three.js/build/three-r84.js"></script>
 <script src="js/vendor/jsartoolkit5/js/artoolkit.three.js"></script>
-
 <script>
-
-window.ARThreeOnLoad = function() {
-
+	window.ARThreeOnLoad = function() {
 	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: 'data/data/camera_para.dat',
 	onSuccess: function(arScene, arController, arCamera) {
-
 		document.body.className = arController.orientation;
-
 		var renderer = new THREE.WebGLRenderer({antialias: true});
 		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
 			var h = window.innerWidth;
 			renderer.setSize(w, h);
 			renderer.domElement.style.paddingBottom = (w-h) + 'px';
+			console.log(renderer);
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
 				renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
