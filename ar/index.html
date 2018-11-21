@@ -89,7 +89,6 @@ window.ARThreeOnLoad = function() {
 			//console.log(arScene.process());
 			rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
 			sphere.rotation.z += rotationV;
-			torus.rotation.y += rotationV;
 			rotationV *= 0.8;
 			arScene.renderOn(renderer);
 			requestAnimationFrame(tick);
