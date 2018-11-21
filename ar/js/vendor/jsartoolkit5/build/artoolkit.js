@@ -199,6 +199,9 @@
     ARController.prototype.loadMarker = (function(markerURL, onSuccess, onError) {
         return artoolkit.addMarker(this.id, markerURL, onSuccess, onError)
     });
+    ARController.prototype.loadNFTMarker=(function(markerURL,onSuccess,onError){
+      var self=this;return artoolkit.addNFTMarker(this.id,markerURL,(function(id){self.nftMarkerCount=id+1;onSuccess(id)}),onError)
+    });
     ARController.prototype.loadMultiMarker = (function(markerURL, onSuccess, onError) {
         return artoolkit.addMultiMarker(this.id, markerURL, onSuccess, onError)
     });
