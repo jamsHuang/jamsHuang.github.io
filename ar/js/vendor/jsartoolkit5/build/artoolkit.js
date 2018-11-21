@@ -466,7 +466,7 @@
         }));
         var success = (function(stream) {
             video.addEventListener("loadedmetadata", initProgress, false);
-            video.src = window.URL.createObjectURL(stream);
+            video.srcObject = window.URL.createObjectURL(stream);
             readyToPlay = true;
             play()
         });
