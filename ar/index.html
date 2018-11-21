@@ -91,14 +91,8 @@ window.ARThreeOnLoad = function() {
 			sphere.rotation.z += rotationV;
 			torus.rotation.y += rotationV;
 			rotationV *= 0.8;
-
 			arScene.renderOn(renderer);
-
-
 			requestAnimationFrame(tick);
-
-
-			console.log('tracking',sphere.position);
 		};
 
 		tick();
