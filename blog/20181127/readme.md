@@ -1,6 +1,7 @@
 
+
 echo 'export PATH="~/anaconda2/bin:$PATH"' >> ~/.bashrc
-# 更新bashrc以立即生效
+更新bashrc以立即生效
 source ~/.bashrc
 
 protoc object_detection/protos/*.proto --python_out=.
