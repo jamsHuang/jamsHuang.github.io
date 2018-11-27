@@ -10,9 +10,13 @@ echo 'export PATH="~/anaconda3/bin:$PATH"' >> ~/.bashrc
 ```
 source ~/.bashrc   
 ```
-activate   
+activate 進入
 ```
 source activate python36
+```
+deactivate 離開
+```
+source deactivate
 ```
 ### 安裝相依套件
 ```
