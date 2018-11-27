@@ -9,11 +9,15 @@ source ~/.bashrc
 source activate python36
 
 > protoc object_detection/protos/*.proto --python_out=.
+
 > export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim
 
 > conda install pillow
+
 > conda install lxml
+
 > conda install jupyter
+
 > conda install matplotlib
 
 src:
