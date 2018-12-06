@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/vendor/reset.css">
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="css/vendor/bootstrap-slider.min.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container main">
+      <div class="row">
+        <div class="front_view col-4">
+          <img class="front_lung_img" alt="front_lung">
+          <img class="front_bone_img" alt="front_bone">
+          <!-- <img class="front_smoke_img" alt="front_smoke"> -->
+        </div>
+        <div class="ctrl_box col-4" >
+          <div class="ctrl_box_sq ctrl_box_bones">
+            <div class="ctrl_box_sq_title">肋骨</div>
+            <input class="slider" id="bones_ctrl" data-slider-id='bones_ctrl_slider' type="text" data-slider-min="0" data-slider-max="49" data-slider-step="1" data-slider-value="25"/>
+          </div>
+          <div class="ctrl_box_sq ctrl_box_lung">
+            <div class="ctrl_box_sq_title">肺</div>
+            <input id="lung_ctrl" data-slider-id='lung_ctrl_slider' type="text" data-slider-min="0" data-slider-max="49" data-slider-step="1" data-slider-value="25"/>
+          </div>
+          <div class="ctrl_box_sq ctrl_box_yokohama"  dir ="rtl">
+            <div class="ctrl_box_sq_title">橫膈模</div>
+            <input id="yokohama_ctrl" data-slider-id='yokohama_ctrl_slider' type="text" data-slider-min="0" data-slider-max="49" data-slider-step="1" data-slider-value="25"/>
+          </div>
+          <div class="button_box">
+            <button class="button_box_inhale" type="button" name="button">吸氣</button>
+            <button class="button_box_exhale" type="button" name="button">吐氣</button>
+            <button class="button_box_breathe" type="button" name="button">呼吸運動</button>
+          </div>
+        </div>
+        <div class="side_view col-4">
+          <img class="front_lung_img" alt="front_lung">
+          <img class="front_bone_img" alt="front_bone">
+          <!-- <img class="front_smoke_img" alt="front_smoke"> -->
+        </div>
+
+      </div>
+    </div>
+
+    <div class="loading">
+      loading...
+    </div>
+    <script type="text/javascript" src="js/lib/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script type="text/javascript" src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-slider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

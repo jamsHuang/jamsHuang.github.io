@@ -19,14 +19,16 @@
 <body>
 
     <div class="demo-container">
-      <video id="video" width="320" height="240" preload autoplay loop muted></video>
-      <canvas id="canvas" width="320" height="240"></canvas>
+      <video id="video" width="" height="" preload autoplay loop muted></video>
+      <canvas id="canvas" width="" height=""></canvas>
     </div>
 
 
   <script>
     window.onload = function() {
       var video = document.getElementById('video');
+      video.width = window.innerWidth;
+      video.height = window.innerHeight;
       video.setAttribute('autoplay', '');
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
@@ -34,6 +36,8 @@
 
 
       var canvas = document.getElementById('canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
       var context = canvas.getContext('2d');
 
       var tracker = new tracking.ObjectTracker('face');

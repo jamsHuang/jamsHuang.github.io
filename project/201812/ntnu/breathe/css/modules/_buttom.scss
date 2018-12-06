@@ -1,0 +1,7 @@
+button{
+  color:$color-font-main;
+  border-radius: 3px;
+  &:focus{
+    outline-color: rgba(255,255,255,0);
+  }
+}

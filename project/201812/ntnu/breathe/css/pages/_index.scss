@@ -1,0 +1,47 @@
+.front_view {
+  img {
+    width: 100%;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    /* For IE8 and earlier */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+.side_view {
+  img {
+    width: 100%;
+    opacity: 0.7;
+    filter: alpha(opacity=50);
+    /* For IE8 and earlier */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.ctrl_box {
+  text-align: center;
+  &_sq{
+    margin-top:20px;
+    margin-bottom:10px;
+    &_title{
+      margin-bottom:10px;
+    }
+  }
+  &_bones {
+
+  }
+
+  &_lung {}
+
+  &_yokohama {}
+  .button_box{
+    margin-top:20px;
+  }
+}
+
+label {
+  text-align: center;
+}
