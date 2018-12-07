@@ -1,6 +1,12 @@
 
 
 ## use anaconda
+下載
+```
+wget https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh
+bash Anaconda3-5.3.1-Linux-x86_64.sh
+```
+
 ### Create virtual environments for python with conda
 ```
 conda create -n python36 python=3.6 anaconda   
