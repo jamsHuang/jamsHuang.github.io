@@ -70,16 +70,16 @@ cat ~/.ssh/id_rsa.pub
 now copy your ssh key and open github on browser   
 
 go to setting in your github account  
-![setting](img/118101/pic0.png)
+![setting](img/181101/pic0.png)
 
 choice SSH and GPG keys  
-![ssh keys](img/118101/pic1.png)
+![ssh keys](img/181101/pic1.png)
 
 add new SSH key  
-![new ssh key](img/118101/pic2.png)
+![new ssh key](img/181101/pic2.png)
 
 give a ssh title and paste the key you just copied  
-![new ssh key](img/118101/pic3.png)
+![new ssh key](img/181101/pic3.png)
 
 go back to terminal check is it connect
 ```
@@ -88,7 +88,7 @@ $ ssh -T git@github.com
 
 ### Step 3- Git your repository
 create a new repository that you wanna git with and copy  
-![git](img/118101/pic4.png)
+![git](img/181101/pic4.png)
 
 in terminal go to the folder where you're going to place your repository
 and type
