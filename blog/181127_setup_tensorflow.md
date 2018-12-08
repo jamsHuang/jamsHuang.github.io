@@ -14,12 +14,11 @@ rm Anaconda3-5.3.1-Linux-x86_64.sh
 
 ### Create virtual environments for python with conda
 ```
-conda create -n python36 python=3.6 anaconda   
 echo 'export PATH="~/anaconda3/bin:$PATH"' >> ~/.bashrc   
-```
-更新bashrc以立即生效   
-```
+# 更新bashrc以立即生效   
 source ~/.bashrc   
+# create a new env
+conda create -n python36 python=3.6 anaconda   
 ```
 activate 進入
 ```
