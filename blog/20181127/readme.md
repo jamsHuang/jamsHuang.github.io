@@ -1,10 +1,15 @@
 
 
 ## use anaconda
-下載
+macOS
+download from [anaconda]("https://www.anaconda.com/download/#macos")
+and choise Python3 version. it's easy to install python2 version on it.
+
+linux
 ```
 wget https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh
 bash Anaconda3-5.3.1-Linux-x86_64.sh
+rm Anaconda3-5.3.1-Linux-x86_64.sh
 ```
 
 ### Create virtual environments for python with conda
