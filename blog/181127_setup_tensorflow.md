@@ -1,6 +1,8 @@
 
 
-## use anaconda
+### install anaconda
+anaconda make building the env super easy  
+
 macOS
 download from [anaconda]("https://www.anaconda.com/download/#macos")
 and choise Python3 version. it's easy to install python2 version on it.
@@ -67,5 +69,6 @@ python object_detection/builders/model_builder_test.py
 ```
 
 src:
-https://www.jianshu.com/p/2f3be7781451
-https://tw.saowen.com/a/a7b78689d712dec00b1c7222e20893bf7f987caab08eb8aba68d4bfa4ac16e74
+https://www.jianshu.com/p/2f3be7781451  
+https://tw.saowen.com/a/a7b78689d712dec00b1c7222e20893bf7f987caab08eb8aba68d4bfa4ac16e74  
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md  
