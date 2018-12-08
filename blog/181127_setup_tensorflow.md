@@ -28,18 +28,42 @@ deactivate 離開
 ```
 source deactivate
 ```
-### 安裝相依套件
+### 安裝tensorflow
 ```
- conda install tensorflow
- conda install pillow   
- conda install lxml   
- conda install jupyter   
- conda install matplotlib   
+ # For CPU  
+ conda install tensorflow  
+ # For GPU  
+ conda install tensorflow-gpu  
 ```
-### 更改路徑
+### 安裝相依套件  
+用conda安裝基本上這些相依套件會一併安裝  
 ```
+ # install lib
+ sudo apt-get install protobuf-compiler python-pil python-lxml python-tk  
+ pip install --user Cython  
+ pip install --user contextlib2  
+ pip install --user jupyter  
+ pip install --user matplotlib  
+```
+安裝coco API
+```
+git clone https://github.com/cocodataset/cocoapi.git
+cd cocoapi/PythonAPI
+make
+cp -r pycocotools <path_to_tensorflow>/models/research/
+```
+
+### 更改執行路徑
+```
+# From tensorflow/models/research/
  protoc object_detection/protos/*.proto --python_out=.   
  export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim 
+```
+
+### 測試安裝是否成功
+```
+# From tensorflow/models/research/
+python object_detection/builders/model_builder_test.py
 ```
 
 src:
