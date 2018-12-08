@@ -45,10 +45,10 @@ $ which node-sass
 ### Step 2- setup path with sass-autocompile in Atom  
 
 open atom and go to Settings>Packages>sass-autocompile>setting
-![settings](img/pic0.png)  
+![settings](img/181102/pic0.png)  
 
 scroll down and find the block called 'Path to 'node-sass' command' and paste the location where your node-sass is.
-![path](img/pic1.png)  
-![path](img/pic2.png)  
+![path](img/181102/pic1.png)  
+![path](img/181102/pic2.png)  
 
 now you can try open a new scss file and it will auto compile a css file after you save it.
