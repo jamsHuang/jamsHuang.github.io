@@ -8,6 +8,7 @@ $(function() {
   var bone_slider;
   var lung_slider;
   var yokohama_slider;
+  var lung_time;
 
   var spd = .20;
   var runSpd = spd;
@@ -16,6 +17,7 @@ $(function() {
   var inhale = false;
   var exhale = false;
   //
+  var pass_frame;
   function init() {
     setupSlider();
     switchImg();
@@ -156,25 +158,34 @@ $(function() {
   }
 
   function switchImg() {
-    var urlCreator = window.URL || window.webkitURL;
-    var boneUrl = urlCreator.createObjectURL(preload.getResult("fb" + now_frame, true));
-    var lungUrl = urlCreator.createObjectURL(preload.getResult("fl" + now_frame, true));
-    // var smokeUrl = urlCreator.createObjectURL(preload.getResult("fs" + now_frame, true));
-    $('.front_lung_img').attr("src", lungUrl);
-    $('.front_bone_img').attr("src", boneUrl);
-    // $('.front_smoke_img').attr("src", smokeUrl);
-    yokohama_slider.slider('setValue', now_frame);
-    bone_slider.slider('setValue', now_frame);
 
-    var counter = { var: lung_slider.slider('getValue') };
-    TweenLite.to(counter, 0.05, {
-        var: now_frame, delay:0.01,
-        onUpdate: function () {
-            //console.log(Math.ceil(counter.var));
-            lung_slider.slider('setValue',Math.round(counter.var));
-        },
-        ease:Power2.easeOut
-    });
+    if(now_frame == pass_frame){
+
+    }else{
+      var urlCreator = window.URL || window.webkitURL;
+      var boneUrl = urlCreator.createObjectURL(preload.getResult("fb" + now_frame, true));
+      var lungUrl = urlCreator.createObjectURL(preload.getResult("fl" + now_frame, true));
+      // var smokeUrl = urlCreator.createObjectURL(preload.getResult("fs" + now_frame, true));
+      $('.front_lung_img').attr("src", lungUrl);
+      $('.front_bone_img').attr("src", boneUrl);
+      // $('.front_smoke_img').attr("src", smokeUrl);
+      yokohama_slider.slider('setValue', now_frame);
+      bone_slider.slider('setValue', now_frame);
+      lung_time = now_frame;
+      //console.log(lung_time);
+      setTimeout(function(){ lung_slider.slider('setValue',lung_time); }, 100);
+      pass_frame = now_frame
+    }
+
+    // var counter = { var: lung_slider.slider('getValue') };
+    // TweenLite.to(counter, 0.05, {
+    //     var: now_frame, delay:0.01,
+    //     onUpdate: function () {
+    //         //console.log(Math.ceil(counter.var));
+    //         lung_slider.slider('setValue',Math.round(counter.var));
+    //     },
+    //     ease:Power2.easeOut
+    // });
 
   }
 
