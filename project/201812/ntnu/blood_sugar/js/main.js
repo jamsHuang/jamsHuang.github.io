@@ -1,227 +1,356 @@
 $(function() {
-  var total_frames = 50;
-  var now_frame = 25;
-  var front_bones_images_url = [];
+
+  const b0s0 = "不會造成血糖上升";
+  const b1s0 = "不會造成血糖上升";
+  const b2s0 = "不會造成血糖上升";
+  const b3s0 = "不會造成血糖上升";
+  const b4s0 = "會造成血糖上升";
+  const b5s0 = "會造成血糖上升";
+  const b6s0 = "會造成血糖上升";
+  const b7s0 = "不會造成血糖上升";
+
+  const b0s1 = "不會造成血糖上升";
+  const b1s1 = "不會造成血糖上升";
+  const b2s1 = "不會造成血糖上升";
+  const b3s1 = "會造成血糖上升";
+  const b4s1 = "會造成血糖上升";
+  const b5s1 = "會造成血糖上升";
+  const b6s1 = "會造成血糖上升";
+  const b7s1 = "不會造成血糖上升";
+
+  const b0s2 = "不會造成血糖上升";
+  const b1s2 = "不會造成血糖上升";
+  const b2s2 = "不會造成血糖上升";
+  const b3s2 = "會造成血糖上升";
+  const b4s2 = "會造成血糖上升";
+  const b5s2 = "會造成血糖上升";
+  const b6s2 = "會造成血糖上升";
+  const b7s2 = "不會造成血糖上升";
+
+  const b0s3 = "不會造成血糖上升";
+  const b1s3 = "不會造成血糖上升";
+  const b2s3 = "不會造成血糖上升";
+  const b3s3 = "會造成血糖上升";
+  const b4s3 = "會造成血糖上升";
+  const b5s3 = "會造成血糖上升";
+  const b6s3 = "會造成血糖上升";
+  const b7s3 = "不會造成血糖上升";
+
+  const b0s4 = "會造成血糖上升";
+  const b1s4 = "不會造成血糖上升";
+  const b2s4 = "不會造成血糖上升";
+  const b3s4 = "會造成血糖上升";
+  const b4s4 = "會造成血糖上升";
+  const b5s4 = "會造成血糖上升";
+  const b6s4 = "不會造成血糖上升";
+  const b7s4 = "不會造成血糖上升";
+
+  const b0s5 = "不會造成血糖上升";
+  const b1s5 = "不會造成血糖上升";
+  const b2s5 = "不會造成血糖上升";
+  const b3s5 = "會造成血糖上升";
+  const b4s5 = "會造成血糖上升";
+  const b5s5 = "會造成血糖上升";
+  const b6s5 = "會造成血糖上升";
+  const b7s5 = "不會造成血糖上升";
+
+  const b0s6 = "不會造成血糖上升";
+  const b1s6 = "不會造成血糖上升";
+  const b2s6 = "不會造成血糖上升";
+  const b3s6 = "會造成血糖上升";
+  const b4s6 = "會造成血糖上升";
+  const b5s6 = "會造成血糖上升";
+  const b6s6 = "會造成血糖上升";
+  const b7s6 = "不會造成血糖上升";
+
+  const b0s7 = "會造成血糖上升";
+  const b1s7 = "不會造成血糖上升";
+  const b2s7 = "不會造成血糖上升";
+  const b3s7 = "會造成血糖上升";
+  const b4s7 = "會造成血糖上升";
+  const b5s7 = "會造成血糖上升";
+  const b6s7 = "不會造成血糖上升";
+  const b7s7 = "不會造成血糖上升";
+
+  const noticeText = "請拖拉狀況按鈕"
+
   var manifest = [];
   var preload;
+  var dragtarget;
 
-  var bone_slider;
-  var lung_slider;
-  var yokohama_slider;
-
-  var spd = .20;
-  var runSpd = spd;
-  var num = 25.0;
-  var breathe = true;
-  var inhale = false;
-  var exhale = false;
-  //
   function init() {
-    setupSlider();
-    switchImg();
-    runtime(now_frame);
-    $('.button_box_breathe').css('background-color','#ACACAC');
+    dragSetting();
+    runtime();
+  }
+  $(document).on("mousemove", function(event) {
+    mousex = event.pageX;
+    mousey = event.pageY;
+  });
 
-    $('.button_box_breathe').click(function(){
-      resetBtn();
-      if(breathe == true){
-        breathe = false;
-        inhale = false;
-        exhale = false;
-      }
-      else{
-        $('.button_box_breathe').css('background-color','#ACACAC');
-        breathe = true;
-        inhale = false;
-        exhale = false;
-        runSpd = spd;
-      }
-      //runtime(now_frame);
-    })
-    $('.button_box_inhale').click(function(){
-      resetBtn();
-      if(inhale == true){
-        breathe = false;
-        inhale = false;
-        exhale = false;
-      }else{
-          $('.button_box_inhale').css('background-color','#ACACAC');
-        breathe = false;
-        inhale = true;
-        exhale = false;
-        num = 0;
-      }
-    })
-    $('.button_box_exhale').click(function(){
-      resetBtn();
-      if(exhale == true){
-        exhale = false;
-      }
-      else{
-          $('.button_box_exhale').css('background-color','#ACACAC');
-        breathe = false;
-        inhale = false;
-        exhale = true;
-        num = 49;
+  function dragSetting() {
+    $('.btn_box_block').draggable({
+      revert: 'invalid',
+      helper: "clone",
+      start: function() {
+        dragtarget = this.id;
+        $('.notice_box_text').html(""+noticeText);
+        $('.notice_box').css("background-color","#CACACA");
+      },
+      drag: function(event, ui) {
+        //console.log(ui);
+        ui.position.left = mousex - 10;
+        ui.position.top = mousey - 10;
+      },
+      containment: "#containment-wrapper",
+      scroll: false
+    });
+    $('.hitarea').droppable({
+      accept: ".btn_box_block",
+      over: function(event, ui) {
+        draggingOver(event);
+      },
+      out: function(event, ui) {
+        draggingOut(event);
+      },
+      drop: function(event, ui) {
+        testDrog(event);
       }
     })
+  }
+
+  function draggingOut(event) {
+    //console.log(event.target.id);
+    var id = event.target.id;
+    $('#' + id).css('border', '0');
+  }
+
+  function draggingOver(event) {
+    //console.log(event.target.id);
+    var id = event.target.id;
+    $('#' + id).css('border', '3px solid #330000');
+  }
+
+  function testDrog(event) {
+    //console.log(event);
+    var id = event.target.id;
+    $('#' + id).css('border', '0');
+    var str;
+    var bText = $("#" + dragtarget)[0].innerText;
+    //console.log(bText);
+    switch (id) {
+      case 's0':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s0;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s0;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s0;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s0;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s0;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s0;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s0;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s0;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's1':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s1;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s1;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s1;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s1;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s1;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s1;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s1;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s1;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's2':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s2;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s2;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s2;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s2;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s2;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s2;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s2;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s2;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's3':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s3;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s3;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s3;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s3;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s3;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s3;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s3;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s3;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's4':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s4;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s4;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s4;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s4;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s4;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s4;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s4;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s4;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's5':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s5;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s5;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s5;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s5;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s5;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s5;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s5;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s5;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's6':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s6;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s6;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s6;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s6;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s6;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s6;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s6;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s6;
+        } else {
+          str = noticeText;
+        }
+        break;
+      case 's7':
+        if (dragtarget == 'block_0') {
+          str = bText + b0s7;
+        } else if (dragtarget == 'block_1') {
+          str = bText + b1s7;
+        } else if (dragtarget == 'block_2') {
+          str = bText + b2s7;
+        } else if (dragtarget == 'block_3') {
+          str = bText + b3s7;
+        } else if (dragtarget == 'block_4') {
+          str = bText + b4s7;
+        } else if (dragtarget == 'block_5') {
+          str = bText + b5s7;
+        } else if (dragtarget == 'block_6') {
+          str = bText + b6s7;
+        } else if (dragtarget == 'block_7') {
+          str = bText + b7s7;
+        } else {
+          str = noticeText;
+        }
+        break;
+    }
+    $('.notice_box_text').html(str);
+    if (str.indexOf('不') == -1) {
+      $('.notice_box').css('background-color', '#c8eac8')
+    } else {
+      $('.notice_box').css('background-color', '#f39696')
+    }
   }
 
   function runtime() {
-    num += runSpd;
-    now_frame = Math.round(num);
-
-    //console.log(breathe,inhale,exhale);
-    if(breathe){
-
-      if(num>(total_frames-1) || num<0 )
-      {
-        runSpd*=-1;
-      }
-      else{
-
-      }
-    }else if(inhale){
-      if(num>(total_frames-1))
-      {
-        num = total_frames-1;
-        runSpd = 0;
-        inhale = false;
-        resetBtn();
-      }
-      else {
-
-        runSpd = spd;
-      }
-    }
-    else if(exhale){
-      if(num<0){
-        num = 0;
-        runSpd = 0;
-        exhale = false;
-        resetBtn();
-      }else{
-
-        runSpd = -spd;
-      }
-    }
-    else{
-      runSpd = 0;
-      //resetBtn();
-    }
-    //console.log(num);
-    switchImg();
     requestAnimationFrame(runtime);
-  }
-  function resetBtn(){
-    $('.button_box_breathe').css('background-color','#FFFFFF');
-    $('.button_box_inhale').css('background-color','#FFFFFF');
-    $('.button_box_exhale').css('background-color','#FFFFFF');
-  }
-
-  function setupSlider() {
-    bone_slider = $("#bones_ctrl").slider();
-    $("#bones_ctrl").on("slide", function(slideEvt) {
-      breathe = false;
-      inhale = false;
-      exhale = false;
-      now_frame = slideEvt.value;
-      num = now_frame;
-      resetBtn();
-      switchImg();
-
-    });
-    lung_slider = $("#lung_ctrl").slider();
-    lung_slider.slider("disable");
-    $("#lung_ctrl").on("slide", function(slideEvt) {
-      breathe = false;
-      inhale = false;
-      exhale = false;
-      now_frame = slideEvt.value;
-      num = now_frame;
-      resetBtn();
-      switchImg();
-
-    });
-    yokohama_slider = $("#yokohama_ctrl").slider();
-    $("#yokohama_ctrl").on("slide", function(slideEvt) {
-      breathe = false;
-      inhale = false;
-      exhale = false;
-      now_frame = slideEvt.value;
-      num = now_frame;
-      resetBtn();
-      switchImg();
-    });
-  }
-
-  function switchImg() {
-    var urlCreator = window.URL || window.webkitURL;
-    var boneUrl = urlCreator.createObjectURL(preload.getResult("fb" + now_frame, true));
-    var lungUrl = urlCreator.createObjectURL(preload.getResult("fl" + now_frame, true));
-    // var smokeUrl = urlCreator.createObjectURL(preload.getResult("fs" + now_frame, true));
-    $('.front_lung_img').attr("src", lungUrl);
-    $('.front_bone_img').attr("src", boneUrl);
-    // $('.front_smoke_img').attr("src", smokeUrl);
-    yokohama_slider.slider('setValue', now_frame);
-    bone_slider.slider('setValue', now_frame);
-
-    var counter = { var: lung_slider.slider('getValue') };
-    TweenLite.to(counter, 0.05, {
-        var: now_frame, delay:0.01,
-        onUpdate: function () {
-            //console.log(Math.ceil(counter.var));
-            lung_slider.slider('setValue',Math.round(counter.var));
-        },
-        ease:Power2.easeOut
-    });
-
   }
 
   function setupManifest() {
-    for (var i = 0; i < total_frames; i++) {
-      var fbname = "fb" + i;
-      var flname = "fl" + i;
-      var fsname = "fs" + i;
-      manifest.push({
-        id: fbname,
-        src: "img/video/front_bone/image__" + i + ".png",
-      }, {
-        id: flname,
-        src: "img/video/front_lung/image__" + i + ".png",
-      },
-      // {
-      //   id: fsname,
-      //   src: "img/video/front_smoke/image__" + i + ".png",
-      // }
-      );
-    }
-    //console.log(manifest);
+    manifest.push({
+      id: "img0",
+      src: "img/video/front_bone/image__0.png",
+    }, {
+      id: "img1",
+      src: "img/video/front_lung/image__1.png",
+    });
   }
-  //开始预加载
+  //開始載入
   function startPreload() {
     preload = new createjs.LoadQueue(true);
     preload.on("complete", loadComplete);
     preload.on("error", loadError);
     preload.loadManifest(manifest);
-
   }
-  //处理单个文件加载
+  //處理單個文件下載
   function handleFileLoad(event) {
     console.log("文件类型: " + event.item.type);
   }
-  //处理加载错误：大家可以修改成错误的文件地址，可在控制台看到此方法调用
+  //下載錯誤
   function loadError(evt) {
     console.log("加载出错！", evt.text);
   }
-  //已加载完毕进度
+  //處以完畢的進度
   function handleFileProgress(event) {
     console.log((preload.progress * 100 | 0) + " %");
     stage.update();
   }
-  //全度资源加载完毕
+  //全部下載完成
   function loadComplete(event) {
-    console.log("已加载完毕全部资源");
+    console.log("全部下載完成");
     $(".loading").hide();
     init();
   }

@@ -1,0 +1,37 @@
+.hitarea{
+  position: relative;
+  height: 100%;
+
+  &_s0{
+    background-color: $color-hit_s0;
+    width:15%;
+  }
+  &_s1{
+    background-color: $color-hit_s1;
+    width:8%;
+  }
+  &_s2{
+    background-color: $color-hit_s2;
+    width:7%;
+  }
+  &_s3{
+    background-color: $color-hit_s3;
+    width:19%;
+  }
+  &_s4{
+    background-color: $color-hit_s4;
+    width:5%;
+  }
+  &_s5{
+    background-color: $color-hit_s5;
+    width:24%;
+  }
+  &_s6{
+    background-color: $color-hit_s6;
+    width:5%;
+  }
+  &_s7{
+    background-color: $color-hit_s7;
+    width:17%;
+  }
+}
