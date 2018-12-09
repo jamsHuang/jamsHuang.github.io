@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 742 431" style="enable-background:new 0 0 742 431;" xml:space="preserve">
+	 viewBox="0 0 742 319" style="enable-background:new 0 0 742 319;" xml:space="preserve">
 <style type="text/css">
 	.st0{opacity:0.47;fill:#B1D793;}
 	.st1{opacity:0.5;}
@@ -15,31 +15,31 @@
 	.st9{font-size:16px;}
 </style>
 <g id="Layer_3">
-	<rect x="35" y="183.5" class="st0" width="685.62" height="132.2"/>
+	<rect x="35" y="109.5" class="st0" width="685.62" height="132.2"/>
 	<g class="st1">
 		<g>
-			<line class="st2" x1="35.27" y1="249.6" x2="37.77" y2="249.6"/>
-			<line class="st3" x1="42.74" y1="249.6" x2="715.9" y2="249.6"/>
-			<line class="st2" x1="718.39" y1="249.6" x2="720.89" y2="249.6"/>
+			<line class="st2" x1="35.27" y1="175.6" x2="37.77" y2="175.6"/>
+			<line class="st3" x1="42.74" y1="175.6" x2="715.9" y2="175.6"/>
+			<line class="st2" x1="718.39" y1="175.6" x2="720.89" y2="175.6"/>
 		</g>
 	</g>
-	<polygon class="st4" points="35,81 25,105 35,105 45,105 	"/>
-	<polygon class="st4" points="733,372 709,362 709,372 709,382 	"/>
+	<polygon class="st4" points="35,7 25,31 35,31 45,31 	"/>
+	<polygon class="st4" points="733,298 709,288 709,298 709,308 	"/>
 </g>
 <g id="Layer_4">
-	<line class="st5" x1="35.27" y1="91.78" x2="35.27" y2="351.5"/>
-	<polyline class="st5" points="35.27,357.5 35.27,372.5 720.35,372.5 	"/>
-	<line class="st6" x1="25.5" y1="350.5" x2="44.5" y2="350.5"/>
-	<line class="st6" x1="25.5" y1="357.5" x2="44.5" y2="357.5"/>
+	<line class="st5" x1="35.27" y1="17.78" x2="35.27" y2="277.5"/>
+	<polyline class="st5" points="35.27,283.5 35.27,298.5 720.35,298.5 	"/>
+	<line class="st6" x1="25.5" y1="276.5" x2="44.5" y2="276.5"/>
+	<line class="st6" x1="25.5" y1="283.5" x2="44.5" y2="283.5"/>
 </g>
 <g id="Layer_2">
-	<path class="st7" d="M35,262.17c0,0,72.79,25.16,85.64,26.76c12.85,1.61,24.62-1.07,31.04-42.28s35.86-140.23,61.55-50.85
-		s28.93,38.01,50.04,45.76c42.28,15.52,52.18,5.62,62.89,5.08c10.7-0.54,27.3,0.54,36.93,13.38c9.63,12.85,17.13,9.1,20.34-8.56
+	<path class="st7" d="M35,188.17c0,0,72.79,25.16,85.64,26.76s24.62-1.07,31.04-42.28s35.86-140.23,61.55-50.85
+		s28.93,38.01,50.04,45.76c42.28,15.52,52.18,5.62,62.89,5.08c10.7-0.54,27.3,0.54,36.93,13.38s17.13,9.1,20.34-8.56
 		s5.89-69.58,18.73-69.58s12.85,24.62,18.2,35.32c5.35,10.7,28.9,38,36.93,39.07c8.03,1.07,9.63-4.28,18.73-4.82
 		c9.1-0.54,21.41,10.17,32.11,10.7c0,0,24.89-0.8,36.13-2.41c11.24-1.61,25.69-2.14,30.51-21.94s18.2-89.92,30.51-90.45
 		c12.4-0.54,19.27,98.48,35.32,99.55c28.3,1.89,80.28,12.85,80.28,12.85"/>
-	<text transform="matrix(1 0 0 1 0.7314 253.4688)" class="st8 st9">100</text>
-	<text transform="matrix(1 0 0 1 8.939 319.4688)" class="st8 st9">80</text>
-	<text transform="matrix(1 0 0 1 0.7314 187.4688)" class="st8 st9">120</text>
+	<text transform="matrix(1 0 0 1 0.7314 179.4688)" class="st8 st9">100</text>
+	<text transform="matrix(1 0 0 1 8.939 245.4688)" class="st8 st9">80</text>
+	<text transform="matrix(1 0 0 1 0.7314 113.4688)" class="st8 st9">120</text>
 </g>
 </svg>

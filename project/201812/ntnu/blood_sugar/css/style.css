@@ -80,7 +80,7 @@ header {
 .line_box {
   position: relative;
   height: auto;
-  padding-top: 55%;
+  padding-top: 44%;
 }
 
 .line_box .img_box {
@@ -153,6 +153,9 @@ button:focus {
   left: 0;
   color: #232323;
   z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hitarea {

@@ -1,16 +1,16 @@
 $(function() {
 
-  const b0s0 = "不會造成血糖上升";
-  const b1s0 = "不會造成血糖上升";
-  const b2s0 = "不會造成血糖上升";
-  const b3s0 = "不會造成血糖上升";
-  const b4s0 = "會造成血糖上升";
-  const b5s0 = "會造成血糖上升";
-  const b6s0 = "會造成血糖上升";
-  const b7s0 = "不會造成血糖上升";
+  const b0s0 = "不會造成血糖下降";
+  const b1s0 = "不會造成血糖下降";
+  const b2s0 = "會造成血糖下降";
+  const b3s0 = "不會造成血糖下降";
+  const b4s0 = "不會造成血糖下降";
+  const b5s0 = "會造成血糖下降";
+  const b6s0 = "會造成血糖下降";
+  const b7s0 = "不會造成血糖下降";
 
-  const b0s1 = "不會造成血糖上升";
-  const b1s1 = "不會造成血糖上升";
+  const b0s1 = "會造成血糖上升";
+  const b1s1 = "會造成血糖上升";
   const b2s1 = "不會造成血糖上升";
   const b3s1 = "會造成血糖上升";
   const b4s1 = "會造成血糖上升";
@@ -18,14 +18,14 @@ $(function() {
   const b6s1 = "會造成血糖上升";
   const b7s1 = "不會造成血糖上升";
 
-  const b0s2 = "不會造成血糖上升";
-  const b1s2 = "不會造成血糖上升";
-  const b2s2 = "不會造成血糖上升";
-  const b3s2 = "會造成血糖上升";
-  const b4s2 = "會造成血糖上升";
-  const b5s2 = "會造成血糖上升";
-  const b6s2 = "會造成血糖上升";
-  const b7s2 = "不會造成血糖上升";
+  const b0s2 = "不會造成血糖下降";
+  const b1s2 = "不會造成血糖下降";
+  const b2s2 = "不會造成血糖下降";
+  const b3s2 = "會造成血糖下降";
+  const b4s2 = "會造成血糖下降";
+  const b5s2 = "會造成血糖下降";
+  const b6s2 = "會造成血糖下降";
+  const b7s2 = "不會造成血糖下降";
 
   const b0s3 = "不會造成血糖上升";
   const b1s3 = "不會造成血糖上升";
