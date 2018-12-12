@@ -67,7 +67,49 @@ cp -r pycocotools <path_to_tensorflow>/models/research/
 # From tensorflow/models/research/
 python object_detection/builders/model_builder_test.py
 ```
-
+### convert model
+```
+python export_inference_graph.py \
+    --input_type image_tensor \
+    --pipeline_config_path training/ssdlite_mobilenet_v2_coco.config \
+    --trained_checkpoint_prefix  training/model.ckpt-85000\
+    --output_directory fine_tuned_model
+```
+```
+tensorflowjs_converter \
+    --input_format=tf_saved_model \
+    --output_node_names='/MobilenetV2/Logits/output' \
+    --saved_model_tags=serve \
+    fine_tuned_model/saved_model \
+    web_model
+```
+tensorflowjs_converter \
+    --input_format=tf_frozen_model \
+    --output_node_names='concat,concat_1' \
+    --saved_model_tags=serve \
+    fine_tuned_model/frozen_inference_graph.pb \
+    web_model
+    
+tensorflowjs_converter --input_format=tf_saved_model \
+                       --output_node_names='Postprocessor/ExpandDims_1,Postprocessor/Slice' \
+                       --saved_model_tags=serve \
+                       fine_tuned_model/saved_model \
+                       web_model  
+    
+ tensorflowjs_converter \
+    --input_format=tf_saved_model \
+    --output_node_names='concat,concat_1' \
+    --saved_model_tags=serve \
+    fine_tuned_model/saved_model \
+    web_model
+    
+import tensorflow as tf
+with tf.Session() as sess:
+    with open('fine_tuned_model/frozen_inference_graph.pb', 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read()) 
+        print graph_def
+```
 src:
 https://www.jianshu.com/p/2f3be7781451  
 https://tw.saowen.com/a/a7b78689d712dec00b1c7222e20893bf7f987caab08eb8aba68d4bfa4ac16e74  
