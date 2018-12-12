@@ -2,6 +2,30 @@ button{
   color:$color-font-main;
   border-radius: 3px;
   &:focus{
+    outline: 0;
     outline-color: rgba(255,255,255,0);
+    border: 0;
+    box-shadow: 0;
   }
+  &:active{
+    outline-color: rgba(255,255,255,0);
+    border: 0;
+    box-shadow: 0;
+  }
+  &:visited{
+    outline-color: rgba(255,255,255,0);
+    border: 0;
+    box-shadow: 0;
+  }
+  &:hover{
+    outline-color: rgba(255,255,255,0);
+    border: 0;
+    box-shadow: 0;
+  }
+  &:focus-within{
+    outline-color: rgba(255,255,255,0);
+    border: 0;
+    box-shadow: 0;
+  }
+
 }

@@ -58,6 +58,10 @@ header {
 
 .main {
   padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: black;
+  margin-top: 50px;
+  border-radius: 10px;
 }
 
 footer {
@@ -74,7 +78,34 @@ button {
 }
 
 button:focus {
+  outline: 0;
   outline-color: rgba(255, 255, 255, 0);
+  border: 0;
+  box-shadow: 0;
+}
+
+button:active {
+  outline-color: rgba(255, 255, 255, 0);
+  border: 0;
+  box-shadow: 0;
+}
+
+button:visited {
+  outline-color: rgba(255, 255, 255, 0);
+  border: 0;
+  box-shadow: 0;
+}
+
+button:hover {
+  outline-color: rgba(255, 255, 255, 0);
+  border: 0;
+  box-shadow: 0;
+}
+
+button:focus-within {
+  outline-color: rgba(255, 255, 255, 0);
+  border: 0;
+  box-shadow: 0;
 }
 
 .copyright {
@@ -96,28 +127,82 @@ button:focus {
   align-items: center;
 }
 
-.front_view img {
-  width: 100%;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  /* For IE8 and earlier */
-  position: absolute;
-  top: 0;
-  left: 0;
+.front_view,
+.side_view {
+  overflow: hidden;
 }
 
-.side_view img {
+.front_view_imgbox,
+.side_view_imgbox {
+  position: relative;
   width: 100%;
-  opacity: 0.7;
-  filter: alpha(opacity=50);
-  /* For IE8 and earlier */
-  position: absolute;
   top: 0;
   left: 0;
+  padding-bottom: 100%;
+}
+
+.front_view_imgbox img,
+.side_view_imgbox img {
+  position: absolute;
+  width: 120%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -10%;
+}
+
+.front_view_textbox,
+.side_view_textbox {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  box-shadow: 0 0 20px 20px black inset;
+  color: #ACACAC;
+  text-align: center;
+}
+
+.front_view_textbox_text,
+.side_view_textbox_text {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 5px;
+}
+
+.all_img {
+  opacity: 1;
+}
+
+.show_img {
+  opacity: 0.5;
 }
 
 .ctrl_box {
   text-align: center;
+  color: #ACACAC;
+}
+
+.ctrl_box .labels {
+  position: absolute;
+  width: 240px;
+  color: #FAFAFA;
+  font-size: 0.9rem;
+  left: 50%;
+  margin-left: -120px;
+}
+
+.ctrl_box .labels_up {
+  position: absolute;
+  right: 0;
+}
+
+.ctrl_box .labels_down {
+  position: absolute;
+  left: 0;
 }
 
 .ctrl_box_sq {

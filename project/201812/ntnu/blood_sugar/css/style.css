@@ -97,7 +97,7 @@ header {
   top: 0;
   left: 5%;
   width: 92%;
-  height: 94%;
+  height: 95%;
 }
 
 footer {
@@ -165,22 +165,22 @@ button:focus {
 
 .hitarea_s0 {
   background-color: rgba(0, 0, 0, 0.1);
-  width: 15%;
+  width: 21%;
 }
 
 .hitarea_s1 {
   background-color: rgba(0, 0, 0, 0.2);
-  width: 8%;
+  width: 6%;
 }
 
 .hitarea_s2 {
   background-color: rgba(0, 0, 0, 0.1);
-  width: 7%;
+  width: 5%;
 }
 
 .hitarea_s3 {
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 19%;
+  background-color: rgba(235, 235, 30, 0.3);
+  width: 17%;
 }
 
 .hitarea_s4 {
@@ -190,17 +190,27 @@ button:focus {
 
 .hitarea_s5 {
   background-color: rgba(0, 0, 0, 0.2);
-  width: 24%;
+  width: 5%;
 }
 
 .hitarea_s6 {
-  background-color: rgba(0, 0, 0, 0.1);
-  width: 5%;
+  background-color: rgba(235, 235, 30, 0.3);
+  width: 18%;
 }
 
 .hitarea_s7 {
   background-color: rgba(0, 0, 0, 0.2);
-  width: 17%;
+  width: 6%;
+}
+
+.hitarea_s8 {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 6%;
+}
+
+.hitarea_s9 {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 11%;
 }
 
 .front_view img {

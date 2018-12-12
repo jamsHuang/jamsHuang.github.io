@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 742 319" style="enable-background:new 0 0 742 319;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.47;fill:#B1D793;}
+	.st0{opacity:0.47;fill:#B1D793;enable-background:new    ;}
 	.st1{opacity:0.5;}
 	.st2{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
 	.st3{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:4.968,4.968;}
@@ -11,35 +11,60 @@
 	.st5{fill:none;stroke:#000000;stroke-width:5;stroke-miterlimit:10;}
 	.st6{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
 	.st7{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
-	.st8{font-family:'MyriadPro-Regular';}
+	.st8{font-family:'ArialMT';}
 	.st9{font-size:16px;}
+	.st10{font-family:'MyriadPro-Regular';}
+	.st11{font-size:12px;}
 </style>
 <g id="Layer_3">
-	<rect x="35" y="109.5" class="st0" width="685.62" height="132.2"/>
+	<rect x="35" y="109.5" class="st0" width="685.6" height="132.2"/>
 	<g class="st1">
 		<g>
-			<line class="st2" x1="35.27" y1="175.6" x2="37.77" y2="175.6"/>
-			<line class="st3" x1="42.74" y1="175.6" x2="715.9" y2="175.6"/>
-			<line class="st2" x1="718.39" y1="175.6" x2="720.89" y2="175.6"/>
+			<line class="st2" x1="35.3" y1="175.6" x2="37.8" y2="175.6"/>
+			<line class="st3" x1="42.7" y1="175.6" x2="715.9" y2="175.6"/>
+			<line class="st2" x1="718.4" y1="175.6" x2="720.9" y2="175.6"/>
 		</g>
 	</g>
 	<polygon class="st4" points="35,7 25,31 35,31 45,31 	"/>
-	<polygon class="st4" points="733,298 709,288 709,298 709,308 	"/>
 </g>
 <g id="Layer_4">
-	<line class="st5" x1="35.27" y1="17.78" x2="35.27" y2="277.5"/>
-	<polyline class="st5" points="35.27,283.5 35.27,298.5 720.35,298.5 	"/>
+	<line class="st5" x1="35.3" y1="17.8" x2="35.3" y2="277.5"/>
+	<polyline class="st5" points="35.3,283.5 35.3,298.5 720.3,298.5 	"/>
 	<line class="st6" x1="25.5" y1="276.5" x2="44.5" y2="276.5"/>
 	<line class="st6" x1="25.5" y1="283.5" x2="44.5" y2="283.5"/>
 </g>
-<g id="Layer_2">
-	<path class="st7" d="M35,188.17c0,0,72.79,25.16,85.64,26.76s24.62-1.07,31.04-42.28s35.86-140.23,61.55-50.85
-		s28.93,38.01,50.04,45.76c42.28,15.52,52.18,5.62,62.89,5.08c10.7-0.54,27.3,0.54,36.93,13.38s17.13,9.1,20.34-8.56
-		s5.89-69.58,18.73-69.58s12.85,24.62,18.2,35.32c5.35,10.7,28.9,38,36.93,39.07c8.03,1.07,9.63-4.28,18.73-4.82
-		c9.1-0.54,21.41,10.17,32.11,10.7c0,0,24.89-0.8,36.13-2.41c11.24-1.61,25.69-2.14,30.51-21.94s18.2-89.92,30.51-90.45
-		c12.4-0.54,19.27,98.48,35.32,99.55c28.3,1.89,80.28,12.85,80.28,12.85"/>
+<g>
+	<path class="st7" d="M35,188.2c0,0,73.2,20.2,86,21.8c74.4,8.1,73.9,0.2,80.3-41S218,31,237,123c18.8,91.1,22.9,37.2,44,45
+		c22,11.5,34.4,5.2,45.2,4.6c10.7-0.5,27.3,0.5,36.9,13.4s17.1,9.1,20.3-8.6s6.1-90.5,19-90.5s19.2,64.1,22.6,79
+		c6.2,19,9.4,20,23,20c15,0,16.9-6,26-6.5c30-3.9,35,0,35,0s24,7.9,35.3,6.3s25.7-2.1,30.5-21.9s18.2-89.9,30.5-90.4
+		c12.4-0.5,19.3,98.5,35.3,99.6c28.3,1.9,80.3,12.9,80.3,12.9"/>
 	<text transform="matrix(1 0 0 1 0.7314 179.4688)" class="st8 st9">100</text>
 	<text transform="matrix(1 0 0 1 8.939 245.4688)" class="st8 st9">80</text>
 	<text transform="matrix(1 0 0 1 0.7314 113.4688)" class="st8 st9">120</text>
 </g>
+<text transform="matrix(1 0 0 1 29 315)" class="st10 st11">00</text>
+<text transform="matrix(1 0 0 1 57.7246 315)" class="st10 st11">01</text>
+<text transform="matrix(1 0 0 1 86.4491 315)" class="st10 st11">02</text>
+<text transform="matrix(1 0 0 1 115.1737 315)" class="st10 st11">03</text>
+<text transform="matrix(1 0 0 1 143.8983 315)" class="st10 st11">04</text>
+<text transform="matrix(1 0 0 1 172.6228 315)" class="st10 st11">05</text>
+<text transform="matrix(1 0 0 1 201.3474 315)" class="st10 st11">06</text>
+<text transform="matrix(1 0 0 1 230.072 315)" class="st10 st11">07</text>
+<text transform="matrix(1 0 0 1 258.7966 315)" class="st10 st11">08</text>
+<text transform="matrix(1 0 0 1 287.5211 315)" class="st10 st11">09</text>
+<text transform="matrix(1 0 0 1 316.2457 315)" class="st10 st11">10</text>
+<text transform="matrix(1 0 0 1 344.9702 315)" class="st10 st11">11</text>
+<text transform="matrix(1 0 0 1 373.6948 315)" class="st10 st11">12</text>
+<text transform="matrix(1 0 0 1 402.4194 315)" class="st10 st11">13</text>
+<text transform="matrix(1 0 0 1 431.144 315)" class="st10 st11">14</text>
+<text transform="matrix(1 0 0 1 459.8685 315)" class="st10 st11">15</text>
+<text transform="matrix(1 0 0 1 488.5931 315)" class="st10 st11">16</text>
+<text transform="matrix(1 0 0 1 517.3176 315)" class="st10 st11">17</text>
+<text transform="matrix(1 0 0 1 546.0422 315)" class="st10 st11">18</text>
+<text transform="matrix(1 0 0 1 574.7668 315)" class="st10 st11">19</text>
+<text transform="matrix(1 0 0 1 603.4914 315)" class="st10 st11">20</text>
+<text transform="matrix(1 0 0 1 632.2159 315)" class="st10 st11">21</text>
+<text transform="matrix(1 0 0 1 660.9405 315)" class="st10 st11">22</text>
+<text transform="matrix(1 0 0 1 689.6651 315)" class="st10 st11">23</text>
+<text transform="matrix(1 0 0 1 718.39 315)" class="st10 st11">24</text>
 </svg>
