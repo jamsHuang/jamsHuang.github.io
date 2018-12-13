@@ -132,7 +132,7 @@ button:focus {
 .btn_box_block {
   padding: 10px;
   margin: 0 2px 10px 0;
-  background-color: #ACACAC;
+  background-color: #DADADA;
   color: #333333;
   border-radius: 5px;
   width: 75px;
@@ -145,6 +145,7 @@ button:focus {
 
 .btn_box_block:hover {
   cursor: move;
+  background-color: #AEAEAE;
 }
 
 .copyright {
@@ -171,54 +172,79 @@ button:focus {
   height: 100%;
 }
 
-.hitarea_s0 {
-  background-color: rgba(0, 0, 0, 0.1);
-  width: 21%;
+.hitarea_n0 {
+  background-color: rgba(0, 0, 0, 0);
+  width: 20.8%;
+}
+
+.hitarea_n1 {
+  background-color: rgba(0, 0, 0, 0);
+  width: 2.4%;
+}
+
+.hitarea_n2 {
+  background-color: rgba(0, 0, 0, 0);
+  width: 1.4%;
+}
+
+.hitarea_n3 {
+  background-color: rgba(0, 0, 0, 0);
+  width: 15.1%;
 }
 
 .hitarea_s1 {
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 6%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 6.2%;
 }
 
 .hitarea_s2 {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0);
   width: 5%;
 }
 
 .hitarea_s3 {
-  background-color: rgba(235, 235, 30, 0.3);
-  width: 17%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 15%;
 }
 
 .hitarea_s4 {
-  background-color: rgba(0, 0, 0, 0.1);
-  width: 5%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 4.1%;
 }
 
 .hitarea_s5 {
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 5%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 3.2%;
 }
 
 .hitarea_s6 {
-  background-color: rgba(235, 235, 30, 0.3);
-  width: 18%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 6.5%;
 }
 
 .hitarea_s7 {
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 6%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 3%;
 }
 
 .hitarea_s8 {
-  background-color: rgba(0, 0, 0, 0.1);
-  width: 6%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 2.4%;
 }
 
 .hitarea_s9 {
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 11%;
+  background-color: rgba(0, 0, 0, 0);
+  width: 5%;
+}
+
+.hitarea_s10 {
+  background-color: rgba(0, 0, 0, 0);
+  width: 4%;
+}
+
+.hitarea_s11 {
+  background-color: rgba(0, 0, 0, 0);
+  width: 5.9%;
 }
 
 .front_view img {

@@ -3,6 +3,7 @@ button{
   border-radius: 3px;
   &:focus{
     outline-color: rgba(255,255,255,0);
+
   }
 }
 
@@ -20,7 +21,7 @@ button{
   &_block{
     padding: 10px;
     margin: 0 2px 10px 0;
-    background-color: #ACACAC;
+    background-color: $color-btn-bg;
     color: #333333;
     border-radius: 5px;
     width: 75px;
@@ -32,6 +33,7 @@ button{
 
     &:hover{
       cursor: move;
+      background-color: $color-btn-bg-focus;
     }
   }
 }

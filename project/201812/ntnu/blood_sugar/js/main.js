@@ -1,5 +1,5 @@
 $(function() {
-  var tf=-1;
+  var tf = -1;
   const b0s0 = "進食時會吸收養分，血濃濃度應該會如何呢？";
   const b1s0 = "運動時，細胞會需要很多能量，表示需要葡萄糖喔";
   const b2s0 = "胰島素不會讓血糖濃度上升喔";
@@ -100,6 +100,26 @@ $(function() {
   const b7s9 = "細胞加速使用血糖的話，那麼，血糖濃度應該會如何呢？";
   const b8s9 = "細胞使用血糖，會讓血糖濃度下降";
 
+  const b0s10 = "進食時會吸收養分，血濃濃度應該會如何呢？";
+  const b1s10 = "運動時，細胞會需要很多能量，表示需要葡萄糖喔";
+  const b2s10 = "胰島素不會讓血糖濃度上升喔";
+  const b3s10 = "升糖素不會讓血糖濃度下降喔";
+  const b4s10 = "緊張時，表示細胞需要能量，會需要獲得葡萄糖喔";
+  const b5s10 = "肝糖如果分解，應該會產生葡萄糖喔";
+  const b6s10 = "肝糖主要是來自葡萄糖的合成喔";
+  const b7s10 = "細胞加速使用血糖的話，那麼，血糖濃度應該會如何呢？";
+  const b8s10 = "細胞使用血糖，會讓血糖濃度下降";
+  //
+  const b0s11 = "進食時會吸收養分，血濃濃度應該會如何呢？";
+  const b1s11 = "運動時，細胞會需要很多能量，表示需要葡萄糖喔";
+  const b2s11 = "胰島素不會讓血糖濃度上升喔";
+  const b3s11 = "升糖素不會讓血糖濃度下降喔";
+  const b4s11 = "緊張時，表示細胞需要能量，會需要獲得葡萄糖喔";
+  const b5s11 = "肝糖如果分解，應該會產生葡萄糖喔";
+  const b6s11 = "肝糖主要是來自葡萄糖的合成喔";
+  const b7s11 = "細胞加速使用血糖的話，那麼，血糖濃度應該會如何呢？";
+  const b8s11 = "細胞使用血糖，會讓血糖濃度下降";
+
   const noticeText = "請拖拉狀況按鈕"
 
   var manifest = [];
@@ -121,13 +141,13 @@ $(function() {
       helper: "clone",
       start: function() {
         dragtarget = this.id;
-        $('.notice_box_text').html(""+noticeText);
-        $('.notice_box').css("background-color","#CACACA");
+        $('.notice_box_text').html("" + noticeText);
+        $('.notice_box').css("background-color", "#CACACA");
       },
       drag: function(event, ui) {
         //console.log(ui);
-        ui.position.left = mousex - 10;
-        ui.position.top = mousey - 10;
+        ui.position.left = mousex -1;
+        ui.position.top = mousey -1;
       },
       containment: "#containment-wrapper",
       scroll: false
@@ -257,9 +277,6 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s2;
           tf = 1;
-        } else if (dragtarget == 'block_8') {
-          str = b8s2;
-          tf = 0;
         } else {
           str = noticeText;
           tf = -1;
@@ -291,9 +308,6 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s3;
           tf = 0;
-        } else if (dragtarget == 'block_8') {
-          str = b8s3;
-          tf = 0;
         } else {
           str = noticeText;
           tf = -1;
@@ -324,10 +338,7 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s4;
           tf = 0;
-        }  else if (dragtarget == 'block_8') {
-          str = b8s4;
-          tf = 0;
-        }else {
+        } else {
           str = noticeText;
           tf = -1;
         }
@@ -357,10 +368,7 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s5;
           tf = 1;
-        }  else if (dragtarget == 'block_8') {
-          str = b8s5;
-          tf = 0;
-        }else {
+        } else {
           str = noticeText;
           tf = -1;
         }
@@ -390,10 +398,10 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s6;
           tf = 0;
-        }  else if (dragtarget == 'block_8') {
+        } else if (dragtarget == 'block_8') {
           str = b8s6;
           tf = 0;
-        }else {
+        } else {
           str = noticeText;
           tf = -1;
         }
@@ -423,88 +431,153 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s7;
           tf = 0;
-        }  else if (dragtarget == 'block_8') {
+        } else if (dragtarget == 'block_8') {
           str = b8s7;
           tf = 0;
-        }else {
+        } else {
           str = noticeText;
           tf = -1;
         }
         break;
-        case 's8':
-          if (dragtarget == 'block_0') {
-            str = b0s8;
-            tf = 0;
-          } else if (dragtarget == 'block_1') {
-            str = b1s8;
-            tf = 0;
-          } else if (dragtarget == 'block_2') {
-            str = b2s8;
-            tf = 1;
-          } else if (dragtarget == 'block_3') {
-            str = b3s8;
-            tf = 0;
-          } else if (dragtarget == 'block_4') {
-            str = b4s8;
-            tf = 0;
-          } else if (dragtarget == 'block_5') {
-            str = b5s8;
-            tf = 0;
-          } else if (dragtarget == 'block_6') {
-            str = b6s8;
-            tf = 1;
-          } else if (dragtarget == 'block_7') {
-            str = b7s8;
-            tf = 1;
-          } else if (dragtarget == 'block_8') {
-            str = b8s8;
-            tf = 0;
-          } else {
-            str = noticeText;
-            tf = -1;
-          }
-          break;
-          case 's9':
-            if (dragtarget == 'block_0') {
-              str = b0s9;
-              tf = 0;
-            } else if (dragtarget == 'block_1') {
-              str = b1s9;
-              tf = 0;
-            } else if (dragtarget == 'block_2') {
-              str = b2s9;
-              tf = 0;
-            } else if (dragtarget == 'block_3') {
-              str = b3s9;
-              tf = 0;
-            } else if (dragtarget == 'block_4') {
-              str = b4s9;
-              tf = 0;
-            } else if (dragtarget == 'block_5') {
-              str = b5s9;
-              tf = 0;
-            } else if (dragtarget == 'block_6') {
-              str = b6s9;
-              tf = 0;
-            } else if (dragtarget == 'block_7') {
-              str = b7s9;
-              tf = 0;
-            } else if (dragtarget == 'block_8') {
-              str = b8s9;
-              tf = 1;
-            } else {
-              str = noticeText;
-              tf = -1;
-            }
-            break;
+      case 's8':
+        if (dragtarget == 'block_0') {
+          str = b0s8;
+          tf = 0;
+        } else if (dragtarget == 'block_1') {
+          str = b1s8;
+          tf = 0;
+        } else if (dragtarget == 'block_2') {
+          str = b2s8;
+          tf = 1;
+        } else if (dragtarget == 'block_3') {
+          str = b3s8;
+          tf = 0;
+        } else if (dragtarget == 'block_4') {
+          str = b4s8;
+          tf = 0;
+        } else if (dragtarget == 'block_5') {
+          str = b5s8;
+          tf = 0;
+        } else if (dragtarget == 'block_6') {
+          str = b6s8;
+          tf = 1;
+        } else if (dragtarget == 'block_7') {
+          str = b7s8;
+          tf = 1;
+        } else if (dragtarget == 'block_8') {
+          str = b8s8;
+          tf = 0;
+        } else {
+          str = noticeText;
+          tf = -1;
+        }
+        break;
+      case 's9':
+        if (dragtarget == 'block_0') {
+          str = b0s9;
+          tf = 0;
+        } else if (dragtarget == 'block_1') {
+          str = b1s9;
+          tf = 0;
+        } else if (dragtarget == 'block_2') {
+          str = b2s9;
+          tf = 0;
+        } else if (dragtarget == 'block_3') {
+          str = b3s9;
+          tf = 0;
+        } else if (dragtarget == 'block_4') {
+          str = b4s9;
+          tf = 0;
+        } else if (dragtarget == 'block_5') {
+          str = b5s9;
+          tf = 0;
+        } else if (dragtarget == 'block_6') {
+          str = b6s9;
+          tf = 0;
+        } else if (dragtarget == 'block_7') {
+          str = b7s9;
+          tf = 0;
+        } else if (dragtarget == 'block_8') {
+          str = b8s9;
+          tf = 1;
+        } else {
+          str = noticeText;
+          tf = -1;
+        }
+        break;
+      case 's10':
+        if (dragtarget == 'block_0') {
+          str = b0s10;
+          tf = 0;
+        } else if (dragtarget == 'block_1') {
+          str = b1s10;
+          tf = 0;
+        } else if (dragtarget == 'block_2') {
+          str = b2s10;
+          tf = 0;
+        } else if (dragtarget == 'block_3') {
+          str = b3s10;
+          tf = 0;
+        } else if (dragtarget == 'block_4') {
+          str = b4s10;
+          tf = 0;
+        } else if (dragtarget == 'block_5') {
+          str = b5s10;
+          tf = 0;
+        } else if (dragtarget == 'block_6') {
+          str = b6s10;
+          tf = 0;
+        } else if (dragtarget == 'block_7') {
+          str = b7s10;
+          tf = 0;
+        } else if (dragtarget == 'block_8') {
+          str = b8s10;
+          tf = 1;
+        } else {
+          str = noticeText;
+          tf = -1;
+        }
+        break;
+      case 's11':
+        if (dragtarget == 'block_0') {
+          str = b0s11;
+          tf = 0;
+        } else if (dragtarget == 'block_1') {
+          str = b1s11;
+          tf = 0;
+        } else if (dragtarget == 'block_2') {
+          str = b2s11;
+          tf = 0;
+        } else if (dragtarget == 'block_3') {
+          str = b3s11;
+          tf = 0;
+        } else if (dragtarget == 'block_4') {
+          str = b4s11;
+          tf = 0;
+        } else if (dragtarget == 'block_5') {
+          str = b5s11;
+          tf = 0;
+        } else if (dragtarget == 'block_6') {
+          str = b6s11;
+          tf = 0;
+        } else if (dragtarget == 'block_7') {
+          str = b7s11;
+          tf = 0;
+        } else if (dragtarget == 'block_8') {
+          str = b8s11;
+          tf = 1;
+        } else {
+          str = noticeText;
+          tf = -1;
+        }
+        break;
     }
     $('.notice_box_text').html(str);
-    if (tf==1) {
+    if (tf == 1) {
       $('.notice_box').css('background-color', '#c8eac8')
-    } else if(tf==0){
+    } else if (tf == 0) {
       $('.notice_box').css('background-color', '#f39696')
-    }
-    else{
+    } else {
       $('.notice_box').css('background-color', '#ACACAC')
     }
   }
@@ -516,10 +589,7 @@ $(function() {
   function setupManifest() {
     manifest.push({
       id: "img0",
-      src: "img/video/front_bone/image__0.png",
-    }, {
-      id: "img1",
-      src: "img/video/front_lung/image__1.png",
+      src: "img/line.svg",
     });
   }
   //開始載入

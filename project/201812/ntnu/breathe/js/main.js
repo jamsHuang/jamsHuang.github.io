@@ -6,8 +6,10 @@ $(function() {
   var preload;
 
   var bone_slider;
+  var chest_slider;
   var lung_slider;
   var yokohama_slider;
+  var chest_time;
   var lung_time;
 
   var spd = .20;
@@ -140,6 +142,20 @@ $(function() {
       switchImg();
 
     });
+    chest_slider = $("#chest_ctrl").slider();
+    chest_slider.slider("disable");
+    $("#chest_ctrl").on("slide", function(slideEvt) {
+      // $('.show_img').css({opacity:1});
+      // $('.all_img').css({opacity:0.5});
+      // showImg = 1;
+      breathe = false;
+      inhale = false;
+      exhale = false;
+      now_frame = slideEvt.value;
+      num = now_frame;
+      resetBtn();
+      switchImg();
+    });
     lung_slider = $("#lung_ctrl").slider();
     lung_slider.slider("disable");
     $("#lung_ctrl").on("slide", function(slideEvt) {
@@ -199,32 +215,26 @@ $(function() {
       //
       yokohama_slider.slider('setValue', now_frame);
       bone_slider.slider('setValue', now_frame);
-      lung_time = now_frame;
+      chest_time = now_frame;
       //console.log(lung_time);
-      if (pass_frame < now_frame) {
-        $('.textbox_text').html("胸腔變大");
-      } else if (pass_frame > now_frame) {
-        $('.textbox_text').html("胸腔縮小");
-      } else {
-        $('.textbox_text').html("");
-      }
-
-      setTimeout(function() {
-        lung_slider.slider('setValue', lung_time);
-      }, 100);
+      // if (pass_frame < now_frame) {
+      //   $('.textbox_text').html("胸腔變大");
+      // } else if (pass_frame > now_frame) {
+      //   $('.textbox_text').html("胸腔縮小");
+      // } else {
+      //   $('.textbox_text').html("");
+      // }
+      var runChest = setTimeout(run_chest, 50);
       pass_frame = now_frame
     }
-
-    // var counter = { var: lung_slider.slider('getValue') };
-    // TweenLite.to(counter, 0.05, {
-    //     var: now_frame, delay:0.01,
-    //     onUpdate: function () {
-    //         //console.log(Math.ceil(counter.var));
-    //         lung_slider.slider('setValue',Math.round(counter.var));
-    //     },
-    //     ease:Power2.easeOut
-    // });
-
+  }
+  function run_chest(){
+    chest_slider.slider('setValue', chest_time);
+    lung_time = chest_time;
+    var runLung = setTimeout(run_lung, 50);
+  }
+  function run_lung(){
+    lung_slider.slider('setValue', lung_time);
   }
 
   function setupManifest() {
