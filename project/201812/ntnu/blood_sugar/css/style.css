@@ -118,6 +118,7 @@ button:focus {
 }
 
 .btn_box {
+  font-size: 0.9rem;
   text-align: center;
   display: inline-flex;
   width: 100%;
@@ -144,7 +145,7 @@ button:focus {
 }
 
 .loading {
-  background-color: #909090;
+  background-color: #ffffff;
   width: 100vw;
   height: 100vh;
   text-align: center;

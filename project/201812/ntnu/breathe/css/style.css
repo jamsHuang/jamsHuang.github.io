@@ -113,7 +113,7 @@ button:focus-within {
 }
 
 .loading {
-  background-color: #ACACAC;
+  background-color: #FFFFFF;
   width: 100vw;
   height: 100vh;
   text-align: center;
