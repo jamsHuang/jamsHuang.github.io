@@ -241,13 +241,13 @@ $(function() {
     for (var i = 0; i < total_frames; i++) {
       var faname = "fa" + i;
       var fbname = "fb" + i;
-      var flname = "fl" + i;
+      
       var fsname = "fs" + i;
       var fdname = "fd" + i;
       //
       var saname = "sa" + i;
       var sbname = "sb" + i;
-      var slname = "sl" + i;
+
       var ssname = "ss" + i;
       var sdname = "sd" + i;
 
@@ -257,9 +257,6 @@ $(function() {
       }, {
         id: fbname,
         src: "img/video/front_bone/image__" + i + ".png",
-      }, {
-        id: flname,
-        src: "img/video/front_lung/image__" + i + ".png",
       }, {
         id: fdname,
         src: "img/video/front_diaphragm/image__" + i + ".png",
@@ -275,9 +272,6 @@ $(function() {
       }, {
         id: sdname,
         src: "img/video/side_diaphragm/image__" + i + ".png",
-      }, {
-        id: slname,
-        src: "img/video/side_lung/image__" + i + ".png",
       }, {
         id: ssname,
         src: "img/video/side_smoke/image__" + i + ".png",

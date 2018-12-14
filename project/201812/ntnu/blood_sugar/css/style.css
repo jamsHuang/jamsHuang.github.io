@@ -144,7 +144,7 @@ button:focus {
 }
 
 .btn_box_block:hover {
-  cursor: move;
+  cursor: grabbing;
   background-color: #AEAEAE;
 }
 
