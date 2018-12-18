@@ -266,7 +266,7 @@ $(function() {
           tf = 1;
         } else if (dragtarget == 'block_1') {
           str = b1s4;
-          tf = 1;
+          tf = 0;
         } else if (dragtarget == 'block_2') {
           str = b2s4;
           tf = 0;
@@ -275,7 +275,7 @@ $(function() {
           tf = 0;
         } else if (dragtarget == 'block_4') {
           str = b4s4;
-          tf = 1;
+          tf = 0;
         } else if (dragtarget == 'block_5') {
           str = b5s4;
           tf = 0;
@@ -345,9 +345,6 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s6;
           tf = 0;
-        } else if (dragtarget == 'block_8') {
-          str = b8s6;
-          tf = 0;
         } else {
           str = noticeText;
           tf = -1;
@@ -377,9 +374,6 @@ $(function() {
           tf = 0;
         } else if (dragtarget == 'block_7') {
           str = b7s7;
-          tf = 0;
-        } else if (dragtarget == 'block_8') {
-          str = b8s7;
           tf = 0;
         } else {
           str = noticeText;
@@ -411,9 +405,6 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s8;
           tf = 1;
-        } else if (dragtarget == 'block_8') {
-          str = b8s8;
-          tf = 0;
         } else {
           str = noticeText;
           tf = -1;
@@ -428,10 +419,10 @@ $(function() {
           tf = 0;
         } else if (dragtarget == 'block_2') {
           str = b2s9;
-          tf = 0;
+          tf = 1;
         } else if (dragtarget == 'block_3') {
           str = b3s9;
-          tf = 0;
+          tf = 1;
         } else if (dragtarget == 'block_4') {
           str = b4s9;
           tf = 0;
@@ -444,9 +435,6 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s9;
           tf = 0;
-        } else if (dragtarget == 'block_8') {
-          str = b8s9;
-          tf = 1;
         } else {
           str = noticeText;
           tf = -1;
@@ -455,7 +443,7 @@ $(function() {
       case 's10':
         if (dragtarget == 'block_0') {
           str = b0s10;
-          tf = 0;
+          tf = 1;
         } else if (dragtarget == 'block_1') {
           str = b1s10;
           tf = 0;
@@ -477,9 +465,6 @@ $(function() {
         } else if (dragtarget == 'block_7') {
           str = b7s10;
           tf = 0;
-        } else if (dragtarget == 'block_8') {
-          str = b8s10;
-          tf = 1;
         } else {
           str = noticeText;
           tf = -1;
@@ -494,7 +479,7 @@ $(function() {
           tf = 0;
         } else if (dragtarget == 'block_2') {
           str = b2s11;
-          tf = 0;
+          tf = 1;
         } else if (dragtarget == 'block_3') {
           str = b3s11;
           tf = 0;
@@ -506,12 +491,9 @@ $(function() {
           tf = 0;
         } else if (dragtarget == 'block_6') {
           str = b6s11;
-          tf = 0;
+          tf = 1;
         } else if (dragtarget == 'block_7') {
           str = b7s11;
-          tf = 0;
-        } else if (dragtarget == 'block_8') {
-          str = b8s11;
           tf = 1;
         } else {
           str = noticeText;
