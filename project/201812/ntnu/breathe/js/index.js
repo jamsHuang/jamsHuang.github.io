@@ -286,6 +286,12 @@ $(function() {
 
   function setupSlider() {
     bone_slider = $("#bones_ctrl").slider();
+    $("#bones_ctrl_slider").mouseup(function() {
+       setTimeout(function(){
+         now_chest = chest_frame = now_frame;
+         now_lung = lung_frame = now_frame;
+       },50);
+    });
     $("#bones_ctrl").on("slide", function(slideEvt) {
       $('.show_img').css({
         opacity: 1
@@ -303,9 +309,9 @@ $(function() {
       num = now_frame;
       var temp_frame = now_frame;
       setTimeout(function(){
-        chest_frame = temp_frame;
+        now_chest = chest_frame = temp_frame;
         setTimeout(function(){
-          lung_frame = temp_frame;
+          now_lung = lung_frame = temp_frame;
         },100);
       },100);
     });
@@ -326,6 +332,14 @@ $(function() {
       resetBtn();
     });
     yokohama_slider = $("#yokohama_ctrl").slider();
+    $("#yokohama_ctrl_slider").mouseup(function() {
+      //console.log('slidestop');
+      setTimeout(function(){
+        now_chest = chest_frame = now_frame;
+        now_lung = lung_frame = now_frame;
+      },50);
+    } );
+
     $("#yokohama_ctrl").on("slide", function(slideEvt) {
       $('.show_img').css({
         opacity: 1
@@ -345,9 +359,10 @@ $(function() {
       num = now_frame;
       var temp_frame = now_frame;
       setTimeout(function(){
-        chest_frame = temp_frame;
+        now_chest = chest_frame = temp_frame;
         setTimeout(function(){
-          lung_frame = temp_frame;
+          //chest_frame = now_frame;
+          now_lung = lung_frame = temp_frame;
         },200);
       },200);
       //lung_frame = now_frame;
