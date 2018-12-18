@@ -306,8 +306,8 @@ $(function() {
         chest_frame = temp_frame;
         setTimeout(function(){
           lung_frame = temp_frame;
-        },200);
-      },200);
+        },100);
+      },100);
     });
     chest_slider = $("#chest_ctrl").slider();
     chest_slider.slider("disable");
