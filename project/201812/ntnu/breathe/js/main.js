@@ -224,14 +224,14 @@ $(function() {
       // } else {
       //   $('.textbox_text').html("");
       // }
-      var runChest = setTimeout(run_chest, 50);
+      var runChest = setTimeout(run_chest, 100);
       pass_frame = now_frame
     }
   }
   function run_chest(){
     chest_slider.slider('setValue', chest_time);
     lung_time = chest_time;
-    var runLung = setTimeout(run_lung, 50);
+    var runLung = setTimeout(run_lung, 100);
   }
   function run_lung(){
     lung_slider.slider('setValue', lung_time);
@@ -241,7 +241,7 @@ $(function() {
     for (var i = 0; i < total_frames; i++) {
       var faname = "fa" + i;
       var fbname = "fb" + i;
-      
+
       var fsname = "fs" + i;
       var fdname = "fd" + i;
       //
