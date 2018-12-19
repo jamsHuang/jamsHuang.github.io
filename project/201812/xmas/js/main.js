@@ -4,6 +4,8 @@ $(function() {
   // Put variables in global scope to make them available to the browser console.
   //
   console.log(adapter.browserDetails.browser);
+  var isPlaying = false;
+  var firstCatch = false;
   var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
   async function stopVideo() {
@@ -70,16 +72,17 @@ $(function() {
   var checkTime = 30;
   var myRuntime;
 
-    var resize_canvas = document.getElementById('resizeCanvas');
-    var resize_ctx = resize_canvas.getContext("2d");
-    var myCanvas = document.getElementById('myCan');
-    var ctx = myCanvas.getContext("2d");
+  var resize_canvas = document.getElementById('resizeCanvas');
+  var resize_ctx = resize_canvas.getContext("2d");
+  var myCanvas = document.getElementById('myCan');
+  var ctx = myCanvas.getContext("2d");
   async function init() {
     //console.log('init');
     $('.loading').hide();
     runtime();
     console.log(myVideoStream.height);
     modelTF = true;
+
     //myRuntime = setInterval(checkModel,checkTime);
   }
   var model;
@@ -97,24 +100,38 @@ $(function() {
   async function runtime() {
     num++;
     // drawCanvas()
-    if(num>checkTime){
+    if (num > checkTime) {
       //checkModel();
-      num=0;
+      num = 0;
     }
     requestAnimationFrame(runtime);
-
   }
 
   async function checkModel() {
-    resize_ctx.drawImage(myVideoStream,0,0,320,480,0,0,160,240);
+    resize_ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 160, 240);
     await myPredict();
   }
 
   function drawCanvas() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-    ctx.drawImage(myVideoStream, 0, 0,320,480,0,0,320,480);
+    ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 320, 480);
     //ctx.fillStyle = "#FF0000";
     //ctx.fillRect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
+  }
+  var nowHeight;
+  function play_cry(){
+    const instance = sound_cry.play();
+    instance.on('progress', function(progress) {
+        nowHeight = progress;
+        //console.log('Amount played: ', Math.round(progress * 100) + '%');
+    });
+    instance.on('end', function() {
+        console.log('Sound finished playing');
+        getResult();
+    });
+  }
+  function getResult(){
+
   }
   var gotit = false;
   async function myPredict() {
@@ -126,17 +143,25 @@ $(function() {
     scores = res1[1].dataSync();
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
-    if (scores[0] >= 0.99999) {
-      $(".drawBox").css("background-color", "#FFF");
+    //console.log(res1[1].dataSync()[0]);
+    if (scores[0] >= 0.95) {
+      //$(".drawBox").css("background-color", "#FFF");
       min_y = boxes[0];
       min_x = boxes[1];
       max_y = boxes[2];
       max_x = boxes[3];
-      gotit= true;
+      gotit = true;
+      //
+      if(firstCatch==false){
+        firstCatch = true;
+        play_cry();
+      }else{
+
+      }
       //console.log(min_y);
       //drawCanvas();
     } else {
-      $(".drawBox").css("background-color", "#000");
+      //$(".drawBox").css("background-color", "#000");
       min_y = 0;
       min_x = 0;
       max_y = 0;
@@ -150,19 +175,35 @@ $(function() {
     transparent: true
   });
   document.getElementById("drawBox").appendChild(app.view);
-  app.view.style="position:absolute";
+  app.view.style = "position:absolute";
   app.stage.interactive = true;
   var container = new PIXI.Container();
   container.x = 0;
   container.y = 0;
   var showView = new PIXI.Sprite();
   var maskLayer = new PIXI.Graphics();
-  //showView.anchor.set(0.5);
-  //maskLayer.anchor.set(0.5);
+  var mask2Layer = new PIXI.Graphics();
+  var wave1Layer = PIXI.Sprite.fromImage('img/wave1.png');
+  var wave2Layer = PIXI.Sprite.fromImage('img/wave2.png');
+  var wave3Layer = PIXI.Sprite.fromImage('img/wave3.png');
+  var wave4Layer = PIXI.Sprite.fromImage('img/wave4.png');
+  var wave5Layer = PIXI.Sprite.fromImage('img/wave5.png');
+  var wave6Layer = PIXI.Sprite.fromImage('img/wave6.png');
+  wave1Layer.width =wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
+  wave1Layer.height =wave2Layer.height =wave3Layer.height =wave4Layer.height =wave5Layer.height =wave6Layer.height =0;
+  //
   container.addChild(showView);
+  container.addChild(wave1Layer);
+  container.addChild(wave2Layer);
+  container.addChild(wave3Layer);
+  container.addChild(wave4Layer);
+  container.addChild(wave5Layer);
+  container.addChild(wave6Layer);
   container.addChild(maskLayer);
+  container.addChild(mask2Layer);
   app.stage.addChild(container);
-  var texture= PIXI.Texture.from(myVideoStream);
+  //
+  var texture = PIXI.Texture.from(myVideoStream);
   showView.texture = texture;
   var pixitime = 0;
   app.ticker.add(function() {
@@ -174,21 +215,57 @@ $(function() {
       pixitime = 0;
     }
     maskLayer.clear();
-    if(gotit ==true){
-      maskLayer.beginFill(0xABABAB,1);
-      maskLayer.drawRect((min_x*stgW),(min_y*stgH),(max_x-min_x)*stgW,(max_y-min_y)*stgH);
-      //maskLayer.drawRect(0,0,stgW,stgH);
+    mask2Layer.clear();
+    //
+    if (gotit == true) {
+      wave1Layer.height = (max_y - min_y) * stgH;
+      wave1Layer.width = (max_x - min_x) * stgW;
+      wave1Layer.x = min_x*stgW;
+      wave1Layer.y = min_y*stgH;
+      wave1Layer.mask = maskLayer;
+      //
+      wave2Layer.height = (max_y - min_y) * stgH;
+      wave2Layer.width = (max_x - min_x) * stgW;
+      wave2Layer.x = min_x*stgW;
+      wave2Layer.y = min_y*stgH;
+      wave2Layer.mask = maskLayer;
+      //
+      wave3Layer.height = (max_y - min_y) * stgH;
+      wave3Layer.width = (max_x - min_x) * stgW;
+      wave3Layer.x = min_x*stgW;
+      wave3Layer.y = min_y*stgH;
+      wave3Layer.mask = maskLayer;
+      //
+      wave4Layer.height = (max_y - min_y) * stgH;
+      wave4Layer.width = (max_x - min_x) * stgW;
+      wave4Layer.x = min_x*stgW;
+      wave4Layer.y = min_y*stgH;
+      wave4Layer.mask = mask2Layer;
+      //
+      wave5Layer.height = (max_y - min_y) * stgH;
+      wave5Layer.width = (max_x - min_x) * stgW;
+      wave5Layer.x = min_x*stgW;
+      wave5Layer.y = min_y*stgH;
+      wave5Layer.mask = mask2Layer;
+      //
+      wave6Layer.height = (max_y - min_y) * stgH;
+      wave6Layer.width = (max_x - min_x) * stgW;
+      wave6Layer.x = min_x*stgW;
+      wave6Layer.y = min_y*stgH;
+      wave6Layer.mask = mask2Layer;
+      //
+      maskLayer.beginFill(0xFFFFFF, 1);
+      maskLayer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight);
+      //
+      mask2Layer.beginFill(0xFFFFFF, 1);
+      mask2Layer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight * 0.9);
+    } else {
+      wave1Layer.width =wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
+      wave1Layer.height =wave2Layer.height =wave3Layer.height =wave4Layer.height =wave5Layer.height =wave6Layer.height =0;
     }
-    else{
-
-    }
-
-    //console.log(pixitime);
-    // thing.clear();
-    // thing.beginFill(0x8bc5ff, 0.4);
-    // thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
-    // thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
-    // thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
-    // thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
+  });
+  const sound_cry = PIXI.sound.Sound.from({
+    url: 'sounds/cry.mp3',
+    preload: true,
   });
 });

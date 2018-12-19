@@ -92,6 +92,10 @@ footer {
   width: 20px;
 }
 
+body {
+  background-color: black;
+}
+
 .get_cam {
   position: absolute;
   top: 0;
