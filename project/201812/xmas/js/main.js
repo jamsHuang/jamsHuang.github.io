@@ -134,7 +134,7 @@ $(function() {
 
   }
   var gotit = false;
-  var checkNum = 0.99999;
+  var checkNum = 0.99;
   async function myPredict() {
     //const model = await modelPromise;
     var cs = tf.fromPixels(resize_canvas);
