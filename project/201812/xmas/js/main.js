@@ -36,7 +36,7 @@ $(function() {
     num++
     console.log(num);
     await takeSnapshot();
-    await myPredict();
+    //await myPredict();
     requestAnimationFrame(runtime);
   }
   //
