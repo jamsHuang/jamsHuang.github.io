@@ -29,9 +29,6 @@ $(function() {
   setTimeout(() => {
     myVideoStream.removeAttribute("controls");
   });
-
-  var num = 0;
-
   //
   const MODEL_URL = 'web_model/tensorflowjs_model.pb';
   const WEIGHTS_URL = 'web_model/weights_manifest.json';
@@ -66,10 +63,15 @@ $(function() {
     init();
   }
   myLoadUrl();
+  var num = 0;
   async function runtime() {
     num++;
-    console.log(num);
+    //console.log(num);
     //await myPredict();
+    if(num>100){
+      await myPredict();
+      num = 0;
+    }
     requestAnimationFrame(runtime);
   }
   async function myPredict() {
