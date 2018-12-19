@@ -31,10 +31,10 @@ $(function() {
     //
     drawCanvas();
   }
-  var count = 0;
+  var num = 0;
   async function runtime(){
-    count++
-    console.log(count);
+    num++
+    console.log(num);
     await takeSnapshot();
     await myPredict();
     requestAnimationFrame(runtime);
