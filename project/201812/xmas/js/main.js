@@ -67,12 +67,14 @@ $(function() {
   var stgH = 480;
   var stgW = 320;
   let modelPromise;
+  var checkTime = 200;
+  var myRuntime;
   async function init() {
     //console.log('init');
     $('.loading').hide();
     runtime();
     modelTF = true;
-    //setInterval(checkModel,200);
+    myRuntime = setInterval(checkModel,checkTime);
   }
   var model;
   async function myLoadUrl() {
@@ -149,7 +151,7 @@ $(function() {
     pixitime += 1;
     if (pixitime > 30) {
       if (modelTF == true) {
-        checkModel();
+
       }
       pixitime = 0;
     }
