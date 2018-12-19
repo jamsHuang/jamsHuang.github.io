@@ -134,6 +134,7 @@ $(function() {
 
   }
   var gotit = false;
+  var checkNum = 0.99999;
   async function myPredict() {
     //const model = await modelPromise;
     var cs = tf.fromPixels(resize_canvas);
@@ -144,7 +145,8 @@ $(function() {
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
     //console.log(res1[1].dataSync()[0]);
-    if (scores[0] >= 0.95) {
+
+    if (scores[0] >= checkNum) {
       //$(".drawBox").css("background-color", "#FFF");
       min_y = boxes[0];
       min_x = boxes[1];
@@ -156,7 +158,7 @@ $(function() {
         firstCatch = true;
         play_cry();
       }else{
-
+        checkNum = 0.85;
       }
       //console.log(min_y);
       //drawCanvas();
