@@ -24,12 +24,13 @@ $(function() {
       });
   }
   getVideo();
+  var myCanvasElement = document.getElementById('canvas');
+  var myCTX = myCanvasElement.getContext('2d');
   async function takeSnapshot() {
-    var myCanvasElement = document.getElementById('canvas');
-    var myCTX = myCanvasElement.getContext('2d');
+
     myCTX.drawImage(myVideoStream, 0, 0, myCanvasElement.width, myCanvasElement.height);
     //
-    drawCanvas();
+    //drawCanvas();
   }
   var num = 0;
   async function runtime(){
@@ -73,7 +74,7 @@ $(function() {
   myLoadUrl();
 
   async function drawCanvas(){
-    var myCanvas = document.getElementById('canvas');
+  
     myCanvas.width = stgW;
     myCanvas.height = stgH;
     var myContext = myCanvas.getContext('2d');
