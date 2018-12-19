@@ -16,7 +16,6 @@ $(function() {
         video: {
           facingMode:'enviroment',
           width: 320,
-          height: auto
         }
     };
     function handleSuccess(stream) {
