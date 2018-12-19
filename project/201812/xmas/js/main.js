@@ -69,6 +69,11 @@ $(function() {
   let modelPromise;
   var checkTime = 30;
   var myRuntime;
+
+    var resize_canvas = document.getElementById('resizeCanvas');
+    var resize_ctx = resize_canvas.getContext("2d");
+    var myCanvas = document.getElementById('myCan');
+    var ctx = myCanvas.getContext("2d");
   async function init() {
     //console.log('init');
     $('.loading').hide();
@@ -91,12 +96,13 @@ $(function() {
   var num = 0;
   async function runtime() {
     num++;
-    //console.log(num);
+    // drawCanvas()
     if(num>checkTime){
-      checkModel();
+      //checkModel();
       num=0;
     }
     requestAnimationFrame(runtime);
+
   }
 
   async function checkModel() {
@@ -104,15 +110,11 @@ $(function() {
     await myPredict();
   }
 
-  var resize_canvas = document.getElementById('resizeCanvas');
-  var resize_ctx = resize_canvas.getContext("2d");
-  // var myCanvas = document.getElementById('myCan');
-  // var ctx = myCanvas.getContext("2d");
   function drawCanvas() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-    ctx.drawImage(myVideoStream, 0, 0);
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
+    ctx.drawImage(myVideoStream, 0, 0,320,480,0,0,320,480);
+    //ctx.fillStyle = "#FF0000";
+    //ctx.fillRect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
   }
   var gotit = false;
   async function myPredict() {
@@ -160,14 +162,14 @@ $(function() {
   container.addChild(showView);
   container.addChild(maskLayer);
   app.stage.addChild(container);
-  //var texture= PIXI.Texture.from(myVideoStream);
-  //showView.texture = texture;
+  var texture= PIXI.Texture.from(myVideoStream);
+  showView.texture = texture;
   var pixitime = 0;
   app.ticker.add(function() {
     pixitime += 1;
     if (pixitime > checkTime) {
       if (modelTF == true) {
-        //checkModel;
+        checkModel();
       }
       pixitime = 0;
     }
