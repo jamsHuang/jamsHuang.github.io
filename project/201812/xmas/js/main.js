@@ -67,9 +67,9 @@ $(function() {
   }
   myLoadUrl();
   async function runtime() {
-    num++
+    num++;
     console.log(num);
-    await myPredict();
+    //await myPredict();
     requestAnimationFrame(runtime);
   }
   async function myPredict() {
@@ -87,7 +87,7 @@ $(function() {
       min_x = boxes[1];
       max_y = boxes[2];
       max_x = boxes[3];
-      console.log(min_y);
+      //console.log(min_y);
       //drawCanvas();
     } else {
       $(".drawBox").css("background-color", "#000");
