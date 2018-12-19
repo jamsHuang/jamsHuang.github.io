@@ -136,9 +136,16 @@ $(function() {
   var container = new PIXI.Container();
   container.x = app.screen.width / 2;
   container.y = app.screen.height / 2;
+  var showView = new PIXI.Sprite();
+  showView.anchor.set(0.5);
+  container.addChild(showView);
+  app.stage.addChild(container);
 
+  //
   var pixitime = 0;
   app.ticker.add(function() {
+    var texture= PIXI.Texture.from(myVideoStream);
+    showView.texture = texture;
     pixitime += 1;
     if (pixitime > 30) {
       if (modelTF == true) {
@@ -146,6 +153,7 @@ $(function() {
       }
       pixitime = 0;
     }
+
     //console.log(pixitime);
     // thing.clear();
     // thing.beginFill(0x8bc5ff, 0.4);
