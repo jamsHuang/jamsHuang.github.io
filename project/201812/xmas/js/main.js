@@ -25,24 +25,24 @@ $(function() {
   }
   getVideo();
   myVideoStream.setAttribute("playsinline", true);
-myVideoStream.setAttribute("controls", true);
-setTimeout(() => {
+  myVideoStream.setAttribute("controls", true);
+  setTimeout(() => {
     myVideoStream.removeAttribute("controls");
-});
+  });
   var myCanvasElement = document.getElementById('canvas');
   var myCTX = myCanvasElement.getContext('2d');
   async function takeSnapshot() {
 
     myCTX.drawImage(myVideoStream, 0, 0, myCanvasElement.width, myCanvasElement.height);
     //
-    //drawCanvas();
+    drawCanvas();
   }
   var num = 0;
-  async function runtime(){
+  async function runtime() {
     num++
     console.log(num);
-    //await takeSnapshot();
-    //await myPredict();
+    await takeSnapshot();
+    await myPredict();
     requestAnimationFrame(runtime);
   }
   //
@@ -51,10 +51,10 @@ setTimeout(() => {
   const IMAGENET_CLASSES = {
     0: 'lgmouse'
   }
-  var boxes=[];
-  var scores =[];
-  var classes =[];
-  var count= [];
+  var boxes = [];
+  var scores = [];
+  var classes = [];
+  var count = [];
   var min_y;
   var min_x;
   var max_y;
@@ -62,12 +62,12 @@ setTimeout(() => {
   var stgH = 320;
   var stgW = 320;
   let modelPromise;
-  async function init(){
+  async function init() {
     //console.log('init');
     $('.loading').hide();
     runtime();
   }
-  async function myLoadUrl(){
+  async function myLoadUrl() {
     modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
     const img = document.getElementById('img');
     const model = await modelPromise;
@@ -78,7 +78,7 @@ setTimeout(() => {
   }
   myLoadUrl();
 
-  async function drawCanvas(){
+  async function drawCanvas() {
 
     myCanvas.width = stgW;
     myCanvas.height = stgH;
@@ -86,7 +86,7 @@ setTimeout(() => {
 
     myContext.drawImage(myVideoStream, 0, 0, stgW, stgH);
     myContext.beginPath();
-    myContext.rect(min_x*stgW, min_y*stgH, (max_x - min_x)*stgW, (max_y - min_y)*stgH);
+    myContext.rect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
     myContext.lineWidth = 1;
     myContext.strokeStyle = 'black';
     myContext.stroke();
@@ -102,17 +102,16 @@ setTimeout(() => {
     scores = res1[1].dataSync();
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
-    if(scores[0]>=0.9999){
-      $("#button").css("background-color","#FFF");
+    if (scores[0] >= 0.9999) {
+      $("#button").css("background-color", "#FFF");
       min_y = boxes[0];
       min_x = boxes[1];
       max_y = boxes[2];
       max_x = boxes[3];
       //console.log(min_y);
       //drawCanvas();
-    }
-    else{
-      $("#button").css("background-color","#000");
+    } else {
+      $("#button").css("background-color", "#000");
       min_y = 0;
       min_x = 0;
       max_y = 0;
