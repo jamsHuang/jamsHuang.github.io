@@ -3,27 +3,47 @@ $(function() {
   'use strict';
   // Put variables in global scope to make them available to the browser console.
   //
-
+  console.log(adapter.browserDetails.browser);
   var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
   async function stopVideo() {
     myVideoStream.srcObject.getTracks().forEach(track => track.stop())
   }
   async function getVideo() {
-    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    navigator.getMedia({
+
+    var constraints = window.constraints = {
+        audio: false,
         video: {
-          facingMode: 'environment'
-        },
-        audio: false
-      },
-      function(stream) {
+          facingMode:'enviroment',
+          width: 320,
+          height: 480
+        }
+    };
+    function handleSuccess(stream) {
+        var videoTracks = stream.getVideoTracks();
+        console.log('Using video device: ' + videoTracks[0].label);
         myVideoStream.srcObject = stream;
-        myVideoStream.play();
-      },
-      function(error) {
-        alert('webcam not working');
-      });
+    }
+    function handleError(error) {
+        console.log('getUserMedia error: ' + error.name, error);
+    }
+      navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+    //navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    // navigator.mediaDevices.getMedia({
+    //     video: {
+    //       facingMode: 'environment',
+    //       width: stgW,
+    //       height: stgH
+    //     },
+    //     audio: false
+    //   },
+    //   function(stream) {
+    //     myVideoStream.srcObject = stream;
+    //     myVideoStream.play();
+    //   },
+    //   function(error) {
+    //     alert('webcam not working');
+    //   });
   }
   getVideo();
   myVideoStream.setAttribute("playsinline", true);
