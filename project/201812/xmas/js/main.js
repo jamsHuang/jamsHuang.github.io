@@ -80,9 +80,9 @@ $(function() {
 
   async function drawCanvas() {
 
-    myCanvas.width = stgW;
-    myCanvas.height = stgH;
-    var myContext = myCanvas.getContext('2d');
+    myCanvasElement.width = stgW;
+    myCanvasElement.height = stgH;
+    var myContext = myCanvasElement.getContext('2d');
 
     myContext.drawImage(myVideoStream, 0, 0, stgW, stgH);
     myContext.beginPath();
@@ -93,9 +93,8 @@ $(function() {
   }
   async function myPredict() {
     const model = await modelPromise;
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var cs = tf.fromPixels(canvas).resizeNearestNeighbor([224, 224]);
+
+    var cs = tf.fromPixels(myCanvasElement).resizeNearestNeighbor([224, 224]);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     boxes = res1[0].dataSync();
