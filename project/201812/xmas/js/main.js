@@ -11,38 +11,38 @@ $(function() {
   }
   async function getVideo() {
 
-    var constraints = window.constraints = {
-        audio: false,
-        video: {
-          facingMode:'enviroment'
-        }
-    };
-    function handleSuccess(stream) {
-        var videoTracks = stream.getVideoTracks();
-        //console.log('Using video device: ' + videoTracks[0].label);
-        myVideoStream.srcObject = stream;
-    }
-    function handleError(error) {
-        console.log('getUserMedia error: ' + error.name, error);
-    }
-    navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
-    //navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    // navigator.mediaDevices.getMedia({
+    // var constraints = window.constraints = {
+    //     audio: false,
     //     video: {
-    //       facingMode: 'environment',
-    //       width: stgW,
-    //       height: stgH
-    //     },
-    //     audio: false
-    //   },
-    //   function(stream) {
+    //       facingMode:'enviroment'
+    //     }
+    // };
+    // function handleSuccess(stream) {
+    //     var videoTracks = stream.getVideoTracks();
+    //     //console.log('Using video device: ' + videoTracks[0].label);
     //     myVideoStream.srcObject = stream;
-    //     myVideoStream.play();
-    //   },
-    //   function(error) {
-    //     alert('webcam not working');
-    //   });
+    // }
+    // function handleError(error) {
+    //     console.log('getUserMedia error: ' + error.name, error);
+    // }
+    // navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    // navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getMedia({
+        video: {
+          facingMode: 'environment',
+          width: stgW,
+          height: stgH
+        },
+        audio: false
+      },
+      function(stream) {
+        myVideoStream.srcObject = stream;
+        myVideoStream.play();
+      },
+      function(error) {
+        alert('webcam not working');
+      });
   }
   getVideo();
   myVideoStream.setAttribute("playsinline", true);
