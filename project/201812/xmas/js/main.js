@@ -67,7 +67,7 @@ $(function() {
   var stgH = 480;
   var stgW = 320;
   let modelPromise;
-  var checkTime = 500;
+  var checkTime = 30;
   var myRuntime;
   async function init() {
     //console.log('init');
