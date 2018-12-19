@@ -31,7 +31,10 @@ $(function() {
     //
     drawCanvas();
   }
+  var count = 0;
   async function runtime(){
+    count++
+    console.log(count);
     await takeSnapshot();
     await myPredict();
     requestAnimationFrame(runtime);
@@ -100,7 +103,7 @@ $(function() {
       max_y = boxes[2];
       max_x = boxes[3];
       //console.log(min_y);
-      drawCanvas();
+      //drawCanvas();
     }
     else{
       $("#button").css("background-color","#000");
