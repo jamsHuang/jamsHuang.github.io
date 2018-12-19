@@ -55,7 +55,11 @@ $(function() {
 
   const constraints = {
     audio: false,
-    video: {facingMode: 'environment'}
+    video: {
+      facingMode: 'environment',
+      width: { min: 320, ideal: 480, max: 640 },
+      height: { min: 640, ideal: 960, max: 1280 }
+    }
   };
 
   function handleSuccess(stream) {
