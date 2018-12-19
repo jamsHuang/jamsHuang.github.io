@@ -53,8 +53,8 @@ $(function() {
   var min_x;
   var max_y;
   var max_x;
-  var stgH = window.innerHeight;
-  var stgW = window.innerWidth;
+  var stgH = 320;
+  var stgW = 320;
   let modelPromise;
   async function init(){
     //console.log('init');
