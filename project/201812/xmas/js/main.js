@@ -73,6 +73,7 @@ $(function() {
     //console.log('init');
     $('.loading').hide();
     runtime();
+    console.log(myVideoStream.height);
     modelTF = true;
     //myRuntime = setInterval(checkModel,checkTime);
   }
@@ -90,7 +91,7 @@ $(function() {
   var num = 0;
   async function runtime() {
     num++;
-    console.log(num);
+    //console.log(num);
     if(num>checkTime){
       checkModel();
       num=0;
@@ -99,32 +100,37 @@ $(function() {
   }
 
   async function checkModel() {
+    resize_ctx.drawImage(myVideoStream,0,0,320,480,0,0,160,240);
     await myPredict();
   }
-  var myCanvas = document.getElementById('myCan');
-  var ctx = myCanvas.getContext("2d");
 
+  var resize_canvas = document.getElementById('resizeCanvas');
+  var resize_ctx = resize_canvas.getContext("2d");
+  // var myCanvas = document.getElementById('myCan');
+  // var ctx = myCanvas.getContext("2d");
   function drawCanvas() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
     ctx.drawImage(myVideoStream, 0, 0);
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
   }
+  var gotit = false;
   async function myPredict() {
     //const model = await modelPromise;
-    var cs = tf.fromPixels(myVideoStream);
+    var cs = tf.fromPixels(resize_canvas);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     boxes = res1[0].dataSync();
     scores = res1[1].dataSync();
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
-    if (scores[0] >= 0.9999) {
+    if (scores[0] >= 0.99999) {
       $(".drawBox").css("background-color", "#FFF");
       min_y = boxes[0];
       min_x = boxes[1];
       max_y = boxes[2];
       max_x = boxes[3];
+      gotit= true;
       //console.log(min_y);
       //drawCanvas();
     } else {
@@ -133,33 +139,46 @@ $(function() {
       min_x = 0;
       max_y = 0;
       max_x = 0;
-      ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+      gotit = false;
+      //ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
     }
   }
   var app = new PIXI.Application(stgW, stgH, {
-    antialias: true
+    antialias: true,
+    transparent: true
   });
   document.getElementById("drawBox").appendChild(app.view);
+  app.view.style="position:absolute";
   app.stage.interactive = true;
   var container = new PIXI.Container();
-  container.x = app.screen.width / 2;
-  container.y = app.screen.height / 2;
+  container.x = 0;
+  container.y = 0;
   var showView = new PIXI.Sprite();
-  showView.anchor.set(0.5);
+  var maskLayer = new PIXI.Graphics();
+  //showView.anchor.set(0.5);
+  //maskLayer.anchor.set(0.5);
   container.addChild(showView);
+  container.addChild(maskLayer);
   app.stage.addChild(container);
-
-  //
+  //var texture= PIXI.Texture.from(myVideoStream);
+  //showView.texture = texture;
   var pixitime = 0;
   app.ticker.add(function() {
-    var texture= PIXI.Texture.from(myVideoStream);
-    showView.texture = texture;
     pixitime += 1;
     if (pixitime > checkTime) {
       if (modelTF == true) {
         //checkModel;
       }
       pixitime = 0;
+    }
+    maskLayer.clear();
+    if(gotit ==true){
+      maskLayer.beginFill(0xABABAB,1);
+      maskLayer.drawRect((min_x*stgW),(min_y*stgH),(max_x-min_x)*stgW,(max_y-min_y)*stgH);
+      //maskLayer.drawRect(0,0,stgW,stgH);
+    }
+    else{
+
     }
 
     //console.log(pixitime);
