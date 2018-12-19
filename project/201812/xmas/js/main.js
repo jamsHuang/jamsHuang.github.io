@@ -36,7 +36,7 @@ $(function() {
   async function runtime(){
     num++
     console.log(num);
-    await takeSnapshot();
+    //await takeSnapshot();
     //await myPredict();
     requestAnimationFrame(runtime);
   }
@@ -74,7 +74,7 @@ $(function() {
   myLoadUrl();
 
   async function drawCanvas(){
-  
+
     myCanvas.width = stgW;
     myCanvas.height = stgH;
     var myContext = myCanvas.getContext('2d');
