@@ -24,6 +24,11 @@ $(function() {
       });
   }
   getVideo();
+  myVideoStream.setAttribute("playsinline", true);
+myVideoStream.setAttribute("controls", true);
+setTimeout(() => {
+    myVideoStream.removeAttribute("controls");
+});
   var myCanvasElement = document.getElementById('canvas');
   var myCTX = myCanvasElement.getContext('2d');
   async function takeSnapshot() {
