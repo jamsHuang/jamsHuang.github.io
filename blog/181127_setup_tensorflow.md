@@ -67,6 +67,11 @@ cp -r pycocotools <path_to_tensorflow>/models/research/
 # From tensorflow/models/research/
 python object_detection/builders/model_builder_test.py
 ```
+### training models
+```
+$ python train.py --logtostderr --train_dir=trained/ --pipeline_config_path=data/ssdlite_mobilenet_v2_coco.config
+```
+
 ### convert model
 ```
 python export_inference_graph.py \
