@@ -51,6 +51,7 @@ $(function() {
   const IMAGENET_CLASSES = {
     0: 'lgmouse'
   }
+  //
   var boxes = [];
   var scores = [];
   var classes = [];
@@ -67,10 +68,11 @@ $(function() {
     $('.loading').hide();
     runtime();
   }
+  var model;
   async function myLoadUrl() {
     modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
+    model = await modelPromise;
     const img = document.getElementById('img');
-    const model = await modelPromise;
     var cs = tf.fromPixels(img).resizeNearestNeighbor([224, 224]);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
@@ -92,8 +94,7 @@ $(function() {
     myContext.stroke();
   }
   async function myPredict() {
-    const model = await modelPromise;
-
+    //const model = await modelPromise;
     var cs = tf.fromPixels(myCanvasElement).resizeNearestNeighbor([224, 224]);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
