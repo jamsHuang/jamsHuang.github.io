@@ -55,7 +55,7 @@ $(function() {
 
   const constraints = {
     audio: false,
-    video: true
+    video: {facingMode: 'environment'}
   };
 
   function handleSuccess(stream) {
@@ -94,43 +94,21 @@ $(function() {
     const scores = res1[1].dataSync();
     const classes = res1[2].dataSync();
     const count = res1[3].dataSync()[0];
-    //
-    console.log(boxes[0]);
-    console.log("scores", scores[0]);
-    //console.log("classes",classes);
-    $('.loading').hide();
-
     const IMAGENET_CLASSES = {
       0: 'lgmouse'
     }
-    // function getTopKClasses(logits, topK) {
-    //   const predictions = tf.tidy(() => {
-    //     return tf.squeeze(logits);
-    //   });
-    //   //console.log(predictions);
-    //   const values = predictions.dataSync();
-    //   predictions.dispose();
     //
-    //   let predictionList = [];
-    //   for (let i = 0; i < values.length; i++) {
-    //     predictionList.push({
-    //       value: values[i],
-    //       index: i
-    //     });
-    //   }
-    //   predictionList = predictionList
-    //     .sort((a, b) => {
-    //       return b.value - a.value;
-    //     })
-    //     .slice(0, topK);
-    //
-    //   return predictionList.map(x => {
-    //     return {
-    //       label: IMAGENET_CLASSES[x.index],
-    //       value: x.value
-    //     };
-    //   });
-    // }
+    console.log(boxes[0]);
+    console.log("scores", scores[0]);
+    showIndex();
+
+  }
+  function showIndex(){
+    $('.loading').hide();
+    runtime();
+  }
+  function runtime(){
+    requestAnimationFrame(runtime);
   }
 
   function drawCanvas() {
@@ -157,6 +135,5 @@ $(function() {
     }
 
   }
-
   checkModel()
 });
