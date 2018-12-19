@@ -1,90 +1,113 @@
 $(function() {
-  //get camera
+  //set camera
   'use strict';
   // Put variables in global scope to make them available to the browser console.
-  const video = document.querySelector('video');
-  const canvas = window.canvas = document.querySelector('canvas');
-  const constraints = {
-    audio: false,
-    video: {
-      facingMode: 'environment',
-      width: { min: 320, ideal: 480, max: 640 },
-      height: { min: 640, ideal: 960, max: 1280 }
-    }
-  };
-
-  function handleSuccess(stream) {
-    window.stream = stream; // make stream available to browser console
-    video.srcObject = stream;
-  }
-
-  function handleError(error) {
-    console.log('navigator.getUserMedia error: ', error);
-  }
-
-  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
-
   //
-  const img = document.getElementById('img');
-  //console.log(img);
-  const MODEL_URL = 'web_model/tensorflowjs_model.pb'
-  const WEIGHTS_URL = 'web_model/weights_manifest.json'
-
-  let modelPromise;
-  modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
-  //
-  async function checkModel() {
-
-    showIndex();
+  var myVideoStream = document.getElementById('video') // make it a global variable
+  async function stopVideo() {
+    myVideoStream.srcObject.getTracks().forEach(track => track.stop())
   }
-  function showIndex(){
-    $('.loading').hide();
-    runtime();
+  async function getVideo() {
+    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getMedia({
+        video: {
+          facingMode: 'environment'
+        },
+        audio: false
+      },
+      function(stream) {
+        myVideoStream.srcObject = stream;
+        myVideoStream.play();
+      },
+      function(error) {
+        alert('webcam not working');
+      });
   }
-  function runtime(){
-    keepChecking();
+  getVideo();
+  async function takeSnapshot() {
+    var myCanvasElement = document.getElementById('resizeCanvas');
+    var myCTX = myCanvasElement.getContext('2d');
+    myCTX.drawImage(myVideoStream, 0, 0, myCanvasElement.width, myCanvasElement.height);
+    //
     drawCanvas();
+  }
+  async function runtime(){
+    await takeSnapshot();
+    await myPredict();
     requestAnimationFrame(runtime);
+  }
+  //
+  const MODEL_URL = 'web_model/tensorflowjs_model.pb';
+  const WEIGHTS_URL = 'web_model/weights_manifest.json';
+  const IMAGENET_CLASSES = {
+    0: 'lgmouse'
   }
   var boxes=[];
   var scores =[];
   var classes =[];
   var count= [];
-  var model;
-  const IMAGENET_CLASSES = {
-    0: 'lgmouse'
+  var min_y;
+  var min_x;
+  var max_y;
+  var max_x;
+  var stgH = window.innerHeight;
+  var stgW = window.innerWidth;
+  let modelPromise;
+  async function init(){
+    //console.log('init');
+    $('.loading').hide();
+    runtime();
   }
-  async function keepChecking(){
-    model = await modelPromise;
+  async function myLoadUrl(){
+    modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
+    const img = document.getElementById('img');
+    const model = await modelPromise;
+    var cs = tf.fromPixels(img).resizeNearestNeighbor([224, 224]);
+    var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
+    res1.map(t => t.dataSync());
+    init();
+  }
+  myLoadUrl();
+
+  async function drawCanvas(){
+    var myCanvas = document.getElementById('canvas');
+    myCanvas.width = stgW;
+    myCanvas.height = stgH;
+    var myContext = myCanvas.getContext('2d');
+
+    myContext.drawImage(myVideoStream, 0, 0, stgW, stgH);
+    myContext.beginPath();
+    myContext.rect(min_x*stgW, min_y*stgH, (max_x - min_x)*stgW, (max_y - min_y)*stgH);
+    myContext.lineWidth = 1;
+    myContext.strokeStyle = 'black';
+    myContext.stroke();
+  }
+  async function myPredict() {
+    const model = await modelPromise;
+    var canvas = document.getElementById('resizeCanvas');
+    var context = canvas.getContext('2d');
     var cs = tf.fromPixels(canvas).resizeNearestNeighbor([224, 224]);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
-    //console.log(res1);
     res1.map(t => t.dataSync());
-    //console.log(res1.map);
-    //const res2 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     boxes = res1[0].dataSync();
     scores = res1[1].dataSync();
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
-    //console.log(scores[0]);
-    if(scores[0]>=0.99){
+    if(scores[0]>=0.9999){
       $("#button").css("background-color","#FFF");
+      min_y = boxes[0];
+      min_x = boxes[1];
+      max_y = boxes[2];
+      max_x = boxes[3];
+      //console.log(min_y);
+      drawCanvas();
     }
     else{
       $("#button").css("background-color","#000");
+      min_y = 0;
+      min_x = 0;
+      max_y = 0;
+      max_x = 0;
     }
   }
-
-  function drawCanvas() {
-    //console.log('number of detections: ', count);
-    var c = document.getElementById('canvas');
-    c.width = window.innerWidth;
-    c.height = window.innerHeight;
-    var context = c.getContext('2d');
-    context.drawImage(video, 0, 0, c.width, c.height);
-    context.font = '20px Arial';
-
-
-  }
-  checkModel()
 });
