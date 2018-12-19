@@ -16,18 +16,18 @@ $(function() {
         video: {
           facingMode:'enviroment',
           width: 320,
-          height: 480
+          height: auto
         }
     };
     function handleSuccess(stream) {
         var videoTracks = stream.getVideoTracks();
-        console.log('Using video device: ' + videoTracks[0].label);
+        //console.log('Using video device: ' + videoTracks[0].label);
         myVideoStream.srcObject = stream;
     }
     function handleError(error) {
         console.log('getUserMedia error: ' + error.name, error);
     }
-      navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+    navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
     //navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     // navigator.mediaDevices.getMedia({
     //     video: {
