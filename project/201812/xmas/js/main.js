@@ -13,9 +13,7 @@ $(function() {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          facingMode: 'environment',
-          width: 320,
-          height: 480
+          facingMode: 'environment'
         },
         audio: false
       },
@@ -124,7 +122,7 @@ $(function() {
   var pixitime = 0;
   app.ticker.add(function() {
     pixitime += 1;
-    if (pixitime > 100) {
+    if (pixitime > 30) {
       if (modelTF == true) {
         checkModel();
       }
