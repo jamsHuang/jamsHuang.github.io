@@ -14,8 +14,7 @@ $(function() {
     var constraints = window.constraints = {
         audio: false,
         video: {
-          facingMode:'enviroment',
-          width: {min:320, max:320}
+          facingMode:'enviroment'
         }
     };
     function handleSuccess(stream) {
