@@ -11,7 +11,9 @@ $(function() {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          facingMode: 'environment'
+          facingMode: 'environment',
+          width: 320,
+          height: 480
         },
         audio: false
       },
@@ -44,7 +46,7 @@ $(function() {
   var min_x;
   var max_y;
   var max_x;
-  var stgH = 320;
+  var stgH = 480;
   var stgW = 320;
   let modelPromise;
   async function init() {
@@ -58,7 +60,7 @@ $(function() {
     modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
     model = await modelPromise;
     const img = document.getElementById('img');
-    var cs = tf.fromPixels(img).resizeNearestNeighbor([224, 224]);
+    var cs = tf.fromPixels(img);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     init();
@@ -76,12 +78,13 @@ $(function() {
   var ctx = myCanvas.getContext("2d");
   function drawCanvas(){
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    ctx.drawImage(myVideoStream,0,0);
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(min_x*320, min_y*320, (max_x-min_x)*320, (max_y-min_y)*320);
+    ctx.fillRect(min_x*stgW, min_y*stgH, (max_x-min_x)*stgW, (max_y-min_y)*stgH);
   }
   async function myPredict() {
     //const model = await modelPromise;
-    var cs = tf.fromPixels(myVideoStream).resizeNearestNeighbor([224, 224]);
+    var cs = tf.fromPixels(myVideoStream);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     boxes = res1[0].dataSync();
@@ -105,4 +108,5 @@ $(function() {
       ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
     }
   }
+  var app = new PIXI.Application(stgW, stgH, { antialias: true });
 });
