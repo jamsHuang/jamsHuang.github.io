@@ -6,12 +6,14 @@
 <input type="button" value="Load Model" onclick="{myLoadUrl()}"><br><br>
 
 <select size="1" id="myCheck">
- <option value="environment">Rear Mobile Camera
- </option><option value="user">Front Mobile Camera
-</option></select>
+  <option value="environment">Rear Mobile Camera
+  </option>
+  <option value="user">Front Mobile Camera
+  </option>
+</select>
 
 <input type="button" id="myButtonActivateWebCam" value="Activate WebCam" onclick="{getVideo()}">
-<input type="button" id="myButtonActivateWebCam" value="Stop WebCam" onclick="{ stopVideo()  }">  <br><br>
+<input type="button" id="myButtonActivateWebCam" value="Stop WebCam" onclick="{ stopVideo()  }"> <br><br>
 
 <input type="button" value="get Pic" onclick="{takeSnapshot()}">
 <input type="button" id="myButtonPredict" value="Predict" onclick="{myPredict()}"><br><br>
@@ -35,9 +37,9 @@ Take snapshot every <input type="number" id="myInterval" value="1000" size="5"> 
 }"><br><br>
 
 
- <!-- ************* Next we define the Javascript inside a web element so that the page can be refreshed dynamically **************-->
+<!-- ************* Next we define the Javascript inside a web element so that the page can be refreshed dynamically **************-->
 
- <!--  ************* The entire next line can be replaced with the <script> tag for a more conventional approch. ****************** -->
+<!--  ************* The entire next line can be replaced with the <script> tag for a more conventional approch. ****************** -->
 
 <style id="myButton124" onload="{document.getElementById('myButton124').click()}" onclick="{
 
@@ -1194,11 +1196,6 @@ myPredict = async function(){
 
 }"></style>
 <!-- If you replaced the <style> tag with a <script> tag don't forget to change the above line to just </script>  -->
-
-
-
-
-
 
 
 

@@ -29,22 +29,9 @@ $(function() {
   setTimeout(() => {
     myVideoStream.removeAttribute("controls");
   });
-  var myCanvasElement = document.getElementById('canvas');
-  var myCTX = myCanvasElement.getContext('2d');
-  async function takeSnapshot() {
 
-    myCTX.drawImage(myVideoStream, 0, 0, myCanvasElement.width, myCanvasElement.height);
-    //
-    drawCanvas();
-  }
   var num = 0;
-  async function runtime() {
-    num++
-    console.log(num);
-    await takeSnapshot();
-    await myPredict();
-    requestAnimationFrame(runtime);
-  }
+
   //
   const MODEL_URL = 'web_model/tensorflowjs_model.pb';
   const WEIGHTS_URL = 'web_model/weights_manifest.json';
@@ -79,23 +66,15 @@ $(function() {
     init();
   }
   myLoadUrl();
-
-  async function drawCanvas() {
-
-    myCanvasElement.width = stgW;
-    myCanvasElement.height = stgH;
-    var myContext = myCanvasElement.getContext('2d');
-
-    myContext.drawImage(myVideoStream, 0, 0, stgW, stgH);
-    myContext.beginPath();
-    myContext.rect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
-    myContext.lineWidth = 1;
-    myContext.strokeStyle = 'black';
-    myContext.stroke();
+  async function runtime() {
+    num++
+    console.log(num);
+    await myPredict();
+    requestAnimationFrame(runtime);
   }
   async function myPredict() {
     //const model = await modelPromise;
-    var cs = tf.fromPixels(myCanvasElement).resizeNearestNeighbor([224, 224]);
+    var cs = tf.fromPixels(myVideoStream).resizeNearestNeighbor([224, 224]);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     boxes = res1[0].dataSync();
@@ -103,15 +82,15 @@ $(function() {
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
     if (scores[0] >= 0.9999) {
-      $("#button").css("background-color", "#FFF");
+      $(".drawBox").css("background-color", "#FFF");
       min_y = boxes[0];
       min_x = boxes[1];
       max_y = boxes[2];
       max_x = boxes[3];
-      //console.log(min_y);
+      console.log(min_y);
       //drawCanvas();
     } else {
-      $("#button").css("background-color", "#000");
+      $(".drawBox").css("background-color", "#000");
       min_y = 0;
       min_x = 0;
       max_y = 0;
