@@ -25,6 +25,7 @@ $(function() {
     function handleError(error) {
         console.log('getUserMedia error: ' + error.name, error);
     }
+    navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
     //navigator.mediaDevices.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     // navigator.mediaDevices.getMedia({
