@@ -53,7 +53,7 @@ $(function() {
   const MODEL_URL = 'web_model/tensorflowjs_model.pb';
   const WEIGHTS_URL = 'web_model/weights_manifest.json';
   const IMAGENET_CLASSES = {
-    0: 'lgmouse'
+    0: 'xmastree'
   }
   //
   var boxes = [];
