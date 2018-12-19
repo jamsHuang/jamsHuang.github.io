@@ -3,9 +3,46 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" >
-    <title></title>
+    <title>xmas</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 
+    <section class="get_cam">
+      <div class="get_cam__bg"></div>
+      <div class="get_cam__black_mask"></div>
+      <div class="get_cam__icon-camera">
+        <!-- <img src="img/get_cam_iconcam.png" id="img"/> -->
+        <!-- <img src="img/test.jpg" id="img"/> -->
+        <img src="img/test2.jpg" id="img"/>
+      </div>
+      <div class="get_cam__icon-welcome"></div>
+      <div class="get_cam__text_box"></div>
+      <button class="get_cam__btn-getcam" id="button"></button>
+    </section>
+    <!-- <section class="start_cam">
+
+    </section>
+    <section class="play_canvas">
+
+    </section>
+    <section class="show_result">
+
+    </section> -->
+    <!--  -->
+    <div class="drawBox">
+      <!-- <video id="myVideo" autoplay="autoplay"></video> -->
+      <canvas id="canvas" width="320" height="480"></canvas>
+      <video id="video" autoplay playsinline></video>
+    </div>
+    <div class="loading">
+      <img src="img/preloader.gif"/>
+    </div>
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="js/lib/createjs.min.js"></script>
+    <script src="js/lib/jquery.preload.min.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

@@ -1,0 +1,55 @@
+.get_cam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  height: auto;
+
+  &__bg {
+    background-image: url("../img/get_cam_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 60%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__black_mask {
+    display: flex;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.drawBox {
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  #video {
+    position: absolute;
+    top:0;
+    left:0;
+    background: #222;
+    margin: 0 0 20px;
+    --width: 100%;
+    width: var(--width);
+    height: calc(var(--width) * 0.75);
+  }
+  #canvas{
+    position: absolute;
+    top:0;
+    left:0;
+  }
+
+}
