@@ -67,14 +67,14 @@ $(function() {
   var stgH = 480;
   var stgW = 320;
   let modelPromise;
-  var checkTime = 200;
+  var checkTime = 1000;
   var myRuntime;
   async function init() {
     //console.log('init');
     $('.loading').hide();
     runtime();
     modelTF = true;
-    myRuntime = setInterval(checkModel,checkTime);
+    //myRuntime = setInterval(checkModel,checkTime);
   }
   var model;
   async function myLoadUrl() {
@@ -149,9 +149,9 @@ $(function() {
     var texture= PIXI.Texture.from(myVideoStream);
     showView.texture = texture;
     pixitime += 1;
-    if (pixitime > 30) {
+    if (pixitime > 100) {
       if (modelTF == true) {
-
+        checkModel;
       }
       pixitime = 0;
     }
