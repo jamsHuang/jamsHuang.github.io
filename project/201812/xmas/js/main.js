@@ -30,9 +30,7 @@ $(function() {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          facingMode: 'environment',
-          width: stgW,
-          height: stgH
+          facingMode: 'environment'
         },
         audio: false
       },
