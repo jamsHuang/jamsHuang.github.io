@@ -68,11 +68,18 @@ $(function() {
     num++;
     //console.log(num);
     //await myPredict();
-    if(num>100){
+    if(num> 30){
       await myPredict();
       num = 0;
     }
     requestAnimationFrame(runtime);
+  }
+  var myCanvas = document.getElementById('myCan');
+  var ctx = myCanvas.getContext("2d");
+  function drawCanvas(){
+    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(min_x*320, min_y*320, (max_x-min_x)*320, (max_y-min_y)*320);
   }
   async function myPredict() {
     //const model = await modelPromise;
@@ -90,13 +97,14 @@ $(function() {
       max_y = boxes[2];
       max_x = boxes[3];
       //console.log(min_y);
-      //drawCanvas();
+      drawCanvas();
     } else {
       $(".drawBox").css("background-color", "#000");
       min_y = 0;
       min_x = 0;
       max_y = 0;
       max_x = 0;
+      ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
     }
   }
 });

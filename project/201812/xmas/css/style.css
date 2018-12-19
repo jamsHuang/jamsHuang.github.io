@@ -142,6 +142,6 @@ footer {
   height: 320px;
 }
 
-.drawBox #canvas {
+.drawBox #myCan {
   position: absolute;
 }
