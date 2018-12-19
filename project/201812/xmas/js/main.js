@@ -90,6 +90,7 @@ $(function() {
   var num = 0;
   async function runtime() {
     num++;
+    console.log(num);
     if(num>checkTime){
       checkModel();
       num=0;
