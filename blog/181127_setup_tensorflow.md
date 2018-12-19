@@ -83,7 +83,7 @@ python export_inference_graph.py \
 ```
 tensorflowjs_converter \
     --input_format=tf_saved_model \
-    --output_node_names='/MobilenetV2/Logits/output' \
+    --output_node_names='detection_boxes,detection_scores,num_detections,detection_classes' \
     --saved_model_tags=serve \
     fine_tuned_model/saved_model \
     web_model
