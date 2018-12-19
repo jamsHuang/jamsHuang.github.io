@@ -138,6 +138,7 @@ footer {
 .drawBox #video {
   position: absolute;
   background: #000;
+  display: none;
 }
 
 .drawBox #myCan {
