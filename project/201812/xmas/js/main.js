@@ -3,6 +3,8 @@ $(function() {
   'use strict';
   // Put variables in global scope to make them available to the browser console.
   //
+
+  var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
   async function stopVideo() {
     myVideoStream.srcObject.getTracks().forEach(track => track.stop())
@@ -53,6 +55,7 @@ $(function() {
     //console.log('init');
     $('.loading').hide();
     runtime();
+    modelTF = true;
     //setInterval(checkModel,200);
   }
   var model;
@@ -71,16 +74,17 @@ $(function() {
     requestAnimationFrame(runtime);
   }
 
-  async function checkModel(){
-      await myPredict();
+  async function checkModel() {
+    await myPredict();
   }
   var myCanvas = document.getElementById('myCan');
   var ctx = myCanvas.getContext("2d");
-  function drawCanvas(){
+
+  function drawCanvas() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-    ctx.drawImage(myVideoStream,0,0);
+    ctx.drawImage(myVideoStream, 0, 0);
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(min_x*stgW, min_y*stgH, (max_x-min_x)*stgW, (max_y-min_y)*stgH);
+    ctx.fillRect(min_x * stgW, min_y * stgH, (max_x - min_x) * stgW, (max_y - min_y) * stgH);
   }
   async function myPredict() {
     //const model = await modelPromise;
@@ -108,26 +112,30 @@ $(function() {
       ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
     }
   }
-  var app = new PIXI.Application(stgW, stgH, { antialias: true });
+  var app = new PIXI.Application(stgW, stgH, {
+    antialias: true
+  });
   document.getElementById("drawBox").appendChild(app.view);
   app.stage.interactive = true;
   var container = new PIXI.Container();
   container.x = app.screen.width / 2;
   container.y = app.screen.height / 2;
 
-  var pixitime=0;
+  var pixitime = 0;
   app.ticker.add(function() {
-      pixitime += 1;
-      if(pixitime>100){
+    pixitime += 1;
+    if (pixitime > 100) {
+      if (modelTF == true) {
         checkModel();
-        pixitime=0;
       }
-      //console.log(pixitime);
-      // thing.clear();
-      // thing.beginFill(0x8bc5ff, 0.4);
-      // thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
-      // thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
-      // thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
-      // thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
+      pixitime = 0;
+    }
+    //console.log(pixitime);
+    // thing.clear();
+    // thing.beginFill(0x8bc5ff, 0.4);
+    // thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
+    // thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
+    // thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
+    // thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
   });
 });
