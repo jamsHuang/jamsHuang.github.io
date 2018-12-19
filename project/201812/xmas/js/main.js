@@ -25,7 +25,7 @@ $(function() {
   }
   getVideo();
   async function takeSnapshot() {
-    var myCanvasElement = document.getElementById('resizeCanvas');
+    var myCanvasElement = document.getElementById('canvas');
     var myCTX = myCanvasElement.getContext('2d');
     myCTX.drawImage(myVideoStream, 0, 0, myCanvasElement.width, myCanvasElement.height);
     //
@@ -87,7 +87,7 @@ $(function() {
   }
   async function myPredict() {
     const model = await modelPromise;
-    var canvas = document.getElementById('resizeCanvas');
+    var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var cs = tf.fromPixels(canvas).resizeNearestNeighbor([224, 224]);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
