@@ -51,6 +51,7 @@ $(function() {
     //console.log('init');
     $('.loading').hide();
     runtime();
+    setInterval(checkModel,100);
   }
   var model;
   async function myLoadUrl() {
@@ -65,14 +66,11 @@ $(function() {
   myLoadUrl();
   var num = 0;
   async function runtime() {
-    num++;
-    //console.log(num);
-    //await myPredict();
-    if(num> 30){
-      await myPredict();
-      num = 0;
-    }
     requestAnimationFrame(runtime);
+  }
+
+  async function checkModel(){
+      await myPredict();
   }
   var myCanvas = document.getElementById('myCan');
   var ctx = myCanvas.getContext("2d");
