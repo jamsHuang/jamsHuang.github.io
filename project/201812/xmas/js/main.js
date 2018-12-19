@@ -35,8 +35,9 @@ $(function() {
         audio: false
       },
       function(stream) {
+        var videoTracks = stream.getVideoTracks();
         myVideoStream.srcObject = stream;
-        myVideoStream.play();
+        //myVideoStream.play();
       },
       function(error) {
         alert('webcam not working');
