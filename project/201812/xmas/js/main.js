@@ -53,7 +53,7 @@ $(function() {
     //console.log('init');
     $('.loading').hide();
     runtime();
-    setInterval(checkModel,100);
+    //setInterval(checkModel,200);
   }
   var model;
   async function myLoadUrl() {
@@ -98,7 +98,7 @@ $(function() {
       max_y = boxes[2];
       max_x = boxes[3];
       //console.log(min_y);
-      drawCanvas();
+      //drawCanvas();
     } else {
       $(".drawBox").css("background-color", "#000");
       min_y = 0;
@@ -109,4 +109,25 @@ $(function() {
     }
   }
   var app = new PIXI.Application(stgW, stgH, { antialias: true });
+  document.getElementById("drawBox").appendChild(app.view);
+  app.stage.interactive = true;
+  var container = new PIXI.Container();
+  container.x = app.screen.width / 2;
+  container.y = app.screen.height / 2;
+
+  var pixitime=0;
+  app.ticker.add(function() {
+      pixitime += 1;
+      if(pixitime>100){
+        checkModel();
+        pixitime=0;
+      }
+      //console.log(pixitime);
+      // thing.clear();
+      // thing.beginFill(0x8bc5ff, 0.4);
+      // thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
+      // thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
+      // thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
+      // thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
+  });
 });
