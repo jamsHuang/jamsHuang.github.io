@@ -64,6 +64,13 @@ footer {
   justify-content: center;
 }
 
+#button {
+  position: absolute;
+  width: 100vw;
+  height: 10vh;
+  background-color: #FFF;
+}
+
 .copyright {
   color: #AA0000;
 }
@@ -127,6 +134,7 @@ footer {
 
 .drawBox #video {
   position: absolute;
+  display: none;
   top: 0;
   left: 0;
   background: #000;
