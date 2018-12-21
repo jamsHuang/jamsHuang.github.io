@@ -50,6 +50,7 @@ $(function() {
   myVideoStream.setAttribute("playsinline", true);
   myVideoStream.setAttribute("controls", true);
   setTimeout(() => {
+    console.log(myVideoStream.width,myVideoStream.height);
     myVideoStream.removeAttribute("controls");
   });
   //
