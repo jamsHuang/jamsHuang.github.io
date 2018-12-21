@@ -104,14 +104,14 @@ $(function() {
         checkNum = 0.85;
       }
     } else {
-      min_y = 0;
-      min_x = 0;
-      max_y = 0;
-      max_x = 0;
-      gotit = false;
       catch_num++;
       if (catch_num > 10 && nowHeight < 0.5) {
         sound_cry.stop();
+        min_y = 0;
+        min_x = 0;
+        max_y = 0;
+        max_x = 0;
+        gotit = false;
         firstCatch = false;
         checkNum = 1;
       } else {
