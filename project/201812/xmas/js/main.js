@@ -10,7 +10,7 @@ $(function() {
   navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          width: {min:320,max:640},
+          width: {min:320, ideal:320, max:640},
           facingMode: 'environment'
         },
         audio: false
@@ -134,12 +134,12 @@ $(function() {
         //console.log('Amount played: ', Math.round(progress * 100) + '%');
     });
     instance.on('end', function() {
-        console.log('Sound finished playing');
+        //console.log('Sound finished playing');
         getResult();
     });
   }
   function getResult(){
-
+    stopVideo();
   }
   var gotit = false;
   var checkNum = 0.99;
