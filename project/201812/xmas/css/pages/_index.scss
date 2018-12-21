@@ -33,7 +33,20 @@ body{
     left: 0;
   }
 }
-
+.box_mask{
+  position: absolute;
+  top:50%;
+  margin-top:-240px;
+  left:50%;
+  margin-left:-160px;
+  width:320px;
+  height:480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 20px 10px rgba(0,0,0,1);
+  pointer-events: none;
+}
 .drawBox {
   position: absolute;
   top:0;
