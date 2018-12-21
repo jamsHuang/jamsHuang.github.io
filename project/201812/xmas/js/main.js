@@ -109,7 +109,7 @@ $(function() {
 
   async function checkModel() {
     resize_ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 160, 240);
-    await myPredict();
+     myPredict();
   }
 
   function drawCanvas() {
