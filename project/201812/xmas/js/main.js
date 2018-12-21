@@ -10,7 +10,10 @@ $(function() {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          width: {min:320, max:640},
+          width: {
+            min: 320,
+            max: 640
+          },
           facingMode: 'environment'
         },
         audio: false
@@ -95,7 +98,7 @@ $(function() {
       max_y = boxes[2];
       max_x = boxes[3];
       gotit = true;
-      catch_num= 0;
+      catch_num = 0;
       //
       if (firstCatch == false) {
         firstCatch = true;
@@ -113,11 +116,12 @@ $(function() {
         max_x = 0;
         gotit = false;
         firstCatch = false;
-        checkNum = 1;
+        checkNum = 0.99;
       } else {
 
       }
     }
+    //console.log(gotit);
   }
   var nowHeight;
 
@@ -133,7 +137,15 @@ $(function() {
 
   function getResult() {
     stopVideo();
+    clearAllSprite();
   }
+
+  function clearAllSprite() {
+    for (var i = app.stage.children.length - 1; i >= 0; i--) {
+      app.stage.removeChild(app.stage.children[i]);
+    };
+  }
+
   var gotit = false;
   var checkNum = 0.99;
   //
@@ -271,9 +283,15 @@ $(function() {
     //
     maskLayer = new PIXI.Graphics();
     wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
-    wave1Layer.width = 0
-    wave1Layer.height = 0
+    wave1Layer.width = 0;
+    wave1Layer.height = 0;
     //
+    wave2Layer = PIXI.Sprite.fromImage('img/wave13.png');
+    wave2Layer.width = 0;
+    wave2Layer.height = 0;
+    wave2Layer.alpha = 0.3;
+    //
+    container.addChild(wave2Layer);
     container.addChild(wave1Layer);
     container.addChild(maskLayer);
     app.stage.addChild(container);
@@ -325,6 +343,12 @@ $(function() {
         wave1Layer.x = min_x * stgW;
         wave1Layer.y = min_y * stgH;
         wave1Layer.mask = maskLayer;
+        //
+        wave2Layer.height = (max_y - min_y) * stgH;
+        wave2Layer.width = (max_x - min_x) * stgW+60;
+        wave2Layer.x = min_x * stgW-30;
+        wave2Layer.y = min_y * stgH;
+        wave2Layer.mask = maskLayer;
         //
         maskLayer.beginFill(0xFFFFFF, 1);
         maskLayer.drawRect(0, max_y * stgH, stgW, (min_y - max_y) * stgH * nowHeight);
