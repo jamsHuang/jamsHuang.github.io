@@ -138,7 +138,7 @@ $(function() {
   async function myPredict() {
     //const model = await modelPromise;
     var cs = tf.fromPixels(resize_canvas);
-    var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
+    var res1 = model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     boxes = res1[0].dataSync();
     scores = res1[1].dataSync();
