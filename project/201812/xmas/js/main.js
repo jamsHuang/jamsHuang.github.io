@@ -176,7 +176,7 @@ $(function() {
   // container.addChild(wave5Layer);
   // container.addChild(wave6Layer);
   container.addChild(maskLayer);
-  container.addChild(mask2Layer);
+  //container.addChild(mask2Layer);
   app.stage.addChild(container);
   //
   var texture = PIXI.Texture.from(myVideoStream);
@@ -236,8 +236,8 @@ $(function() {
       maskLayer.beginFill(0xFFFFFF, 1);
       maskLayer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight);
       //
-      mask2Layer.beginFill(0xFFFFFF, 1);
-      mask2Layer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight * 0.9);
+      //mask2Layer.beginFill(0xFFFFFF, 1);
+      //mask2Layer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight * 0.9);
     } else {
       wave1Layer.width = 0 ;
       // wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
