@@ -1,0 +1,25 @@
+.notsupport {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &_text{
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    line-height: 2.3rem;
+    text-align: center;
+    margin: 10% 0;
+  }
+  &_xmas{
+    width:20%;
+  }
+  &_browser{
+      width: 40%;
+  }
+}
