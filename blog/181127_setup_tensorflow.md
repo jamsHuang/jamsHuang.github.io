@@ -59,7 +59,7 @@ cp -r pycocotools <path_to_tensorflow>/models/research/
 ```
 # From tensorflow/models/research/
  protoc object_detection/protos/*.proto --python_out=.   
- export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim 
+ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim 
 ```
 
 ### 測試安裝是否成功
