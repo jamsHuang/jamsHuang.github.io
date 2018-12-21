@@ -136,6 +136,7 @@ $(function() {
   }
 
   function getResult() {
+    modelTF = false;
     stopVideo();
     clearAllSprite();
   }
@@ -285,6 +286,7 @@ $(function() {
     wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
     wave1Layer.width = 0;
     wave1Layer.height = 0;
+    wave1Layer.alpha = 0.8;
     //
     wave2Layer = PIXI.Sprite.fromImage('img/wave13.png');
     wave2Layer.width = 0;
