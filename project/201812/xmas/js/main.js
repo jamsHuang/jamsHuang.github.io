@@ -210,10 +210,13 @@ $(function() {
   var pixitime = 0;
   app.ticker.add(function() {
     pixitime += 1;
+    if (modelTF == true) {
+      checkModel();
+    }
     if (pixitime > checkTime) {
-      if (modelTF == true) {
-        checkModel();
-      }
+      // if (modelTF == true) {
+      //   checkModel();
+      // }
       pixitime = 0;
     }
     maskLayer.clear();
