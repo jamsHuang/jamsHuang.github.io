@@ -7,10 +7,10 @@ $(function() {
   var myVideoStream = document.getElementById('video') // make it a global variable
 
   async function getVideo() {
-  navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          // width: {min:320, max:640},
+          width: {min:320, max:640},
           facingMode: 'environment'
         },
         audio: false
@@ -18,18 +18,17 @@ $(function() {
       function(stream) {
         var videoTracks = stream.getVideoTracks();
         myVideoStream.srcObject = stream;
-        //myVideoStream.play();
       },
       function(error) {
         console.log(error);
-         $('.notsupport').css("display","flex");
+        $('.notsupport').css("display", "flex");
       });
   }
   getVideo();
   myVideoStream.setAttribute("playsinline", true);
   myVideoStream.setAttribute("controls", true);
   setTimeout(() => {
-    console.log(myVideoStream.width,myVideoStream.height);
+    console.log(myVideoStream.width, myVideoStream.height);
     myVideoStream.removeAttribute("controls");
   });
   async function stopVideo() {
@@ -65,13 +64,13 @@ $(function() {
     $('.loading').hide();
   }
   async function myLoadUrl() {
-    // modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
-    // model = await modelPromise;
-    // const img = document.getElementById('img');
-    // var cs = tf.fromPixels(img);
-    // var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
-    // res1.map(t => t.dataSync());
-    // modelTF = true;
+    modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
+    model = await modelPromise;
+    const img = document.getElementById('img');
+    var cs = tf.fromPixels(img);
+    var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
+    res1.map(t => t.dataSync());
+    modelTF = true;
     init();
   }
   myLoadUrl();
@@ -80,7 +79,7 @@ $(function() {
     resize_ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 160, 240);
     await myPredict();
   }
-  var catch_num=0;
+  var catch_num = 0;
   async function myPredict() {
     //const model = await modelPromise;
     var cs = tf.fromPixels(resize_canvas);
@@ -90,20 +89,18 @@ $(function() {
     scores = res1[1].dataSync();
     classes = res1[2].dataSync();
     count = res1[3].dataSync()[0];
-    //console.log(res1[1].dataSync()[0]);
-
     if (scores[0] >= checkNum) {
-      //$(".drawBox").css("background-color", "#FFF");
       min_y = boxes[0];
       min_x = boxes[1];
       max_y = boxes[2];
       max_x = boxes[3];
       gotit = true;
+      catch_num= 0;
       //
-      if(firstCatch==false){
+      if (firstCatch == false) {
         firstCatch = true;
         play_cry();
-      }else{
+      } else {
         checkNum = 0.85;
       }
     } else {
@@ -113,28 +110,28 @@ $(function() {
       max_x = 0;
       gotit = false;
       catch_num++;
-      if(catch_num>10 && nowHeight<0.5)
-      {
+      if (catch_num > 10 && nowHeight < 0.5) {
         sound_cry.stop();
         firstCatch = false;
         checkNum = 1;
-      }
-      else{
+      } else {
 
       }
     }
   }
   var nowHeight;
-  function play_cry(){
+
+  function play_cry() {
     const instance = sound_cry.play();
     instance.on('progress', function(progress) {
-        nowHeight = progress;
+      nowHeight = progress;
     });
     instance.on('end', function() {
-        getResult();
+      getResult();
     });
   }
-  function getResult(){
+
+  function getResult() {
     stopVideo();
   }
   var gotit = false;
@@ -159,10 +156,16 @@ $(function() {
   black_bg.drawRect(0, 0, stgW, stgH);
   camContainer.addChild(black_bg);
   //
-  TweenLite.fromTo( black_bg, 1, {alpha:0}, {alpha:1, onComplete:first_step} );
+  TweenLite.fromTo(black_bg, 1, {
+    alpha: 0
+  }, {
+    alpha: 1,
+    onComplete: first_step
+  });
   //
   var entrance;
-  function first_step(){
+
+  function first_step() {
     //first page
     var tween_cam, tween_welcome, tween_text, tween_btn;
     //
@@ -204,12 +207,39 @@ $(function() {
     btn_icon.y = 150;
     btn_icon.alpha = 0;
     btn_icon.interactive = true;
-    btn_icon.on('pointerdown',sec_step);
+    btn_icon.on('pointerdown', sec_step);
     //
-    tween_cam = TweenLite.to( cam_icon, 1, {alpha:1, y: -150 , onComplete: function(){tween_cam.kill();}} );
-    tween_welcome =TweenLite.to( welcome_icon, 1, {alpha:1, y: -80, delay:0.5, onComplete: function(){tween_welcome.kill();} } );
-    tween_text =TweenLite.to( text_icon, 1, {alpha:1, y: 30, delay:0.75, onComplete: function(){tween_text.kill();} } );
-    tween_btn =TweenLite.to( btn_icon, 1, {alpha:1, y: 160, delay:1, onComplete: function(){tween_btn.kill();} } );
+    tween_cam = TweenLite.to(cam_icon, 1, {
+      alpha: 1,
+      y: -150,
+      onComplete: function() {
+        tween_cam.kill();
+      }
+    });
+    tween_welcome = TweenLite.to(welcome_icon, 1, {
+      alpha: 1,
+      y: -80,
+      delay: 0.5,
+      onComplete: function() {
+        tween_welcome.kill();
+      }
+    });
+    tween_text = TweenLite.to(text_icon, 1, {
+      alpha: 1,
+      y: 30,
+      delay: 0.75,
+      onComplete: function() {
+        tween_text.kill();
+      }
+    });
+    tween_btn = TweenLite.to(btn_icon, 1, {
+      alpha: 1,
+      y: 160,
+      delay: 1,
+      onComplete: function() {
+        tween_btn.kill();
+      }
+    });
     //
     entrance.addChild(cam_icon);
     entrance.addChild(welcome_icon);
@@ -223,11 +253,17 @@ $(function() {
   var maskLayer;
   var wave1Layer;
   var checkingLayer;
-  var checking1,checking2,checking0,camLayer;
-  function sec_step(){
+  var checking1, checking2, checking0, camLayer, noticeLayer;
+
+  function sec_step() {
     step2 = true;
-    console.log(entrance.children.length);
-    var tween_entrance =TweenLite.to( entrance, 1, {alpha:0, onComplete: function(){tween_entrance.kill();app.stage.removeChild(entrance);} } );
+    var tween_entrance = TweenLite.to(entrance, 1, {
+      alpha: 0,
+      onComplete: function() {
+        tween_entrance.kill();
+        app.stage.removeChild(entrance);
+      }
+    });
     //
     container = new PIXI.Container();
     container.x = 0;
@@ -236,24 +272,30 @@ $(function() {
     maskLayer = new PIXI.Graphics();
     wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
     wave1Layer.width = 0
-    wave1Layer.height =0
+    wave1Layer.height = 0
     //
     container.addChild(wave1Layer);
     container.addChild(maskLayer);
     app.stage.addChild(container);
     //
     checkingLayer = new PIXI.Container();
-    checkingLayer.x = stgW/2;
-    checkingLayer.y = stgH/2;
+    checkingLayer.x = stgW / 2;
+    checkingLayer.y = stgH / 2;
     //
     camLayer = PIXI.Sprite.fromImage('img/get_cam_iconcam.png');
     camLayer.anchor.set(0.5);
     camLayer.width = 74.4;
     camLayer.height = 60;
     //
-    checking0= PIXI.Sprite.fromImage('img/checking0.png');
-    checking1= PIXI.Sprite.fromImage('img/checking1.png');
-    checking2= PIXI.Sprite.fromImage('img/checking1.png');
+    noticeLayer = PIXI.Sprite.fromImage('img/notice_camera.png');
+    noticeLayer.anchor.set(0.5);
+    noticeLayer.width = 129.15;
+    noticeLayer.height = 47.25;
+    noticeLayer.y = 150;
+    //
+    checking0 = PIXI.Sprite.fromImage('img/checking0.png');
+    checking1 = PIXI.Sprite.fromImage('img/checking1.png');
+    checking2 = PIXI.Sprite.fromImage('img/checking1.png');
     //
     checking0.width = checking0.height = 146;
     checking1.width = checking1.height = 180;
@@ -267,11 +309,12 @@ $(function() {
     checkingLayer.addChild(checking0);
     checkingLayer.addChild(checking1);
     checkingLayer.addChild(checking2);
+    checkingLayer.addChild(noticeLayer);
     app.stage.addChild(checkingLayer);
   }
 
   app.ticker.add(function() {
-    if(step2){
+    if (step2) {
       if (modelTF == true) {
         checkModel();
       }
@@ -279,21 +322,21 @@ $(function() {
       if (gotit == true) {
         wave1Layer.height = (max_y - min_y) * stgH;
         wave1Layer.width = (max_x - min_x) * stgW;
-        wave1Layer.x = min_x*stgW;
-        wave1Layer.y = min_y*stgH;
+        wave1Layer.x = min_x * stgW;
+        wave1Layer.y = min_y * stgH;
         wave1Layer.mask = maskLayer;
         //
         maskLayer.beginFill(0xFFFFFF, 1);
-        maskLayer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight);
+        maskLayer.drawRect(0, max_y * stgH, stgW, (min_y - max_y) * stgH * nowHeight);
         //
         checkingLayer.alpha = 0;
       } else {
-        wave1Layer.width = 0 ;
+        wave1Layer.width = 0;
         wave1Layer.height = 0;
         checkingLayer.alpha = 1;
-        checking0.rotation +=0.05;
-        checking1.rotation -=0.08;
-        checking2.rotation +=0.06;
+        checking0.rotation += 0.05;
+        checking1.rotation -= 0.08;
+        checking2.rotation += 0.06;
       }
     }
   });
