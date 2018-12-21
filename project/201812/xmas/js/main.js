@@ -32,6 +32,7 @@ $(function() {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
+          width: {min:320,max:640},
           facingMode: 'environment'
         },
         audio: false
