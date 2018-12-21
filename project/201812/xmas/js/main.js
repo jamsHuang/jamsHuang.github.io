@@ -223,11 +223,11 @@ $(function() {
   var maskLayer;
   var wave1Layer;
   var checkingLayer;
-  var checking1,checking2,checking0;
+  var checking1,checking2,checking0,camLayer;
   function sec_step(){
     step2 = true;
     console.log(entrance.children.length);
-    app.stage.removeChild(entrance);
+    var tween_entrance =TweenLite.to( entrance, 1, {alpha:0, onComplete: function(){tween_entrance.kill();app.stage.removeChild(entrance);} } );
     //
     container = new PIXI.Container();
     container.x = 0;
@@ -246,18 +246,24 @@ $(function() {
     checkingLayer.x = stgW/2;
     checkingLayer.y = stgH/2;
     //
+    camLayer = PIXI.Sprite.fromImage('img/get_cam_iconcam.png');
+    camLayer.anchor.set(0.5);
+    camLayer.width = 74.4;
+    camLayer.height = 60;
+    //
     checking0= PIXI.Sprite.fromImage('img/checking0.png');
     checking1= PIXI.Sprite.fromImage('img/checking1.png');
-    checking2= PIXI.Sprite.fromImage('img/checking2.png');
+    checking2= PIXI.Sprite.fromImage('img/checking1.png');
     //
-    checking0.width = checking0.height = 146.25;
-    checking1.width = checking1.height = 180.9;
-    checking2.width = checking2.height = 213.75;
+    checking0.width = checking0.height = 146;
+    checking1.width = checking1.height = 180;
+    checking2.width = checking2.height = 214;
     //
     checking0.anchor.set(0.5);
     checking1.anchor.set(0.5);
     checking2.anchor.set(0.5);
     //
+    checkingLayer.addChild(camLayer);
     checkingLayer.addChild(checking0);
     checkingLayer.addChild(checking1);
     checkingLayer.addChild(checking2);
@@ -285,9 +291,9 @@ $(function() {
         wave1Layer.width = 0 ;
         wave1Layer.height = 0;
         checkingLayer.alpha = 1;
-        checking0.rotation +=0.1;
-        checking1.rotation -=0.1;
-        checking2.rotation +=0.1;
+        checking0.rotation +=0.05;
+        checking1.rotation -=0.08;
+        checking2.rotation +=0.06;
       }
     }
   });
