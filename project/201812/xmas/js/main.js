@@ -10,7 +10,7 @@ $(function() {
   navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
         video: {
-          width: {min:320, max:640},
+          // width: {min:320, max:640},
           facingMode: 'environment'
         },
         audio: false
@@ -21,6 +21,7 @@ $(function() {
         //myVideoStream.play();
       },
       function(error) {
+        console.log(error);
          $('.notsupport').css("display","flex");
       });
   }
@@ -160,12 +161,12 @@ $(function() {
   //
   TweenLite.fromTo( black_bg, 1, {alpha:0}, {alpha:1, onComplete:first_step} );
   //
-
+  var entrance;
   function first_step(){
     //first page
     var tween_cam, tween_welcome, tween_text, tween_btn;
     //
-    var entrance = new PIXI.Container();
+    entrance = new PIXI.Container();
     entrance.x = app.screen.width / 2;
     entrance.y = app.screen.height / 2;
     var cam_icon = PIXI.Sprite.fromImage('img/get_cam_iconcam.png');
@@ -177,36 +178,38 @@ $(function() {
     //
     var welcome_icon = PIXI.Sprite.fromImage('img/get_cam_iconwelcome.png');
     welcome_icon.anchor.set(0.5);
-    welcome_icon.width = 220;
-    welcome_icon.height = 32;
+    welcome_icon.width = 98.1;
+    welcome_icon.height = 79.2;
     welcome_icon.y = -100;
     welcome_icon.alpha = 0;
     //
     var welcome_icon = PIXI.Sprite.fromImage('img/get_cam_iconwelcome.png');
     welcome_icon.anchor.set(0.5);
-    welcome_icon.width = 220;
-    welcome_icon.height = 32;
+    welcome_icon.width = 195;
+    welcome_icon.height = 28.8;
     welcome_icon.y = -100;
     welcome_icon.alpha = 0;
     //
     var text_icon = PIXI.Sprite.fromImage('img/get_cam_textbox.png');
     text_icon.anchor.set(0.5);
-    text_icon.width = 137.3;
-    text_icon.height = 85.6;
+    text_icon.width = 185;
+    text_icon.height = 115;
     text_icon.y = -30;
     text_icon.alpha = 0;
     //
     var btn_icon = PIXI.Sprite.fromImage('img/get_cam_btn.png');
     btn_icon.anchor.set(0.5);
-    btn_icon.width = 218.6;
-    btn_icon.height = 32.6;
+    btn_icon.width = 259.2;
+    btn_icon.height = 43.8;
     btn_icon.y = 150;
     btn_icon.alpha = 0;
+    btn_icon.interactive = true;
+    btn_icon.on('pointerdown',sec_step);
     //
     tween_cam = TweenLite.to( cam_icon, 1, {alpha:1, y: -150 , onComplete: function(){tween_cam.kill();}} );
     tween_welcome =TweenLite.to( welcome_icon, 1, {alpha:1, y: -80, delay:0.5, onComplete: function(){tween_welcome.kill();} } );
-    tween_text =TweenLite.to( text_icon, 1, {alpha:1, y: 20, delay:0.75, onComplete: function(){tween_text.kill();} } );
-    tween_btn =TweenLite.to( btn_icon, 1, {alpha:1, y: 150, delay:1, onComplete: function(){tween_btn.kill();} } );
+    tween_text =TweenLite.to( text_icon, 1, {alpha:1, y: 30, delay:0.75, onComplete: function(){tween_text.kill();} } );
+    tween_btn =TweenLite.to( btn_icon, 1, {alpha:1, y: 160, delay:1, onComplete: function(){tween_btn.kill();} } );
     //
     entrance.addChild(cam_icon);
     entrance.addChild(welcome_icon);
@@ -216,24 +219,49 @@ $(function() {
   }
 
   var step2 = false;
+  var container;
+  var maskLayer;
+  var wave1Layer;
+  var checkingLayer;
+  var checking1,checking2,checking0;
   function sec_step(){
     step2 = true;
+    console.log(entrance.children.length);
+    app.stage.removeChild(entrance);
     //
-    var container = new PIXI.Container();
+    container = new PIXI.Container();
     container.x = 0;
     container.y = 0;
     //
-    var maskLayer = new PIXI.Graphics();
-    var mask2Layer = new PIXI.Graphics();
-    var wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
+    maskLayer = new PIXI.Graphics();
+    wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
     wave1Layer.width = 0
-    // wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
     wave1Layer.height =0
-    // wave2Layer.height =wave3Layer.height =wave4Layer.height =wave5Layer.height =wave6Layer.height =0;
     //
     container.addChild(wave1Layer);
     container.addChild(maskLayer);
     app.stage.addChild(container);
+    //
+    checkingLayer = new PIXI.Container();
+    checkingLayer.x = stgW/2;
+    checkingLayer.y = stgH/2;
+    //
+    checking0= PIXI.Sprite.fromImage('img/checking0.png');
+    checking1= PIXI.Sprite.fromImage('img/checking1.png');
+    checking2= PIXI.Sprite.fromImage('img/checking2.png');
+    //
+    checking0.width = checking0.height = 146.25;
+    checking1.width = checking1.height = 180.9;
+    checking2.width = checking2.height = 213.75;
+    //
+    checking0.anchor.set(0.5);
+    checking1.anchor.set(0.5);
+    checking2.anchor.set(0.5);
+    //
+    checkingLayer.addChild(checking0);
+    checkingLayer.addChild(checking1);
+    checkingLayer.addChild(checking2);
+    app.stage.addChild(checkingLayer);
   }
 
   app.ticker.add(function() {
@@ -251,9 +279,15 @@ $(function() {
         //
         maskLayer.beginFill(0xFFFFFF, 1);
         maskLayer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight);
+        //
+        checkingLayer.alpha = 0;
       } else {
         wave1Layer.width = 0 ;
         wave1Layer.height = 0;
+        checkingLayer.alpha = 1;
+        checking0.rotation +=0.1;
+        checking1.rotation -=0.1;
+        checking2.rotation +=0.1;
       }
     }
   });
