@@ -57,25 +57,20 @@ $(function() {
   //
   var resize_canvas = document.getElementById('resizeCanvas');
   var resize_ctx = resize_canvas.getContext("2d");
-  var myCanvas = document.getElementById('myCan');
-  var ctx = myCanvas.getContext("2d");
   let modelPromise;
   var model;
   //
   async function init() {
-    //console.log('init');
     $('.loading').hide();
-
-    //console.log(myVideoStream.height);
-    modelTF = true;
   }
   async function myLoadUrl() {
-    modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
-    model = await modelPromise;
-    const img = document.getElementById('img');
-    var cs = tf.fromPixels(img);
-    var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
-    res1.map(t => t.dataSync());
+    // modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
+    // model = await modelPromise;
+    // const img = document.getElementById('img');
+    // var cs = tf.fromPixels(img);
+    // var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
+    // res1.map(t => t.dataSync());
+    // modelTF = true;
     init();
   }
   myLoadUrl();
@@ -84,6 +79,7 @@ $(function() {
     resize_ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 160, 240);
     await myPredict();
   }
+  var catch_num=0;
   async function myPredict() {
     //const model = await modelPromise;
     var cs = tf.fromPixels(resize_canvas);
@@ -109,32 +105,31 @@ $(function() {
       }else{
         checkNum = 0.85;
       }
-      //console.log(min_y);
-      //drawCanvas();
     } else {
-      //$(".drawBox").css("background-color", "#000");
       min_y = 0;
       min_x = 0;
       max_y = 0;
       max_x = 0;
       gotit = false;
-      //ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+      catch_num++;
+      if(catch_num>10 && nowHeight<0.5)
+      {
+        sound_cry.stop();
+        firstCatch = false;
+        checkNum = 1;
+      }
+      else{
+
+      }
     }
-  }
-  //
-  function drawCanvas() {
-    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-    ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 320, 480);
   }
   var nowHeight;
   function play_cry(){
     const instance = sound_cry.play();
     instance.on('progress', function(progress) {
         nowHeight = progress;
-        //console.log('Amount played: ', Math.round(progress * 100) + '%');
     });
     instance.on('end', function() {
-        //console.log('Sound finished playing');
         getResult();
     });
   }
@@ -151,98 +146,115 @@ $(function() {
   document.getElementById("drawBox").appendChild(app.view);
   app.view.style = "position:absolute";
   app.stage.interactive = true;
-  var container = new PIXI.Container();
-  container.x = 0;
-  container.y = 0;
+  //camera
+  var camContainer = new PIXI.Container();
   var showView = new PIXI.Sprite();
-  var maskLayer = new PIXI.Graphics();
-  var mask2Layer = new PIXI.Graphics();
-  var wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
-  // var wave2Layer = PIXI.Sprite.fromImage('img/wave2.png');
-  // var wave3Layer = PIXI.Sprite.fromImage('img/wave3.png');
-  // var wave4Layer = PIXI.Sprite.fromImage('img/wave4.png');
-  // var wave5Layer = PIXI.Sprite.fromImage('img/wave5.png');
-  // var wave6Layer = PIXI.Sprite.fromImage('img/wave6.png');
-  wave1Layer.width = 0
-  // wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
-  wave1Layer.height =0
-  // wave2Layer.height =wave3Layer.height =wave4Layer.height =wave5Layer.height =wave6Layer.height =0;
-  //
-  container.addChild(showView);
-  container.addChild(wave1Layer);
-  // container.addChild(wave2Layer);
-  // container.addChild(wave3Layer);
-  // container.addChild(wave4Layer);
-  // container.addChild(wave5Layer);
-  // container.addChild(wave6Layer);
-  container.addChild(maskLayer);
-  //container.addChild(mask2Layer);
-  app.stage.addChild(container);
-  //
+  camContainer.addChild(showView);
+  app.stage.addChild(camContainer);
   var texture = PIXI.Texture.from(myVideoStream);
   showView.texture = texture;
-  var pixitime = 0;
-  app.ticker.add(function() {
-    pixitime += 1;
-    if (modelTF == true) {
-      checkModel();
-    }
-    if (pixitime > checkTime) {
-      // if (modelTF == true) {
-      //   checkModel();
-      // }
-      pixitime = 0;
-    }
-    maskLayer.clear();
-    mask2Layer.clear();
+  var black_bg = new PIXI.Graphics();
+  black_bg.beginFill(0x000000, 0.5);
+  black_bg.drawRect(0, 0, stgW, stgH);
+  camContainer.addChild(black_bg);
+  //
+  TweenLite.fromTo( black_bg, 1, {alpha:0}, {alpha:1, onComplete:first_step} );
+  //
+
+  function first_step(){
+    //first page
+    var tween_cam, tween_welcome, tween_text, tween_btn;
     //
-    if (gotit == true) {
-      wave1Layer.height = (max_y - min_y) * stgH;
-      wave1Layer.width = (max_x - min_x) * stgW;
-      wave1Layer.x = min_x*stgW;
-      wave1Layer.y = min_y*stgH;
-      wave1Layer.mask = maskLayer;
-      //
-      // wave2Layer.height = (max_y - min_y) * stgH;
-      // wave2Layer.width = (max_x - min_x) * stgW;
-      // wave2Layer.x = min_x*stgW;
-      // wave2Layer.y = min_y*stgH;
-      // wave2Layer.mask = maskLayer;
-      // //
-      // wave3Layer.height = (max_y - min_y) * stgH;
-      // wave3Layer.width = (max_x - min_x) * stgW;
-      // wave3Layer.x = min_x*stgW;
-      // wave3Layer.y = min_y*stgH;
-      // wave3Layer.mask = maskLayer;
-      // //
-      // wave4Layer.height = (max_y - min_y) * stgH;
-      // wave4Layer.width = (max_x - min_x) * stgW;
-      // wave4Layer.x = min_x*stgW;
-      // wave4Layer.y = min_y*stgH;
-      // wave4Layer.mask = mask2Layer;
-      // //
-      // wave5Layer.height = (max_y - min_y) * stgH;
-      // wave5Layer.width = (max_x - min_x) * stgW;
-      // wave5Layer.x = min_x*stgW;
-      // wave5Layer.y = min_y*stgH;
-      // wave5Layer.mask = mask2Layer;
-      // //
-      // wave6Layer.height = (max_y - min_y) * stgH;
-      // wave6Layer.width = (max_x - min_x) * stgW;
-      // wave6Layer.x = min_x*stgW;
-      // wave6Layer.y = min_y*stgH;
-      // wave6Layer.mask = mask2Layer;
-      //
-      maskLayer.beginFill(0xFFFFFF, 1);
-      maskLayer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight);
-      //
-      //mask2Layer.beginFill(0xFFFFFF, 1);
-      //mask2Layer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight * 0.9);
-    } else {
-      wave1Layer.width = 0 ;
-      // wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
-      wave1Layer.height = 0;
-      // wave2Layer.height =wave3Layer.height =wave4Layer.height =wave5Layer.height =wave6Layer.height =0;
+    var entrance = new PIXI.Container();
+    entrance.x = app.screen.width / 2;
+    entrance.y = app.screen.height / 2;
+    var cam_icon = PIXI.Sprite.fromImage('img/get_cam_iconcam.png');
+    cam_icon.anchor.set(0.5);
+    cam_icon.width = 74.4;
+    cam_icon.height = 60;
+    cam_icon.y = -200;
+    cam_icon.alpha = 0;
+    //
+    var welcome_icon = PIXI.Sprite.fromImage('img/get_cam_iconwelcome.png');
+    welcome_icon.anchor.set(0.5);
+    welcome_icon.width = 220;
+    welcome_icon.height = 32;
+    welcome_icon.y = -100;
+    welcome_icon.alpha = 0;
+    //
+    var welcome_icon = PIXI.Sprite.fromImage('img/get_cam_iconwelcome.png');
+    welcome_icon.anchor.set(0.5);
+    welcome_icon.width = 220;
+    welcome_icon.height = 32;
+    welcome_icon.y = -100;
+    welcome_icon.alpha = 0;
+    //
+    var text_icon = PIXI.Sprite.fromImage('img/get_cam_textbox.png');
+    text_icon.anchor.set(0.5);
+    text_icon.width = 137.3;
+    text_icon.height = 85.6;
+    text_icon.y = -30;
+    text_icon.alpha = 0;
+    //
+    var btn_icon = PIXI.Sprite.fromImage('img/get_cam_btn.png');
+    btn_icon.anchor.set(0.5);
+    btn_icon.width = 218.6;
+    btn_icon.height = 32.6;
+    btn_icon.y = 150;
+    btn_icon.alpha = 0;
+    //
+    tween_cam = TweenLite.to( cam_icon, 1, {alpha:1, y: -150 , onComplete: function(){tween_cam.kill();}} );
+    tween_welcome =TweenLite.to( welcome_icon, 1, {alpha:1, y: -80, delay:0.5, onComplete: function(){tween_welcome.kill();} } );
+    tween_text =TweenLite.to( text_icon, 1, {alpha:1, y: 20, delay:0.75, onComplete: function(){tween_text.kill();} } );
+    tween_btn =TweenLite.to( btn_icon, 1, {alpha:1, y: 150, delay:1, onComplete: function(){tween_btn.kill();} } );
+    //
+    entrance.addChild(cam_icon);
+    entrance.addChild(welcome_icon);
+    entrance.addChild(text_icon);
+    entrance.addChild(btn_icon);
+    app.stage.addChild(entrance);
+  }
+
+  var step2 = false;
+  function sec_step(){
+    step2 = true;
+    //
+    var container = new PIXI.Container();
+    container.x = 0;
+    container.y = 0;
+    //
+    var maskLayer = new PIXI.Graphics();
+    var mask2Layer = new PIXI.Graphics();
+    var wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
+    wave1Layer.width = 0
+    // wave2Layer.width =wave3Layer.width=wave4Layer.width=wave5Layer.width=wave6Layer.width = 0;
+    wave1Layer.height =0
+    // wave2Layer.height =wave3Layer.height =wave4Layer.height =wave5Layer.height =wave6Layer.height =0;
+    //
+    container.addChild(wave1Layer);
+    container.addChild(maskLayer);
+    app.stage.addChild(container);
+  }
+
+  app.ticker.add(function() {
+    if(step2){
+      if (modelTF == true) {
+        checkModel();
+      }
+      maskLayer.clear();
+      if (gotit == true) {
+        wave1Layer.height = (max_y - min_y) * stgH;
+        wave1Layer.width = (max_x - min_x) * stgW;
+        wave1Layer.x = min_x*stgW;
+        wave1Layer.y = min_y*stgH;
+        wave1Layer.mask = maskLayer;
+        //
+        maskLayer.beginFill(0xFFFFFF, 1);
+        maskLayer.drawRect(0, max_y*stgH, stgW, (min_y - max_y) * stgH * nowHeight);
+      } else {
+        wave1Layer.width = 0 ;
+        wave1Layer.height = 0;
+      }
     }
   });
   const sound_cry = PIXI.sound.Sound.from({
