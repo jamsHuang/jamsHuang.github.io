@@ -42,7 +42,7 @@ $(function() {
         //myVideoStream.play();
       },
       function(error) {
-        alert('webcam not working');
+         $('.notsupport').css("display","flex");
       });
   }
   getVideo();
