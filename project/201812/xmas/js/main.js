@@ -263,7 +263,7 @@ $(function() {
   var step2 = false;
   var container;
   var maskLayer;
-  var wave1Layer;
+  var wave1Layer,wave2Layer;
   var checkingLayer;
   var checking1, checking2, checking0, camLayer, noticeLayer;
 
