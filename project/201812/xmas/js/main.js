@@ -101,10 +101,10 @@ $(function() {
     var canBg = document.getElementById('sbg');
     var canTree = document.getElementById('stree');
     record_ctx.drawImage(canBg, 0, 0, 320, 480, 0, 0, 320, 480);
-    var xx = (min_x)*stgW;
-    var yy = (min_y)*stgH;
-    var ww = (max_x-min_x)*stgW;
-    var hh = (max_y-min_y)*stgH;
+    var xx = (min_x) * stgW;
+    var yy = (min_y) * stgH;
+    var ww = (max_x - min_x) * stgW;
+    var hh = (max_y - min_y) * stgH;
     record_ctx.drawImage(canTree, 0, 0, 320, 480, xx, yy, ww, hh);
     share_img = record_canvas.toDataURL("image/jpeg");
     //console.log(share_img);
@@ -128,8 +128,9 @@ $(function() {
       jsonCallback: "result",
       success: result
     });
+
     function result(responseText) {
-        console.log(responseText);
+      console.log(responseText);
     }
   }
 
@@ -169,7 +170,7 @@ $(function() {
         gotit = false;
         firstCatch = false;
         //checkNum = 0.99;
-        checkNum =0.5;
+        checkNum = 0.5;
       } else {
 
       }
@@ -478,7 +479,7 @@ $(function() {
     treemaskLayer = new PIXI.Graphics();
     //
     var texture = PIXI.Texture.fromImage('img/result_snow.png');
-    tilingSprite = new PIXI.extras.TilingSprite(texture, stgW,stgH);
+    tilingSprite = new PIXI.extras.TilingSprite(texture, stgW, stgH);
     tilingSprite.anchor.set(0.5);
     //
     resultBg.mask = treemaskLayer;
@@ -495,15 +496,28 @@ $(function() {
     resultStar.y = -180;
     //
     resultLayer.addChild(resultBg);
-    for(var i=0;i<6;i++){
-        var randomStar = PIXI.Sprite.fromImage("img/star.png");
-        randomStar.anchor.set(0.5);
-        randomStar.height = randomStar.width = Math.random()*200+50;
-        randomStar.x = Math.random()*160 - 80;
-        randomStar.y = Math.random()*180 - 90;
-        randomStar.rotation = Math.random()*360;
-        randomStar.name = "star"+i;
-        resultLayer.addChild(randomStar);
+    var randomStarPos = [[45,-100],[-35,-40],[60,-20],[-5,120],[-90,60],[80,90]];
+    for (var i = 0; i < 6; i++) {
+      var randomStar = PIXI.Sprite.fromImage("img/star.png");
+      randomStar.anchor.set(0.5);
+      randomStar.height = randomStar.width = Math.random() * 150 + 50;
+      randomStar.x = randomStarPos[i][0];
+      randomStar.y = randomStarPos[i][1];
+      randomStar.rotation = Math.random() * 360;
+      randomStar.name = "star" + i;
+      TweenMax.set(randomStar, {
+        width:50,height:50
+      })
+      TweenMax.to(randomStar, 1, {
+        width:250,
+        height:250,
+        repeat: -1,
+        delay: i/10,
+        yoyo: true,
+        ease: Power2.easeInOut
+      });
+
+      resultLayer.addChild(randomStar);
     }
 
     //
@@ -524,6 +538,7 @@ $(function() {
       }
     });
   }
+
   function removeWaves() {
     let ct = app.stage.getChildByName('ct');
     if (ct.children.length > 0) {
@@ -550,7 +565,8 @@ $(function() {
   }
   var time2 = 0;
   var stopRunning = false;
-  function myRuntime(){
+
+  function myRuntime() {
 
     if (step2) {
       if (shine == true) {
@@ -597,27 +613,19 @@ $(function() {
       treemaskLayer.drawRect(-stgW / 2, -stgH / 2, stgW, stgH * time3);
       resultStar.rotation += 0.1;
 
-      for(var i =0 ;i <6 ;i++){
-        var tempStar = resultLayer.getChildByName("star"+i);
-        //tempStar.width = tempStar.height = Math.random()*200+100;
-        //tempStar.x = Math.random()*180 - 90;
-        //tempStar.y = Math.random()*200 -100;
-
-      }
 
       if (snow) {
         tilingSprite.tilePosition.y += 1;
-        if(tilingSprite.tilePosition.y>480){
-          tilingSprite.tilePosition.y=0;
+        if (tilingSprite.tilePosition.y > 480) {
+          tilingSprite.tilePosition.y = 0;
         }
         //console.log(tilingSprite.tilePosition.y);
       }
     }
 
-    if(stopRunning ==true){
+    if (stopRunning == true) {
 
-    }
-    else{
+    } else {
       requestAnimationFrame(myRuntime);
     }
   }
