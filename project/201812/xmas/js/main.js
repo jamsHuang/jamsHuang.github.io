@@ -421,12 +421,13 @@ $(function() {
     //
     var texture = PIXI.Texture.fromImage('img/result_snow.png');
     tilingSprite = new PIXI.extras.TilingSprite(texture, stgW, stgH);
-    resultLayer.addChild(tilingSprite);
+
     //
     resultBg.mask = treemaskLayer;
     //
     resultLayer.addChild(resultBg);
     resultLayer.addChild(treemaskLayer);
+    resultLayer.addChild(tilingSprite);
     app.stage.addChild(resultLayer);
     //
     snow = true;
