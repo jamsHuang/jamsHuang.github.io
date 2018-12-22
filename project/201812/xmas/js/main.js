@@ -395,6 +395,7 @@ $(function() {
     app.stage.addChild(checkingLayer);
   }
   var resultLayer, resultBg;
+  var treemaskLayer;
   var step3 = false;
   var time3 = 0;
   function drawResult() {
@@ -414,11 +415,11 @@ $(function() {
     resultBg.alpha = 0;
     resultBg.y = -150;
     //
-    maskLayer = new PIXI.Graphics();
+    treemaskLayer = new PIXI.Graphics();
     //
     resultLayer.addChild(resultBg);
-    resultLayer.addChild(maskLayer);
-    resultBg.mask = maskLayer;
+    resultLayer.addChild(treemaskLayer);
+    resultBg.mask = treemaskLayer;
     app.stage.addChild(resultLayer);
     //
     var resultBg_tween = TweenLite.to(resultBg, 1.5, {
@@ -494,8 +495,8 @@ $(function() {
     }
     if (step3) {
       time3 +=0.05;
-      maskLayer.beginFill(0xFFFFFF, 1);
-      maskLayer.drawRect(0,-stgH/2,stgW,stgH*time3);
+      treemaskLayer.beginFill(0xFFFFFF, 1);
+      treemaskLayer.drawRect(-stgW/2,-stgH/2,stgW,stgH*time3);
     }
   });
   var cry_url
