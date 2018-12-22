@@ -34,12 +34,34 @@
       </div>
       <img class="notsupport_browser" src="img/nosupport/icon_browser.png" alt="browsers">
     </div>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1911090725656524',
+          xfbml      : true,
+          version    : 'v3.2'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+       var sharing = false;
+    </script>
     <script src="js/lib/jquery-3.3.1.min.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
     <script src="js/lib/pixi-sound.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+    <!-- <script src="js/lib/inApp_loginFB.js" type="text/javascript" ></script> -->
     <script src="js/main.js"></script>
   </body>
 </html>

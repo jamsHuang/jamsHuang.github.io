@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="drawBox" id="drawBox">
+    <img style="position:absolute;width:320px;height:480px;" id="shareImg"/>
+    <!-- <canvas id="resizeCanvas" width="160" height="240" style="display:none"></canvas> -->
+    <video id="video" width="320" height="480" autoplay playsinline></video>
+  </div>
+  <div class="box_mask"></div>
+  <div class="loading">
+    <img src="img/preloader.gif"/>
+  </div>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '1911090725656524',
+        xfbml: true,
+        version: 'v3.2'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script src="js/lib/jquery-3.3.1.min.js"></script>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
+  <script src="js/lib/pixi-sound.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+  <script src="js/share.js"></script>
+  <!-- <script src="js/main.js"></script> -->
+</body>
+
 </html>
