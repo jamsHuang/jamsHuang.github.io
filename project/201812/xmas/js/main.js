@@ -6,6 +6,10 @@ $(function() {
   var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
 
+
+  var starName = ['何潤東', '何超蓮', '修杰楷', '吳建豪', '吳慷仁', '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸', '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'];
+  var gNum = Math.floor(Math.random() * starName.length);
+  console.log(gNum);
   async function getVideo() {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getMedia({
@@ -62,6 +66,7 @@ $(function() {
   var resize_ctx = resize_canvas.getContext("2d");
   let modelPromise;
   var model;
+
   //
   async function init() {
     $('.loading').hide();
@@ -104,7 +109,8 @@ $(function() {
         firstCatch = true;
         play_cry();
       } else {
-        checkNum = 0.85;
+        //checkNum = 0.85;
+        checkNum = 0.2;
       }
     } else {
       catch_num++;
@@ -125,26 +131,68 @@ $(function() {
   }
   var nowHeight;
 
+  var star_playing = false;
+  var shine = false;
+
   function play_cry() {
     const instance = sound_cry.play();
     instance.on('progress', function(progress) {
-      nowHeight = progress;
+      nowHeight = progress / 0.38;
+      if (progress > 0.30 && progress <= 0.38) {
+        if (shine == false) {
+          shine = true;
+          var star_tween = TweenLite.fromTo(starLayer, 0.3, {
+            alpha: 0
+          }, {
+            alpha: 1,
+            onComplete: function() {
+              star_tween.kill();
+            }
+          });
+          //
+          var tree_tween = TweenLite.fromTo(treeLayer, 2, {
+            alpha: 0
+          }, {
+            alpha: 1,
+            onComplete: function() {
+              tree_tween.kill();
+              drawResult();
+            }
+          });
+        }
+      } else if (progress > 0.38) {
+        if (star_playing == false) {
+          star_playing = true;
+          getResult();
+        } else {
+
+        }
+
+      } else {
+
+      }
     });
     instance.on('end', function() {
-      getResult();
+
     });
   }
 
   function getResult() {
     modelTF = false;
     stopVideo();
-    clearAllSprite();
+    //clearAllSprite();
+    sound_star.play();
   }
 
   function clearAllSprite() {
-    for (var i = app.stage.children.length - 1; i >= 0; i--) {
-      app.stage.removeChild(app.stage.children[i]);
-    };
+    if (app.stage.children.length > 0) {
+      for (var i = app.stage.children.length - 1; i >= 0; i--) {
+        app.stage.removeChild(app.stage.children[i]);
+      };
+      clearAllSprite();
+    } else {
+
+    }
   }
 
   var gotit = false;
@@ -264,7 +312,7 @@ $(function() {
   var step2 = false;
   var container;
   var maskLayer;
-  var wave1Layer,wave2Layer;
+  var wave1Layer, wave2Layer, starLayer, treeLayer;
   var checkingLayer;
   var checking1, checking2, checking0, camLayer, noticeLayer;
 
@@ -281,6 +329,7 @@ $(function() {
     container = new PIXI.Container();
     container.x = 0;
     container.y = 0;
+    container.name = "ct";
     //
     maskLayer = new PIXI.Graphics();
     wave1Layer = PIXI.Sprite.fromImage('img/wave13.png');
@@ -293,9 +342,22 @@ $(function() {
     wave2Layer.height = 0;
     wave2Layer.alpha = 0.3;
     //
+    starLayer = PIXI.Sprite.fromImage('img/star.png');
+    starLayer.anchor.set(0.5);
+    starLayer.width = 200;
+    starLayer.height = 200;
+    starLayer.alpha = 1;
+    //tree.png
+    treeLayer = PIXI.Sprite.fromImage('img/tree.png');
+    treeLayer.width = stgW;
+    treeLayer.height = stgH;
+    treeLayer.alpha = 0;
+    //
     container.addChild(wave2Layer);
     container.addChild(wave1Layer);
     container.addChild(maskLayer);
+    container.addChild(starLayer);
+    container.addChild(treeLayer);
     app.stage.addChild(container);
     //
     checkingLayer = new PIXI.Container();
@@ -332,9 +394,74 @@ $(function() {
     checkingLayer.addChild(noticeLayer);
     app.stage.addChild(checkingLayer);
   }
+  var resultLayer, resultBg;
+  var step3 = false;
+  var time3 = 0;
+  function drawResult() {
+    //result_bg.png
+    //
+    step3 = true;
+    time3 = 0;
+    resultLayer = new PIXI.Container();
+
+    resultLayer.x = stgW / 2;
+    resultLayer.y = stgH / 2;
+    //
+    resultBg = PIXI.Sprite.fromImage("img/result_bg.png");
+    resultBg.width = 337.5;
+    resultBg.height = 600.3;
+    resultBg.anchor.set(0.5);
+    resultBg.alpha = 0;
+    resultBg.y = -150;
+    //
+    maskLayer = new PIXI.Graphics();
+    //
+    resultLayer.addChild(resultBg);
+    resultLayer.addChild(maskLayer);
+    resultBg.mask = maskLayer;
+    app.stage.addChild(resultLayer);
+    //
+    var resultBg_tween = TweenLite.to(resultBg, 1.5, {
+      alpha: 1,
+      y: 0,
+      onComplete: function() {
+        resultBg_tween.kill();
+        removeWaves();
+      }
+    });
+    //
+  }
+
+  function removeWaves() {
+    let ct = app.stage.getChildByName('ct');
+    if (ct.children.length > 0) {
+      for (var i = ct.children.length - 1; i >= 0; i--) {
+        ct.removeChild(ct.children[i]);
+      };
+      removeWaves();
+    } else {
+      app.stage.removeChild(ct);
+    }
+  }
+
+  function startShine() {
+    starLayer.x = ((max_x - min_x) / 2 + min_x) * stgW;
+    starLayer.y = min_y * stgH / 2 + 30;
+    starLayer.rotation += 0.1;
+    //
+    treeLayer.x = min_x * stgW - 10;
+    treeLayer.y = min_y * stgH - 10;
+    //
+    treeLayer.height = (max_y - min_y) * stgH + 20;
+    treeLayer.width = (max_x - min_x) * stgW + 20;
+    //console.log(starLayer.x,starLayer.y);
+  }
 
   app.ticker.add(function() {
     if (step2) {
+      if (shine == true) {
+        startShine();
+      }
       if (modelTF == true) {
         checkModel();
       }
@@ -347,8 +474,8 @@ $(function() {
         wave1Layer.mask = maskLayer;
         //
         wave2Layer.height = (max_y - min_y) * stgH;
-        wave2Layer.width = (max_x - min_x) * stgW+60;
-        wave2Layer.x = min_x * stgW-30;
+        wave2Layer.width = (max_x - min_x) * stgW + 60;
+        wave2Layer.x = min_x * stgW - 30;
         wave2Layer.y = min_y * stgH;
         wave2Layer.mask = maskLayer;
         //
@@ -365,9 +492,26 @@ $(function() {
         checking2.rotation += 0.06;
       }
     }
+    if (step3) {
+      time3 +=0.05;
+      maskLayer.beginFill(0xFFFFFF, 1);
+      maskLayer.drawRect(0,-stgH/2,stgW,stgH*time3);
+    }
   });
+  var cry_url
+  if (gNum % 3 == 0) {
+    cry_url = 'sounds/cry_0.mp3';
+  } else if (gNum % 3 == 1) {
+    cry_url = 'sounds/cry_1.mp3';
+  } else {
+    cry_url = 'sounds/cry_2.mp3';
+  }
   const sound_cry = PIXI.sound.Sound.from({
-    url: 'sounds/cry.mp3',
+    url: cry_url,
     preload: true,
+  });
+  const sound_star = PIXI.sound.Sound.from({
+    url: 'sounds/' + gNum + '.mp3',
+    preload: true
   });
 });
