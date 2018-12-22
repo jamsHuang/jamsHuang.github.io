@@ -6,7 +6,6 @@ $(function() {
   var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
 
-
   var starName = ['何潤東', '何超蓮', '修杰楷', '吳建豪', '吳慷仁', '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸', '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'];
   var gNum = Math.floor(Math.random() * starName.length);
   console.log(gNum);
@@ -59,6 +58,8 @@ $(function() {
   var stgH = 480;
   var stgW = 320;
   //
+  var org_img, share_img;
+  //
   var checkTime = 30;
   var myRuntime;
   //
@@ -66,10 +67,10 @@ $(function() {
   var resize_ctx = resize_canvas.getContext("2d");
   let modelPromise;
   var model;
-
   //
   async function init() {
     $('.loading').hide();
+    myRuntime();
   }
   async function myLoadUrl() {
     modelPromise = tf.loadFrozenModel(MODEL_URL, WEIGHTS_URL);
@@ -88,6 +89,50 @@ $(function() {
     await myPredict();
   }
   var catch_num = 0;
+  var share_url;
+
+  function send_org() {
+    var record_canvas = document.getElementById('record_canvas');
+    var record_ctx = record_canvas.getContext("2d");
+    //
+    record_ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 320, 480);
+    org_img = record_canvas.toDataURL("image/jpeg");
+    //
+    var canBg = document.getElementById('sbg');
+    var canTree = document.getElementById('stree');
+    record_ctx.drawImage(canBg, 0, 0, 320, 480, 0, 0, 320, 480);
+    var xx = (min_x)*stgW;
+    var yy = (min_y)*stgH;
+    var ww = (max_x-min_x)*stgW;
+    var hh = (max_y-min_y)*stgH;
+    record_ctx.drawImage(canTree, 0, 0, 320, 480, xx, yy, ww, hh);
+    share_img = record_canvas.toDataURL("image/jpeg");
+    //console.log(share_img);
+    $.ajax({
+      url: 'make_img.php',
+      cache: false,
+      dataType: 'JSON',
+      type: 'POST',
+      data: {
+        original_img_url: org_img,
+        share_img_url: share_img,
+        num: gNum,
+        posX: ((max_x - min_x) / 2 + min_x) * stgW,
+        posY: ((max_y - min_y) / 2 + min_y) * stgH,
+        width: (max_x - min_x) * stgW,
+        height: (max_y - min_y) * stgH
+      },
+      error: function() {
+        alert('Ajax request 發生錯誤');
+      },
+      jsonCallback: "result",
+      success: result
+    });
+    function result(responseText) {
+        console.log(responseText);
+    }
+  }
+
   async function myPredict() {
     //const model = await modelPromise;
     var cs = tf.fromPixels(resize_canvas);
@@ -108,6 +153,7 @@ $(function() {
       if (firstCatch == false) {
         firstCatch = true;
         play_cry();
+        send_org();
       } else {
         //checkNum = 0.85;
         checkNum = 0.2;
@@ -122,7 +168,8 @@ $(function() {
         max_x = 0;
         gotit = false;
         firstCatch = false;
-        checkNum = 0.99;
+        //checkNum = 0.99;
+        checkNum =0.5;
       } else {
 
       }
@@ -196,7 +243,8 @@ $(function() {
   }
 
   var gotit = false;
-  var checkNum = 0.99;
+  //var checkNum = 0.99;
+  var checkNum = 0.5;
   //
   var app = new PIXI.Application(stgW, stgH, {
     antialias: true,
@@ -204,6 +252,7 @@ $(function() {
   });
   document.getElementById("drawBox").appendChild(app.view);
   app.view.style = "position:absolute";
+  app.view.id = 'stage_canvas';
   app.stage.interactive = true;
   //camera
   var camContainer = new PIXI.Container();
@@ -325,6 +374,7 @@ $(function() {
         app.stage.removeChild(entrance);
       }
     });
+
     //
     container = new PIXI.Container();
     container.x = 0;
@@ -360,9 +410,12 @@ $(function() {
     container.addChild(treeLayer);
     app.stage.addChild(container);
     //
+
+    //
     checkingLayer = new PIXI.Container();
     checkingLayer.x = stgW / 2;
     checkingLayer.y = stgH / 2;
+    checkingLayer.alpha = 0;
     //
     camLayer = PIXI.Sprite.fromImage('img/get_cam_iconcam.png');
     camLayer.anchor.set(0.5);
@@ -393,6 +446,8 @@ $(function() {
     checkingLayer.addChild(checking2);
     checkingLayer.addChild(noticeLayer);
     app.stage.addChild(checkingLayer);
+    //
+
   }
   var resultLayer, resultBg;
   var treemaskLayer;
@@ -400,6 +455,9 @@ $(function() {
   var time3 = 0;
   var tilingSprite;
   var snow;
+  //
+  var resultCv, resultStar;
+  //
   function drawResult() {
     //result_bg.png
     //
@@ -420,18 +478,44 @@ $(function() {
     treemaskLayer = new PIXI.Graphics();
     //
     var texture = PIXI.Texture.fromImage('img/result_snow.png');
-    tilingSprite = new PIXI.extras.TilingSprite(texture, stgW, stgH);
+    tilingSprite = new PIXI.extras.TilingSprite(texture, stgW,stgH);
     tilingSprite.anchor.set(0.5);
     //
     resultBg.mask = treemaskLayer;
     //
+    resultCv = PIXI.Sprite.fromImage("img/result_tc.png");
+    resultCv.anchor.set(0.5);
+    resultCv.width = 223.2;
+    resultCv.height = 283.5;
+    //
+    resultStar = PIXI.Sprite.fromImage("img/star.png");
+    resultStar.anchor.set(0.5);
+    resultStar.width = 300;
+    resultStar.height = 300;
+    resultStar.y = -180;
+    //
     resultLayer.addChild(resultBg);
+    for(var i=0;i<6;i++){
+        var randomStar = PIXI.Sprite.fromImage("img/star.png");
+        randomStar.anchor.set(0.5);
+        randomStar.height = randomStar.width = Math.random()*200+50;
+        randomStar.x = Math.random()*160 - 80;
+        randomStar.y = Math.random()*180 - 90;
+        randomStar.rotation = Math.random()*360;
+        randomStar.name = "star"+i;
+        resultLayer.addChild(randomStar);
+    }
+
+    //
+
     resultLayer.addChild(treemaskLayer);
+    resultLayer.addChild(resultCv);
     resultLayer.addChild(tilingSprite);
+    resultLayer.addChild(resultStar);
     app.stage.addChild(resultLayer);
     //
     snow = true;
-    var resultBg_tween = TweenLite.to(resultBg, 1.5, {
+    var resultBg_tween = TweenLite.to(resultBg, 1, {
       alpha: 1,
       y: 0,
       onComplete: function() {
@@ -439,10 +523,7 @@ $(function() {
         removeWaves();
       }
     });
-    //
-
   }
-
   function removeWaves() {
     let ct = app.stage.getChildByName('ct');
     if (ct.children.length > 0) {
@@ -467,14 +548,20 @@ $(function() {
     treeLayer.width = (max_x - min_x) * stgW + 20;
     //console.log(starLayer.x,starLayer.y);
   }
+  var time2 = 0;
+  var stopRunning = false;
+  function myRuntime(){
 
-  app.ticker.add(function() {
     if (step2) {
       if (shine == true) {
         startShine();
       }
       if (modelTF == true) {
-        checkModel();
+        time2++;
+        if (time2 > 60) {
+          checkModel();
+          time2 = 0;
+        }
       }
       maskLayer.clear();
       if (gotit == true) {
@@ -504,14 +591,37 @@ $(function() {
       }
     }
     if (step3) {
-      time3 +=0.05;
+      time3 += 0.05;
+      treemaskLayer.clear();
       treemaskLayer.beginFill(0xFFFFFF, .5);
-      treemaskLayer.drawRect(-stgW/2,-stgH/2,stgW,stgH*time3);
-      if(snow){
-         tilingSprite.tilePosition.y += 1;
+      treemaskLayer.drawRect(-stgW / 2, -stgH / 2, stgW, stgH * time3);
+      resultStar.rotation += 0.1;
+
+      for(var i =0 ;i <6 ;i++){
+        var tempStar = resultLayer.getChildByName("star"+i);
+        //tempStar.width = tempStar.height = Math.random()*200+100;
+        //tempStar.x = Math.random()*180 - 90;
+        //tempStar.y = Math.random()*200 -100;
+
+      }
+
+      if (snow) {
+        tilingSprite.tilePosition.y += 1;
+        if(tilingSprite.tilePosition.y>480){
+          tilingSprite.tilePosition.y=0;
+        }
+        //console.log(tilingSprite.tilePosition.y);
       }
     }
-  });
+
+    if(stopRunning ==true){
+
+    }
+    else{
+      requestAnimationFrame(myRuntime);
+    }
+  }
+  //
   var cry_url
   if (gNum % 3 == 0) {
     cry_url = 'sounds/cry_0.mp3';
