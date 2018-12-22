@@ -421,7 +421,7 @@ $(function() {
     //
     var texture = PIXI.Texture.fromImage('img/result_snow.png');
     tilingSprite = new PIXI.extras.TilingSprite(texture, stgW, stgH);
-
+    tilingSprite.anchor.set(0.5);
     //
     resultBg.mask = treemaskLayer;
     //
