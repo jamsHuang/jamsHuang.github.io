@@ -398,6 +398,8 @@ $(function() {
   var treemaskLayer;
   var step3 = false;
   var time3 = 0;
+  var tilingSprite;
+  var snow;
   function drawResult() {
     //result_bg.png
     //
@@ -417,11 +419,17 @@ $(function() {
     //
     treemaskLayer = new PIXI.Graphics();
     //
+    var texture = PIXI.Texture.fromImage('img/result_snow.png');
+    tilingSprite = new PIXI.extras.TilingSprite(texture, stgW, stgH);
+    resultLayer.addChild(tilingSprite);
+    //
+    resultBg.mask = treemaskLayer;
+    //
     resultLayer.addChild(resultBg);
     resultLayer.addChild(treemaskLayer);
-    resultBg.mask = treemaskLayer;
     app.stage.addChild(resultLayer);
     //
+    snow = true;
     var resultBg_tween = TweenLite.to(resultBg, 1.5, {
       alpha: 1,
       y: 0,
@@ -431,6 +439,7 @@ $(function() {
       }
     });
     //
+
   }
 
   function removeWaves() {
@@ -495,8 +504,11 @@ $(function() {
     }
     if (step3) {
       time3 +=0.05;
-      treemaskLayer.beginFill(0xFFFFFF, 1);
+      treemaskLayer.beginFill(0xFFFFFF, .5);
       treemaskLayer.drawRect(-stgW/2,-stgH/2,stgW,stgH*time3);
+      if(snow){
+         tilingSprite.tilePosition.y += 1;
+      }
     }
   });
   var cry_url
