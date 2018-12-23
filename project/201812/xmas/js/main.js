@@ -36,7 +36,13 @@ $(function() {
     if(getBrowser()=="Chrome" || getBrowser()=="Firefox"){
 
     }else{
+
       $('.notsupport').css("display", "flex");
+      $('.notsupport').on('click',function(){
+        console.log("click");
+        
+      })
+      CallGaBtn("not_support");
     }
   }
   //
@@ -287,6 +293,7 @@ $(function() {
       function(error) {
         //console.log(error);
         $('.notsupport').css("display", "flex");
+        CallGaBtn("not_support");
       });
   }
   async function stopVideo() {
@@ -558,6 +565,7 @@ $(function() {
 
   function sec_step() {
     step2 = true;
+    CallGaBtn("startPlay");
     if (sharing) {} else {
 
       btn_icon.interactive = false;
@@ -957,6 +965,7 @@ $(function() {
 
   function open_donate() {
     window.open("https://goo.gl/c1qMWT", "_self");
+    CallGaBtn("go_donate");
   }
   $("#iBut").on("click", function() {
     //console.log("click"); //
@@ -966,6 +975,7 @@ $(function() {
     }, function(response) {
       //console.log(response);
     });
+    CallGaBtn("shareing");
   });
   function showLast() {
     var logo_tween = TweenMax.to(logo_icon, 1, {
