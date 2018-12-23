@@ -6,26 +6,27 @@ $(function() {
   var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
   var starName = ['何潤東', '何超蓮', '修杰楷', '吳建豪', '吳慷仁',
-   '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸',
-   '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'];
-  var rArray = [0,0,0,0,0,
+    '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸',
+    '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'
+  ];
+  var rArray = [0, 0, 0, 0, 0,
     1,
-    2,2,2,
-    3,3,3,3,3,3,3,
-    4,4,4,
+    2, 2, 2,
+    3, 3, 3, 3, 3, 3, 3,
+    4, 4, 4,
     5,
-    6,6,6,
-    7,7,7,7,7,7,7,7,
-    8,8,8,8,8,8,8,8,
-    9,9,9,9,
-    10,10,10,10,10,10,
+    6, 6, 6,
+    7, 7, 7, 7, 7, 7, 7, 7,
+    8, 8, 8, 8, 8, 8, 8, 8,
+    9, 9, 9, 9,
+    10, 10, 10, 10, 10, 10,
     11,
-    12,12,12,
+    12, 12, 12,
     13,
     14,
     15,
-    16,16,16,16,16,
-    17,17,17,17,17,17,17
+    16, 16, 16, 16, 16,
+    17, 17, 17, 17, 17, 17, 17
   ]
   var rNum = Math.floor(Math.random() * rArray.length);
   var gNum = rArray[rNum];
@@ -120,12 +121,12 @@ $(function() {
   var shareImg;
   if (sharing == true) {
     gNum = num;
-    min_y = (Number(posY) - (Number(height)/2))/stgH;
-    min_x =(Number(posX) - (Number(width)/2))/stgW;
-    max_y =(  Number(posY) + (Number(height)/2) )/ stgH;
-    max_x = ( Number(posX) + (Number(width) / 2)) /stgW;
+    min_y = (Number(posY) - (Number(height) / 2)) / stgH;
+    min_x = (Number(posX) - (Number(width) / 2)) / stgW;
+    max_y = (Number(posY) + (Number(height) / 2)) / stgH;
+    max_x = (Number(posX) + (Number(width) / 2)) / stgW;
     //
-    console.log(min_y,min_x)
+    console.log(min_y, min_x)
     modelTF = true;
     gotit = true;
     //
@@ -602,8 +603,8 @@ $(function() {
     //
     treemaskLayer = new PIXI.Graphics();
     //
-    var texture = PIXI.Texture.fromImage('img/result_snow.png');
-    tilingSprite = new PIXI.extras.TilingSprite(texture, stgW, stgH);
+    var tiltexture = PIXI.Texture.fromImage('img/result_snow.png');
+    tilingSprite = new PIXI.extras.TilingSprite(tiltexture, stgW, stgH);
     tilingSprite.anchor.set(0.5);
     //
     resultBg.mask = treemaskLayer;
@@ -792,8 +793,9 @@ $(function() {
       lastView();
     }
   }
-  var help_icon, logo_icon,logo2_icon, last_words, btn_donate, btn_share;
-  var mySh=location.href;
+  var help_icon, logo_icon, logo2_icon, last_words, btn_donate, btn_share;
+  var mySh = location.href;
+
   function lastView() {
     help_icon = PIXI.Sprite.fromImage('img/last_help.png');
     logo_icon = PIXI.Sprite.fromImage('img/last_logo1.png');
@@ -842,18 +844,17 @@ $(function() {
     btn_donate.alpha = 0;
     btn_share.alpha = 0;
     //
-    if(sharing){
-      share_url = mySh.replace('share.html','share.php');
+    if (sharing) {
+      share_url = mySh.replace('share.html', 'share.php');
       console.log(share_url);
-    }else{
+    } else {
 
     }
     //
     btn_donate.interactive = true;
     btn_donate.on('pointerdown', open_donate);
-    btn_share.interactive = true;
-    btn_share.on('pointerdown', open_fb);
-    //btn_share.on('click', open_fb);
+
+    $('#iBut').css("display","block");
     //
     textLayer.addChild(help_icon);
     textLayer.addChild(logo_icon);
@@ -879,24 +880,23 @@ $(function() {
   }
 
   function open_donate() {
-    //console.log('donate');
     window.open("https://goo.gl/c1qMWT", "_self");
   }
-  $('#iBut').click(function(){
-
-    //var tempUrl = "https://www.facebook.com/dialog/share?app_id=1911090725656524&display=iframe&href="+share_url+"&redirect_uri="+share_url
-    //window.open(tempUrl,"_self");
-    // FB.ui({
-    //   method: 'share',
-    //   display: 'iframe',
-    //   href: share_url,
-    // }, function(response) {
-    //   console.log(response);
-    // });
+  $("#iBut").on("click", function() {
+    console.log("click"); //
+    FB.ui({
+      method: 'share',
+      mobile_iframe: true,
+      href: share_url,
+    }, function(response) {
+      console.log(response);
+    });
   });
+
   function open_fb() {
-    console.log(share_url);
-    $('#iBut').trigger("click");
+    console.log("here");
+    $("#iBut").trigger("click");
+
   }
 
   function showLast() {

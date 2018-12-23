@@ -94,6 +94,8 @@ footer {
 
 body {
   background-color: black;
+  width: 100%;
+  height: 100%;
 }
 
 .get_cam {
@@ -139,7 +141,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 25px 10px black;
   pointer-events: none;
 }
 
@@ -152,7 +153,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .drawBox #video {
@@ -163,6 +163,18 @@ body {
 
 .drawBox #myCan {
   position: absolute;
+}
+
+#iBut {
+  display: none;
+  position: absolute;
+  top: calc( 50% + 162px);
+  left: calc( 50% + 5px);
+  width: 132px;
+  height: 44px;
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
 }
 
 .notsupport {
