@@ -32,7 +32,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.open("x-web-search:// https://different-xmas-tree.tw");
+        window.open("x-web-search://https://different-xmas-tree.tw");
       })
     }
   }
