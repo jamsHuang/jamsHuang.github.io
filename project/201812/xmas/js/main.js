@@ -44,7 +44,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("googlechrome://different-xmas-tree.tw");
+        window.location = ("chrome://different-xmas-tree.tw");
       })
       CallGaBtn("not_support");
     }
