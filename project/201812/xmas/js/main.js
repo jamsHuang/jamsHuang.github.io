@@ -30,6 +30,10 @@ $(function() {
     }
     else{
       $('.notsupport').css("display", "flex");
+      $('.notsupport').on('click',function(){
+        console.log("click");
+        window.location = ("Safari://different-xmas-tree.tw");
+      })
     }
   }
   if(isAndroid == true){
@@ -40,7 +44,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        
+        window.location = ("googlechrome://different-xmas-tree.tx");
       })
       CallGaBtn("not_support");
     }
