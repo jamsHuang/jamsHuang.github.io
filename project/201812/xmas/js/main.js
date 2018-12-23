@@ -1,6 +1,6 @@
 $(function() {
   'use strict';
-  console.log(adapter.browserDetails);
+  console.log(adapter);
   var isPlaying = false;
   var firstCatch = false;
   var modelTF = false;
