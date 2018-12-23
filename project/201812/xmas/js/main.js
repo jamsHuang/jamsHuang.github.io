@@ -4,9 +4,42 @@ $(function() {
   var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
   var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
   //
-  console.log(isAndroid);
-  console.log(isiOS);
-  console.log(adapter.browserDetail);
+  function getBrowser() {
+  	var ua = window.navigator.userAgent;
+  	var isIE = window.ActiveXObject != undefined && ua.indexOf("MSIE") != -1;
+  	var isFirefox = ua.indexOf("Firefox") != -1;
+  	var isOpera = window.opr != undefined;
+  	var isChrome = ua.indexOf("Chrome") && window.chrome;
+  	var isSafari = ua.indexOf("Safari") != -1 && ua.indexOf("Version") != -1;
+  	if (isIE) {
+  		return "IE";
+  	} else if (isFirefox) {
+  		return "Firefox";
+  	} else if (isOpera) {
+  		return "Opera";
+  	} else if (isChrome) {
+  		return "Chrome";
+  	} else if (isSafari) {
+  		return "Safari";
+  	} else {
+  		return "Unkown";
+  	}
+  }
+  if(isiOS == true){
+    if(getBrowser()=="Safari"){
+    }
+    else{
+      $('.notsupport').css("display", "flex");
+    }
+  }
+  if(isAndroid == true){
+    if(getBrowser()=="Chrome" || getBrowser()=="Firefox"){
+
+    }else{
+      $('.notsupport').css("display", "flex");
+    }
+  }
+  //
   var isPlaying = false;
   var firstCatch = false;
   var modelTF = false;
@@ -77,7 +110,7 @@ $(function() {
   var step2 = false;
   var container;
   var maskLayer;
-  var wave1Layer, wave2Layer, starLayer, treeLayer;
+  var wave1Layer, wave2Layer, starLayer, treeLayer, notice_sound;
   var checkingLayer;
   var checking1, checking2, checking0, camLayer, noticeLayer;
 
@@ -119,8 +152,8 @@ $(function() {
   document.getElementById("drawBox").appendChild(app.view);
   app.view.style = "position:absolute";
   app.view.id = 'stage_canvas';
-  app.stage.interactive = true;
-
+  //app.stage.interactive = true;
+  //
   var camContainer;
   var showView;
   var texture;
@@ -133,17 +166,24 @@ $(function() {
     max_y = (Number(posY) + (Number(height) / 2)) / stgH;
     max_x = (Number(posX) + (Number(width) / 2)) / stgW;
     //
-    console.log(min_y, min_x)
     modelTF = true;
     gotit = true;
     //
     $('#shareImg').attr("src", ori_image);
     init();
     sec_step();
+
     const sound_cry = PIXI.sound.Sound.from({
       url: cry_url,
       preload: true,
       loaded: function(err, sound) {
+        var tween_btn = TweenLite.to($('.play_box'),0.5,{
+          alpha: 0,
+          onComplete: function(){
+            tween_btn.kill();
+            $('.play_box').css("display","none");
+          }
+        })
         const instance = sound.play();
         instance.on('progress', function(progress) {
           nowHeight = progress / 0.38;
@@ -335,6 +375,12 @@ $(function() {
         play_cry();
         send_org();
         checkNum = 0.85;
+        var tween_ns = TweenLite.to(notice_sound, 1, {
+          alpha: 1,
+          onComplete: function() {
+            tween_ns.kill();
+          }
+        });
       } else {}
     } else {
       catch_num++;
@@ -362,7 +408,13 @@ $(function() {
         if (shine == false) {
           shine = true;
           modelTF = false;
-          var star_tween = TweenLite.fromTo(starLayer, 0.3, {
+          var tween_ns = TweenLite.to(notice_sound,0.5,{
+            alpha:0,
+            onComplete:function(){
+              tween_ns.kill();
+            }
+          })
+          var star_tween = TweenLite.fromTo(starLayer, 0.5, {
             alpha: 0
           }, {
             alpha: 1,
@@ -418,7 +470,7 @@ $(function() {
   }
 
   var entrance;
-
+  var btn_icon;
   function first_step() {
     //first page
     var tween_cam, tween_welcome, tween_text, tween_btn;
@@ -454,7 +506,7 @@ $(function() {
     text_icon.y = -30;
     text_icon.alpha = 0;
     //
-    var btn_icon = PIXI.Sprite.fromImage('img/get_cam_btn.png');
+    btn_icon = PIXI.Sprite.fromImage('img/get_cam_btn.png');
     btn_icon.anchor.set(0.5);
     btn_icon.width = 259.2;
     btn_icon.height = 43.8;
@@ -502,8 +554,10 @@ $(function() {
     app.stage.addChild(entrance);
   }
 
+
   function sec_step() {
     step2 = true;
+    btn_icon.interactive = false;
     if (sharing) {} else {
       var tween_entrance = TweenLite.to(entrance, 1, {
         alpha: 0,
@@ -534,16 +588,26 @@ $(function() {
     starLayer.anchor.set(0.5);
     starLayer.width = 200;
     starLayer.height = 200;
-    starLayer.alpha = 1;
+    starLayer.alpha = 0;
     //tree.png
     treeLayer = PIXI.Sprite.fromImage('img/tree.png');
     treeLayer.width = stgW;
     treeLayer.height = stgH;
     treeLayer.alpha = 0;
     //
+    notice_sound = PIXI.Sprite.fromImage('img/notice_sound.png');
+    notice_sound.anchor.set(0.5);
+    notice_sound.width = 337.5;
+    notice_sound.height = 73.35;
+    notice_sound.x = stgW/2;
+    notice_sound.y = stgH - 35;
+    notice_sound.alpha = 0;
+    //
+
     container.addChild(wave2Layer);
     container.addChild(wave1Layer);
     container.addChild(maskLayer);
+    container.addChild(notice_sound);
     container.addChild(starLayer);
     container.addChild(treeLayer);
     app.stage.addChild(container);
@@ -582,6 +646,9 @@ $(function() {
     checkingLayer.addChild(checking2);
     checkingLayer.addChild(noticeLayer);
     app.stage.addChild(checkingLayer);
+    //
+
+
   }
   var resultLayer, resultBg;
   var treemaskLayer;
@@ -594,6 +661,7 @@ $(function() {
   //
   function drawResult() {
     step3 = true;
+    step2 = false;
     time3 = 0;
     resultLayer = new PIXI.Container();
 
@@ -716,8 +784,8 @@ $(function() {
     textLayer.y = stgH / 2;
     text1 = PIXI.Sprite.fromImage('img/tt0.png');
     text1.anchor.set(0.5);
-    text1.width = 196;
-    text1.height = 51.45;
+    text1.width = 235.2;
+    text1.height = 61.74;
     text1.y = 190;
     text1.alpha = 0;
     //
@@ -737,8 +805,8 @@ $(function() {
 
     text2 = PIXI.Sprite.fromImage('img/tt1.png');
     text2.anchor.set(0.5);
-    text2.width = 168.35;
-    text2.height = 44.8;
+    text2.width = 202.02;
+    text2.height = 53.76;
     text2.y = 180;
     text2.alpha = 0;
     //
@@ -832,10 +900,10 @@ $(function() {
     //
     help_icon.x = 0;
     help_icon.y = 160;
-    logo_icon.x = -84.25;
-    logo_icon.y = -200;
-    logo2_icon.x = 93.15;
-    logo2_icon.y = -200;
+    logo_icon.x = -89.25;
+    logo_icon.y = -215;
+    logo2_icon.x = 101.15;
+    logo2_icon.y = -215;
     last_words.x = 0;
     last_words.y = 145;
     btn_donate.x = -70;
@@ -1007,6 +1075,7 @@ $(function() {
     }
     if (step3) {
       if (time3 < 1) {
+
         if(treemaskLayer){
           time3 += 0.07;
           treemaskLayer.clear();
@@ -1014,7 +1083,7 @@ $(function() {
           treemaskLayer.drawRect(-stgW / 2, -stgH / 2, stgW, stgH * time3);
         }
       }
-      resultStar.rotation += 0.1;
+      //resultStar.rotation += 0.1;
       if (snow) {
         tilingSprite.tilePosition.y += 1;
         if (tilingSprite.tilePosition.y > 480) {
@@ -1024,7 +1093,6 @@ $(function() {
     }
 
     if (stopRunning == true) {
-
     } else {
       requestAnimationFrame(myRuntime);
     }

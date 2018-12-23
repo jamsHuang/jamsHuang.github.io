@@ -1,7 +1,20 @@
-body{
+body {
   background-color: black;
   width: 100%;
   height: 100%;
+}
+
+.play_box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  #playBtn{
+    width:100px;
+    height:100px;
+  }
 }
 
 .get_cam {
@@ -35,42 +48,47 @@ body{
     left: 0;
   }
 }
-.box_mask{
+
+.box_mask {
   position: absolute;
-  top:50%;
-  margin-top:-240px;
-  left:50%;
-  margin-left:-160px;
-  width:320px;
-  height:480px;
+  top: 50%;
+  margin-top: -240px;
+  left: 50%;
+  margin-left: -160px;
+  width: 320px;
+  height: 480px;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
 }
+
 .drawBox {
   position: absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+
   #video {
     position: absolute;
     background: #000;
     display: none;
   }
-  #myCan{
+
+  #myCan {
     position: absolute;
   }
 }
-#iBut{
+
+#iBut {
   display: none;
   position: absolute;
-  top: calc( 50% + 162px);
-  left: calc( 50% + 5px);
+  top: calc(50% + 162px);
+  left: calc(50% + 5px);
   width: 132px;
   height: 44px;
   color: rgba(0,0,0,0);
