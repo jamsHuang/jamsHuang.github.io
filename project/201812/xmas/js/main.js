@@ -5,8 +5,30 @@ $(function() {
   var firstCatch = false;
   var modelTF = false;
   var myVideoStream = document.getElementById('video') // make it a global variable
-  var starName = ['何潤東', '何超蓮', '修杰楷', '吳建豪', '吳慷仁', '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸', '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'];
-  var gNum = Math.floor(Math.random() * starName.length);
+  var starName = ['何潤東', '何超蓮', '修杰楷', '吳建豪', '吳慷仁',
+   '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸',
+   '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'];
+  var rArray = [0,0,0,0,0,
+    1,
+    2,2,2,
+    3,3,3,3,3,3,3,
+    4,4,4,
+    5,
+    6,6,6,
+    7,7,7,7,7,7,7,7,
+    8,8,8,8,8,8,8,8,
+    9,9,9,9,
+    10,10,10,10,10,10,
+    11,
+    12,12,12,
+    13,
+    14,
+    15,
+    16,16,16,16,16,
+    17,17,17,17,17,17,17
+  ]
+  var rNum = Math.floor(Math.random() * rArray.length);
+  var gNum = rArray[rNum];
   if (sharing) {
     gNum = num;
   }
@@ -56,7 +78,8 @@ $(function() {
   const MODEL_URL = 'web_model/tensorflowjs_model.pb';
   const WEIGHTS_URL = 'web_model/weights_manifest.json';
   const IMAGENET_CLASSES = {
-    0: 'xmastree'
+    0: 'xmastree',
+    1: 'yellowstar'
   }
   //
 
@@ -217,6 +240,7 @@ $(function() {
       });
   }
   async function stopVideo() {
+    texture.destroy();
     myVideoStream.srcObject.getTracks().forEach(track => track.stop())
   }
   async function init() {
@@ -685,9 +709,9 @@ $(function() {
     textLayer.y = stgH / 2;
     text1 = PIXI.Sprite.fromImage('img/tt0.png');
     text1.anchor.set(0.5);
-    text1.width = 252;
-    text1.height = 61.6;
-    text1.y = 180;
+    text1.width = 196;
+    text1.height = 51.45;
+    text1.y = 190;
     text1.alpha = 0;
     //
     var text_tween = TweenMax.to(text1, 1, {
@@ -706,8 +730,8 @@ $(function() {
 
     text2 = PIXI.Sprite.fromImage('img/tt1.png');
     text2.anchor.set(0.5);
-    text2.width = 216;
-    text2.height = 57.6;
+    text2.width = 168.35;
+    text2.height = 44.8;
     text2.y = 180;
     text2.alpha = 0;
     //
@@ -732,13 +756,13 @@ $(function() {
     //
     let nameBox = new PIXI.Text(starName[gNum] + "：", {
       fontFamily: 'Arial',
-      fontSize: 30,
+      fontSize: 25,
       fill: 0xFFFFFF,
       align: 'left'
     });
     nameBox.anchor.set(0.5);
     nameBox.x = -85;
-    nameBox.y = 120;
+    nameBox.y = 130;
     nameBox.alpha = 0;
     textLayer.addChild(nameBox);
     var nameBox_tween2 = TweenMax.to(nameBox, 1, {
@@ -769,7 +793,7 @@ $(function() {
     }
   }
   var help_icon, logo_icon,logo2_icon, last_words, btn_donate, btn_share;
-
+  var mySh=location.href;
   function lastView() {
     help_icon = PIXI.Sprite.fromImage('img/last_help.png');
     logo_icon = PIXI.Sprite.fromImage('img/last_logo1.png');
@@ -818,10 +842,18 @@ $(function() {
     btn_donate.alpha = 0;
     btn_share.alpha = 0;
     //
+    if(sharing){
+      share_url = mySh.replace('share.html','share.php');
+      console.log(share_url);
+    }else{
+
+    }
+    //
     btn_donate.interactive = true;
     btn_donate.on('pointerdown', open_donate);
     btn_share.interactive = true;
     btn_share.on('pointerdown', open_fb);
+    //btn_share.on('click', open_fb);
     //
     textLayer.addChild(help_icon);
     textLayer.addChild(logo_icon);
@@ -850,27 +882,21 @@ $(function() {
     //console.log('donate');
     window.open("https://goo.gl/c1qMWT", "_self");
   }
+  $('#iBut').click(function(){
 
+    //var tempUrl = "https://www.facebook.com/dialog/share?app_id=1911090725656524&display=iframe&href="+share_url+"&redirect_uri="+share_url
+    //window.open(tempUrl,"_self");
+    // FB.ui({
+    //   method: 'share',
+    //   display: 'iframe',
+    //   href: share_url,
+    // }, function(response) {
+    //   console.log(response);
+    // });
+  });
   function open_fb() {
-    if(sharing){
-      share_url = url;
-    }else{
-      share_url = share_url.replace('http', 'https');
-    }
     console.log(share_url);
-    FB.ui({
-      method: 'share',
-      mobile_iframe: true,
-      href: share_url,
-    }, function(response) {
-
-    });
-
-    // share_url = share_url.replace('http','');
-    // console.log(share_url);
-    // var reUrl="https://www.facebook.com/dialog/feed?app_id=1911090725656524&display=popup&link=https"+share_url+"&redirect_uri=https"+share_url+"?hh";
-    // console.log(reUrl);
-    // window.open(reUrl,"_self");
+    $('#iBut').trigger("click");
   }
 
   function showLast() {
