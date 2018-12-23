@@ -4,8 +4,8 @@ $(function() {
   var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
   var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
   //
-  cosole.log(isAndroid);
-  cosole.log(isiOS);
+  console.log(isAndroid);
+  console.log(isiOS);
   console.log(adapter.browserDetail);
   var isPlaying = false;
   var firstCatch = false;
