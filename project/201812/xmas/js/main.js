@@ -1,6 +1,6 @@
 $(function() {
   'use strict';
-  //console.log(adapter.browserDetails.browser);
+  console.log(adapter.browserDetails);
   var isPlaying = false;
   var firstCatch = false;
   var modelTF = false;
@@ -76,12 +76,13 @@ $(function() {
   var checking1, checking2, checking0, camLayer, noticeLayer;
 
   // get detect model
-  const MODEL_URL = 'web_model/tensorflowjs_model.pb';
-  const WEIGHTS_URL = 'web_model/weights_manifest.json';
   const IMAGENET_CLASSES = {
     0: 'xmastree',
     1: 'yellowstar'
   }
+  const MODEL_URL = 'web_model/tensorflowjs_model.pb';
+  const WEIGHTS_URL = 'web_model/weights_manifest.json';
+
   //
 
   var cry_url;
@@ -259,10 +260,8 @@ $(function() {
     init();
   }
   async function checkModel() {
-
     resize_ctx.drawImage(myVideoStream, 0, 0, 320, 480, 0, 0, 160, 240);
     await myPredict();
-
   }
 
   function send_org() {
@@ -297,7 +296,7 @@ $(function() {
         height: (max_y - min_y) * stgH
       },
       error: function() {
-        alert('Ajax request 發生錯誤');
+        //alert('Ajax request 發生錯誤');
       },
       jsonCallback: "result",
       success: result
@@ -308,6 +307,7 @@ $(function() {
       share_url = obj.share_url;
     }
   }
+
   async function myPredict() {
     var cs = tf.fromPixels(resize_canvas);
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
@@ -883,22 +883,14 @@ $(function() {
     window.open("https://goo.gl/c1qMWT", "_self");
   }
   $("#iBut").on("click", function() {
-    console.log("click"); //
+    //console.log("click"); //
     FB.ui({
       method: 'share',
-      mobile_iframe: true,
       href: share_url,
     }, function(response) {
-      console.log(response);
+      //console.log(response);
     });
   });
-
-  function open_fb() {
-    console.log("here");
-    $("#iBut").trigger("click");
-
-  }
-
   function showLast() {
     var logo_tween = TweenMax.to(logo_icon, 1, {
       alpha: 1,
@@ -977,19 +969,14 @@ $(function() {
           }
         }
       }
-
       if (maskLayer) {
-        //console.log("hi");
         maskLayer.clear();
       }
-
       if (gotit == true) {
-
         //
         wave1Layer.height = (max_y - min_y) * stgH;
         wave1Layer.width = (max_x - min_x) * stgW;
         //console.log(wave1Layer.height,"mmmmm");
-
         wave1Layer.x = min_x * stgW;
         wave1Layer.y = min_y * stgH;
         wave1Layer.mask = maskLayer;
@@ -1002,10 +989,6 @@ $(function() {
         //
         maskLayer.beginFill(0xFFFFFF, 1);
         maskLayer.drawRect(0, max_y * stgH, stgW, (min_y - max_y) * stgH * nowHeight);
-        //console.log('here',(min_y - max_y));
-        //
-
-
         checkingLayer.alpha = 0;
       } else {
         wave1Layer.width = 0;
@@ -1017,12 +1000,13 @@ $(function() {
       }
     }
     if (step3) {
-
       if (time3 < 1) {
-        time3 += 0.05;
-        treemaskLayer.clear();
-        treemaskLayer.beginFill(0xFFFFFF, .5);
-        treemaskLayer.drawRect(-stgW / 2, -stgH / 2, stgW, stgH * time3);
+        if(treemaskLayer){
+          time3 += 0.07;
+          treemaskLayer.clear();
+          treemaskLayer.beginFill(0xFFFFFF, .5);
+          treemaskLayer.drawRect(-stgW / 2, -stgH / 2, stgW, stgH * time3);
+        }
       }
       resultStar.rotation += 0.1;
       if (snow) {
@@ -1030,7 +1014,6 @@ $(function() {
         if (tilingSprite.tilePosition.y > 480) {
           tilingSprite.tilePosition.y = 0;
         }
-        //console.log(tilingSprite.tilePosition.y);
       }
     }
 
