@@ -32,7 +32,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("Safari://different-xmas-tree.tw");
+        window.location = ("safari://different-xmas-tree.tw");
       })
     }
   }
@@ -44,7 +44,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("googlechrome://different-xmas-tree.tx");
+        window.location = ("googlechrome://different-xmas-tree.tw");
       })
       CallGaBtn("not_support");
     }
