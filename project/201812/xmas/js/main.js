@@ -44,7 +44,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("intent://googlechrome/#Intent;scheme=googlechrome;package=com.android.googlechrome;end");
+        window.location = ("intent://chrome/#Intent;scheme=chrome;package=com.android.chrome;end");
 
       })
       CallGaBtn("not_support");
