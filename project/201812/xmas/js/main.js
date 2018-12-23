@@ -48,13 +48,14 @@ $(function() {
     '宋芸樺', '康康', '林心如', '梁靜茹', '楊一展', '王大陸',
     '羅景壬', '聶雲', '茵茵', '薛妞妞', '謝依霖', '鄭元暢', '陶晶瑩'
   ];
-  var rArray = [0, 0, 0, 0, 0,
+  var rArray = [
+    0, 0, 0, 0, 0,
     1,
-    2, 2, 2,
-    3, 3, 3, 3, 3, 3, 3,
-    4, 4, 4,
+    2, 2, 2, 2,
+    3, 3, 3, 3, 3, 3, 3, 3,
+    4, 4, 4, 4,
     5,
-    6, 6, 6,
+    6, 6, 6, 6,
     7, 7, 7, 7, 7, 7, 7, 7,
     8, 8, 8, 8, 8, 8, 8, 8,
     9, 9, 9, 9,
@@ -138,6 +139,7 @@ $(function() {
     preload: true,
     loaded: function(err, sound) {
       //console.log(sound);
+      $('.loading').hide();
     }
   });
   const sound_star = PIXI.sound.Sound.from({
@@ -177,15 +179,15 @@ $(function() {
       url: cry_url,
       preload: true,
       loaded: function(err, sound) {
-        var tween_btn = TweenLite.to($('.play_box'),0.5,{
-          alpha: 0,
-          onComplete: function(){
-            tween_btn.kill();
-            $('.play_box').css("display","none");
-          }
-        })
         const instance = sound.play();
         instance.on('progress', function(progress) {
+          var tween_btn = TweenLite.to($('.play_box'),0.5,{
+            alpha: 0,
+            onComplete: function(){
+              tween_btn.kill();
+              $('.play_box').css("display","none");
+            }
+          })
           nowHeight = progress / 0.38;
           if (progress > 0.30 && progress <= 0.38) {
             if (shine == false) {
@@ -292,7 +294,6 @@ $(function() {
     myVideoStream.srcObject.getTracks().forEach(track => track.stop())
   }
   async function init() {
-    $('.loading').hide();
     myRuntime();
   }
   async function myLoadUrl() {
@@ -557,8 +558,9 @@ $(function() {
 
   function sec_step() {
     step2 = true;
-    btn_icon.interactive = false;
     if (sharing) {} else {
+
+      btn_icon.interactive = false;
       var tween_entrance = TweenLite.to(entrance, 1, {
         alpha: 0,
         onComplete: function() {
