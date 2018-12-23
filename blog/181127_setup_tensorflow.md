@@ -81,6 +81,13 @@ python export_inference_graph.py \
     --output_directory fine_tuned_model
 ```
 ```
+python export_inference_graph.py \
+    --input_type image_tensor \
+    --pipeline_config_path data/ssdlite_mobilenet_v2_coco.config \
+    --trained_checkpoint_prefix  trained/model.ckpt-250000\
+    --output_directory fine_tuned_model
+```
+```
 tensorflowjs_converter \
     --input_format=tf_saved_model \
     --output_node_names='detection_boxes,detection_scores,num_detections,detection_classes' \
