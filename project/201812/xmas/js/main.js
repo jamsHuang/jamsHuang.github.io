@@ -32,7 +32,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.open("SafariURL:// different-xmas-tree.tw","_blank");
+        window.open("x-web-search:// different-xmas-tree.tw","_blank");
       })
     }
   }
@@ -44,17 +44,8 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        String urlString="http://different-xmas-tree.tw";
-Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
-intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-intent.setPackage("com.android.chrome");
-try {
-    context.startActivity(intent);
-} catch (ActivityNotFoundException ex) {
-    // Chrome browser presumably not installed so allow user to choose instead
-    intent.setPackage(null);
-    context.startActivity(intent);
-}
+        window.open("intent://chrome/#Intent;scheme=chrome;package=com.android.chrome;end","_blank");
+
       })
       CallGaBtn("not_support");
     }
