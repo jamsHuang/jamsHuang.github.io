@@ -32,7 +32,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("x-web-search://different-xmas-tree.tw");
+        window.open("x-web-search://different-xmas-tree.tw","_blank");
       })
     }
   }
@@ -44,7 +44,7 @@ $(function() {
       $('.notsupport').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("intent://chrome/#Intent;scheme=chrome;package=com.android.chrome;end");
+        window.open("intent://chrome/#Intent;scheme=chrome;package=com.android.chrome;end","_blank");
 
       })
       CallGaBtn("not_support");
