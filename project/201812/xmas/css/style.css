@@ -221,6 +221,7 @@ body {
   margin-top: 30px;
   justify-content: center;
   flex-flow: wrap;
+  width: 250px;
 }
 
 .notsupport_warn {
