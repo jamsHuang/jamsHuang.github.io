@@ -1,5 +1,4 @@
 .notsupport {
-
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -10,11 +9,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color:#DD0000;
-  &_item{
+  background-color: #DD0000;
+
+  &_item {
     display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    flex-flow: wrap;
   }
-  &_text{
+
+  &_text {
     color: #FFFFFF;
     font-size: 1.3rem;
     line-height: 2.3rem;
@@ -23,13 +27,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
 
+  &_xmas {
+    width: 20%;
+    max-width: 120px;
   }
-  &_xmas{
-    width:20%;
-    max-width:120px;
-  }
-  &_browser{
+
+  &_browser {
     width: 100px;
     height: 100px;
   }
