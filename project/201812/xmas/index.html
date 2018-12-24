@@ -1,75 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-TW" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1" >
-    <title>Different-Xmas-Tree</title>
-    <meta property="og:title" content="洋蔥滿滿！最特別的耶誕樹 聽見不一樣的聖誕" >
-    <meta property="og:url" content="http://different-xmas-tree.tw/">
-    <meta property="og:image" content="https://different-xmas-tree.tw/uploads/20181223/1545559477_share.jpg">
-    <meta property="og:description" content="很多時候，眼睛所看見的不一定是真相。全台最神祕的聖誕樹，待你來一探究竟，發現與眾不同的平安夜。" >
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
 
-    <img id="sbg" src="img/share_bg.png" alt="" style="display:none;width:320px;height:480px">
-    <img id="stree" src="img/share_tree.png" alt="" style="display:none;width:320px;height:480px">
-    <canvas id="record_canvas" width="320" height="480" style="display:none"></canvas>
-    <img src="img/test3.jpg" id="img" style="display:none"/>
-    <div class="drawBox" id="drawBox">
-      <canvas id="resizeCanvas" width="160" height="240" style="display:none"></canvas>
-      <video id="video" width="320" height="480" autoplay playsinline></video>
-    </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1">
+  <title>Different-Xmas-Tree</title>
+  <meta property="og:title" content="洋蔥滿滿！最特別的耶誕樹 聽見不一樣的聖誕">
+  <meta property="og:url" content="http://different-xmas-tree.tw/">
+  <meta property="og:image" content="https://different-xmas-tree.tw/uploads/20181223/1545559477_share.jpg">
+  <meta property="og:description" content="很多時候，眼睛所看見的不一定是真相。全台最神祕的聖誕樹，待你來一探究竟，發現與眾不同的平安夜。">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 
-    <div id='iBut'></div>
-    <!-- <div class="box_mask"></div> -->
-    <div class="loading">
-      <img src="img/preloader.gif"/>
-    </div>
+<body>
 
-    <div class="notsupport">
-      <img class="notsupport_xmas" src="img/nosupport/icon.png" alt="xmas_tree">
-      <div class="notsupport_text">
-        抱歉，您的瀏覽器不支援<br/>
-        WebRTC<br/>
-        iOS請更新至版本11以上<br/>
-        並以Safari開啟此頁面<br/>
-        <br/>
-        Android請更新至版本5以上<br/>
-        並以chrome 70以上版本開啟
+  <img id="sbg" src="img/share_bg.png" alt="" style="display:none;width:320px;height:480px">
+  <img id="stree" src="img/share_tree.png" alt="" style="display:none;width:320px;height:480px">
+  <canvas id="record_canvas" width="320" height="480" style="display:none"></canvas>
+  <img src="img/test3.jpg" id="img" style="display:none" />
+  <div class="drawBox" id="drawBox">
+    <canvas id="resizeCanvas" width="160" height="240" style="display:none"></canvas>
+    <video id="video" width="320" height="480" autoplay playsinline></video>
+  </div>
+
+  <div id='iBut'></div>
+  <!-- <div class="box_mask"></div> -->
+  <div class="loading">
+    <img src="img/preloader.gif" />
+  </div>
+
+  <div class="notsupport notsupport_ios">
+    <img class="notsupport_xmas" src="img/nosupport/icon.png" alt="xmas_tree">
+    <div class="notsupport_text">
+      <div class="notsupport_item notsupport_item_1">
+        想聽見聖誕樹的聲音<br />
+        請跟隨下列步驟喔
       </div>
-      <img class="notsupport_browser" src="img/nosupport/icon_browser.png" alt="browsers">
+      <div class="notsupport_item notsupport_item_2">
+        1.請點此按鈕複製網址
+        <button id="">
+          <p>複製</p>
+        </button></div>
+
+      <div class="notsupport_item notsupport_item_3">
+        2.使用Safari開啟網頁<br />
+        網址列貼上並前往
+      </div>
     </div>
+    <img class="notsupport_browser" src="img/nosupport/icon_ios.png" alt="browsers">
+  </div>
+  <div class="notsupport notsupport_andorid">
+    <img class="notsupport_xmas" src="img/nosupport/icon.png" alt="xmas_tree">
+    <div class="notsupport_text">
+      <div class="notsupport_item notsupport_item_1">
+        想聽見聖誕樹的聲音<br />
+        請跟隨下列步驟喔
+      </div>
+      <div class="notsupport_item notsupport_item_2">
+        1.請點此按鈕複製網址
+        <button id="">
+          <p>複製</p>
+        </button></div>
 
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1911090725656524',
-          xfbml      : true,
-          version    : 'v2.5'
-        });
-        FB.AppEvents.logPageView();
-      };
+      <div class="notsupport_item notsupport_item_3">
+        2.使用Chrome開啟網頁 <br />
+        (系統需為Android 5以上)<br />
+        網址列貼上並前往
+      </div>
+    </div>
+    <img class="notsupport_browser" src="img/nosupport/icon_chrome.png" alt="browsers">
+  </div>
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script src="js/lib/ga.js" type="text/javascript"></script>
-    <script src="js/lib/jquery-3.3.1.min.js"></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
-    <script src="js/lib/pixi-sound.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
-    <script type="text/javascript">
-       var sharing = false;
-    </script>
-    <script src="js/main.js"></script>
-  </body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '1911090725656524',
+        xfbml: true,
+        version: 'v2.5'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script src="js/lib/ga.js" type="text/javascript"></script>
+  <script src="js/lib/jquery-3.3.1.min.js"></script>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
+  <script src="js/lib/pixi-sound.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+  <script type="text/javascript">
+    var sharing = false;
+  </script>
+  <script src="js/main.js"></script>
+</body>
+
 </html>

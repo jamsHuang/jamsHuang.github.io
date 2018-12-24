@@ -29,10 +29,10 @@ $(function() {
     if(getBrowser()=="Safari"){
     }
     else{
-      $('.notsupport').css("display", "flex");
+      $('.notsupport_ios').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.location = ("x-web-search://?different-xmas-tree.tw");
+        copyText();
       })
     }
   }
@@ -41,14 +41,18 @@ $(function() {
 
     }else{
 
-      $('.notsupport').css("display", "flex");
+      $('.notsupport_andorid').css("display", "flex");
       $('.notsupport').on('click',function(){
         console.log("click");
-        window.open("intent://chrome/#Intent;scheme=chrome;package=com.android.chrome;end","_blank");
+        copyText();
 
       })
       CallGaBtn("not_support");
     }
+  }
+  function copyText(){
+    document.getElementById('copyInput').select();
+    document.execCommand('copy');
   }
   //
   var isPlaying = false;
