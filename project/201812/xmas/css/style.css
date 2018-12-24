@@ -216,6 +216,10 @@ body {
   background-color: #DD0000;
 }
 
+.notsupport_item {
+  display: flex;
+}
+
 .notsupport_text {
   color: #FFFFFF;
   font-size: 1.3rem;

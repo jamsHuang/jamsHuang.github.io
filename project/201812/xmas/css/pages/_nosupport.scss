@@ -11,6 +11,9 @@
   align-items: center;
   flex-direction: column;
   background-color:#DD0000;
+  &_item{
+    display: flex;
+  }
   &_text{
     color: #FFFFFF;
     font-size: 1.3rem;
@@ -18,7 +21,7 @@
     text-align: center;
     margin: 30px 0;
     display: flex;
-    
+
   }
   &_xmas{
     width:20%;
