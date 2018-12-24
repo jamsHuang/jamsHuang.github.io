@@ -17,7 +17,9 @@
     justify-content: center;
     flex-flow: wrap;
   }
-
+  &_warn{
+    font-size: 0.8rem;
+  }
   &_text {
     color: #FFFFFF;
     font-size: 1.3rem;

@@ -223,6 +223,10 @@ body {
   flex-flow: wrap;
 }
 
+.notsupport_warn {
+  font-size: 0.8rem;
+}
+
 .notsupport_text {
   color: #FFFFFF;
   font-size: 1.3rem;
