@@ -39,8 +39,10 @@ $(function() {
       $('.notsupport .copyBtn').on('click', function() {
         new Clipboard("#cp1");
         copyText();
-        return;
       })
+      CallGaBtn("not_support");
+      
+      return;
     }
   }
   if (isAndroid == true) {
@@ -58,6 +60,8 @@ $(function() {
         copyText();
       })
       CallGaBtn("not_support");
+
+      return;
     }
   }
 
