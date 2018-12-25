@@ -41,9 +41,9 @@ $(function() {
     }
     return d;
   }
-  var ios--version = iOSversion();
-  console.log( ios--version);
-  alert( ios--version.version);
+  var ios_version = iOSversion();
+  console.log( ios_version);
+  alert( ios_version.version);
   //
   if (isiOS == true) {
     if (getBrowser() == "Safari") {
