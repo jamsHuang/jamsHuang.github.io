@@ -71,11 +71,11 @@ $(function() {
       }
     })
   }
-  if(okgo==true){
-
-  }else{
-    return;
-  }
+  // if(okgo==true){
+  //
+  // }else{
+  //   return;
+  // }
 
   var isPlaying = false;
   var firstCatch = false;
