@@ -29,7 +29,7 @@
   <div class="loading">
     <img src="img/preloader.gif" />
   </div>
-  <input id="copyInput" value="http://different-xmas-tree.tw/">
+  <input id="copyInput" value="http://different-xmas-tree.tw/">http://different-xmas-tree.tw/</input>
 
   </div>
   <div class="notsupport notsupport_ios">
@@ -41,7 +41,7 @@
       </div>
       <div class="notsupport_item notsupport_item_2">
         1.請點此按鈕複製網址
-        <button class="copyBtn">
+        <button id="cp1" class="copyBtn"  data-clipboard-target="#copyInput">
           <p>複&emsp;製</p>
         </button></div>
 
@@ -63,7 +63,7 @@
         <div class="">
           1.請點此按鈕複製網址
         </div>
-        <button class="copyBtn">
+        <button id="cp2" class="copyBtn"  data-clipboard-target="#copyInput">
           <p>複&emsp;製</p>
         </button></div>
 
@@ -99,6 +99,7 @@
   </script>
   <script src="js/lib/ga.js" type="text/javascript"></script>
   <script src="js/lib/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
   <script src="js/lib/pixi-sound.js"></script>

@@ -75,11 +75,16 @@ footer {
   display: flex;
   width: 160px;
   height: 32px;
-  background-color: white;
+  background-color: #FAFAFA;
   justify-content: center;
   border: 0;
   border-radius: 10px;
   font-size: 1.1rem;
+}
+
+.copyBtn:focus {
+  outline: -webkit-focus-ring-color auto 0;
+  background-color: #ACACAC;
 }
 
 .copyright {

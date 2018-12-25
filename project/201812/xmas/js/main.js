@@ -4,57 +4,79 @@ $(function() {
   var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
   var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
   //
+  var okgo = true;
+
   function getBrowser() {
-  	var ua = window.navigator.userAgent;
-  	var isIE = window.ActiveXObject != undefined && ua.indexOf("MSIE") != -1;
-  	var isFirefox = ua.indexOf("Firefox") != -1;
-  	var isOpera = window.opr != undefined;
-  	var isChrome = ua.indexOf("Chrome") && window.chrome;
-  	var isSafari = ua.indexOf("Safari") != -1 && ua.indexOf("Version") != -1;
-  	if (isIE) {
-  		return "IE";
-  	} else if (isFirefox) {
-  		return "Firefox";
-  	} else if (isOpera) {
-  		return "Opera";
-  	} else if (isChrome) {
-  		return "Chrome";
-  	} else if (isSafari) {
-  		return "Safari";
-  	} else {
-  		return "Unkown";
-  	}
-  }
-  if(isiOS == true){
-    if(getBrowser()=="Safari"){
+    var ua = window.navigator.userAgent;
+    var isIE = window.ActiveXObject != undefined && ua.indexOf("MSIE") != -1;
+    var isFirefox = ua.indexOf("Firefox") != -1;
+    var isOpera = window.opr != undefined;
+    var isChrome = ua.indexOf("Chrome") && window.chrome;
+    var isSafari = ua.indexOf("Safari") != -1 && ua.indexOf("Version") != -1;
+    if (isIE) {
+      return "IE";
+    } else if (isFirefox) {
+      return "Firefox";
+    } else if (isOpera) {
+      return "Opera";
+    } else if (isChrome) {
+      return "Chrome";
+    } else if (isSafari) {
+      return "Safari";
+    } else {
+      return "Unkown";
     }
-    else{
+  }
+
+  //
+  if (isiOS == true) {
+    if (getBrowser() == "Safari") {} else {
       $('.notsupport_ios').css("display", "flex");
-      $('.notsupport').on('click',function(){
-        console.log("click");
+      okgo = false;
+      $('.notsupport .notsupport_browser').on('click', function() {
+        window.location = "x-web-search://";
+      })
+      $('.notsupport .copyBtn').on('click', function() {
+        new Clipboard("#cp1");
         copyText();
+        return;
       })
     }
   }
-  if(isAndroid == true){
-    if(getBrowser()=="Chrome" || getBrowser()=="Firefox"){
+  if (isAndroid == true) {
+    if (getBrowser() == "Chrome" || getBrowser() == "Firefox") {
 
-    }else{
-
+    } else {
+      okgo = false;
       $('.notsupport_andorid').css("display", "flex");
-      $('.notsupport').on('click',function(){
-        console.log("click");
+      $('.notsupport .notsupport_browser').on('click', function() {
+        window.location = 'intent://chrome?url=different-xmas-tree.tw#Intent;package=com.android.chrome;scheme=chrome;end;'
+      })
+      $('.notsupport .copyBtn').on('click', function() {
+        //console.log("click");
+        new Clipboard("#cp2");
         copyText();
-
       })
       CallGaBtn("not_support");
     }
   }
-  function copyText(){
-    document.getElementById('copyInput').select();
-    document.execCommand('copy');
+
+  function copyText() {
+    var tween_np_button = TweenLite.fromTo($('.copyBtn'), 0.5, {
+      backgroundColor: "#ACACAC"
+    }, {
+      backgroundColor: "#FAFAFA",
+      onComplete: function() {
+        tween_np_button.kill();
+      }
+    })
   }
-  //
+  if(okgo==true){
+
+  }else{
+    return;
+  }
+
   var isPlaying = false;
   var firstCatch = false;
   var modelTF = false;
@@ -196,11 +218,11 @@ $(function() {
       loaded: function(err, sound) {
         const instance = sound.play();
         instance.on('progress', function(progress) {
-          var tween_btn = TweenLite.to($('.play_box'),0.5,{
+          var tween_btn = TweenLite.to($('.play_box'), 0.5, {
             alpha: 0,
-            onComplete: function(){
+            onComplete: function() {
               tween_btn.kill();
-              $('.play_box').css("display","none");
+              $('.play_box').css("display", "none");
             }
           })
           nowHeight = progress / 0.38;
@@ -425,9 +447,9 @@ $(function() {
         if (shine == false) {
           shine = true;
           modelTF = false;
-          var tween_ns = TweenLite.to(notice_sound,0.5,{
-            alpha:0,
-            onComplete:function(){
+          var tween_ns = TweenLite.to(notice_sound, 0.5, {
+            alpha: 0,
+            onComplete: function() {
               tween_ns.kill();
             }
           })
@@ -488,6 +510,7 @@ $(function() {
 
   var entrance;
   var btn_icon;
+
   function first_step() {
     //first page
     var tween_cam, tween_welcome, tween_text, tween_btn;
@@ -618,7 +641,7 @@ $(function() {
     notice_sound.anchor.set(0.5);
     notice_sound.width = 337.5;
     notice_sound.height = 73.35;
-    notice_sound.x = stgW/2;
+    notice_sound.x = stgW / 2;
     notice_sound.y = stgH - 35;
     notice_sound.alpha = 0;
     //
@@ -947,7 +970,7 @@ $(function() {
     btn_donate.interactive = true;
     btn_donate.on('pointerdown', open_donate);
 
-    $('#iBut').css("display","block");
+    $('#iBut').css("display", "block");
     //
     textLayer.addChild(help_icon);
     textLayer.addChild(logo_icon);
@@ -986,6 +1009,7 @@ $(function() {
     });
     CallGaBtn("shareing");
   });
+
   function showLast() {
     var logo_tween = TweenMax.to(logo_icon, 1, {
       alpha: 1,
@@ -1097,7 +1121,7 @@ $(function() {
     if (step3) {
       if (time3 < 1) {
 
-        if(treemaskLayer){
+        if (treemaskLayer) {
           time3 += 0.07;
           treemaskLayer.clear();
           treemaskLayer.beginFill(0xFFFFFF, .5);
@@ -1113,8 +1137,7 @@ $(function() {
       }
     }
 
-    if (stopRunning == true) {
-    } else {
+    if (stopRunning == true) {} else {
       requestAnimationFrame(myRuntime);
     }
   }
