@@ -27,10 +27,26 @@ $(function() {
       return "Unkown";
     }
   }
-
+  function iOSversion() {
+    let d, v;
+    if (/iP(hone|od|ad)/.test(navigator.platform)) {
+      v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+      d = {
+        status: true,
+        version: parseInt(v[1], 10) ,
+        info: parseInt(v[1], 10)+'.'+parseInt(v[2], 10)+'.'+parseInt(v[3] || 0, 10)
+      };
+    }else{
+      d = {status:false, version: false, info:''}
+    }
+    return d;
+  }
+  console.log(iOSversion());
   //
   if (isiOS == true) {
-    if (getBrowser() == "Safari") {} else {
+    if (getBrowser() == "Safari") {
+
+    } else {
       $('.notsupport_ios').css("display", "flex");
       okgo = false;
       $('.notsupport .notsupport_browser').on('click', function() {
@@ -41,7 +57,7 @@ $(function() {
         copyText();
       })
       CallGaBtn("not_support");
-      
+
       return;
     }
   }
