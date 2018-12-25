@@ -47,7 +47,7 @@ $(function() {
   //
   if (isiOS == true) {
     if (getBrowser() == "Safari" && ios_version>=12) {
-
+      $('#copyInput').hide();
     } else {
       $('.notsupport_ios').css("display", "flex");
       if(ios_version<12){
@@ -201,7 +201,9 @@ $(function() {
     preload: true,
     loaded: function(err, sound) {
       //console.log(sound);
-      $('.loading').hide();
+      if(sharing){
+        $('.loading').hide();
+      }
     }
   });
   const sound_star = PIXI.sound.Sound.from({
@@ -367,6 +369,7 @@ $(function() {
     var res1 = await model.executeAsync(cs.reshape([1, ...cs.shape]));
     res1.map(t => t.dataSync());
     modelTF = true;
+    $('.loading').hide();
     init();
   }
   async function checkModel() {
