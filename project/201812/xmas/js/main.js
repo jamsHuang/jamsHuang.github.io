@@ -41,7 +41,7 @@ $(function() {
     }
     return d;
   }
-  var ios_version = iOSversion();
+  var ios_version = iOSversion().version;
   console.log(ios_version);
 
   //
@@ -50,7 +50,9 @@ $(function() {
 
     } else {
       $('.notsupport_ios').css("display", "flex");
-      alert("請更新您的iOS至最新版本");
+      if(ios_version<12){
+        alert("請更新您的iOS至最新版本");
+      }
       okgo = false;
       $('.notsupport .notsupport_browser').on('click', function() {
         window.location = "x-web-search://";
