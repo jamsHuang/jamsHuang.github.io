@@ -1,11 +1,11 @@
 $(function() {
+  // $('.logText').hide();
   'use strict';
   var u = navigator.userAgent;
   var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
   var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
   //
   var okgo = true;
-
   function getBrowser() {
     var ua = window.navigator.userAgent;
     var isIE = window.ActiveXObject != undefined && ua.indexOf("MSIE") != -1;
@@ -41,11 +41,11 @@ $(function() {
     }
     return d;
   }
-  var ios_version = iOSversion().version;
-  console.log(ios_version);
+  //console.log(ios_version);
 
   //
-  if (isiOS == true) {
+  if (isiOS == true && sharing == false) {
+    var ios_version = iOSversion().version;
     if (getBrowser() == "Safari" && ios_version>=12) {
       $('#copyInput').hide();
     } else {
@@ -62,11 +62,10 @@ $(function() {
         copyText();
       })
       CallGaBtn("not_support");
-
       return;
     }
   }
-  if (isAndroid == true) {
+  if (isAndroid == true && sharing == false ) {
     if (getBrowser() == "Chrome" || getBrowser() == "Firefox") {
 
     } else {
@@ -96,11 +95,6 @@ $(function() {
       }
     })
   }
-  // if(okgo==true){
-  //
-  // }else{
-  //   return;
-  // }
 
   var isPlaying = false;
   var firstCatch = false;
@@ -167,7 +161,7 @@ $(function() {
 
   //
   var gotit = false;
-  var checkNum = 0.99;
+  var checkNum = 0.98;
   //
 
   var step2 = false;
@@ -195,6 +189,7 @@ $(function() {
   } else {
     cry_url = 'sounds/cry_2.mp3';
   }
+
   //console.log(cry_url);
   const sound_cry = PIXI.sound.Sound.from({
     url: cry_url,
@@ -206,6 +201,7 @@ $(function() {
       }
     }
   });
+
   const sound_star = PIXI.sound.Sound.from({
     url: 'sounds/' + gNum + '.mp3',
     preload: true
@@ -459,7 +455,7 @@ $(function() {
         max_x = 0;
         gotit = false;
         firstCatch = false;
-        checkNum = 0.99;
+        checkNum = 0.98;
         nowHeight = 0;
       } else {
 

@@ -33,12 +33,14 @@ if (url.indexOf('?') != -1) {
     }
   }
 }
+if(sharing==true){
+  $('.loading').hide();
+}
 $(function() {
-  console.log(num);
-  console.log(posX);
-  console.log(posY);
-  console.log(width);
-  console.log(height);
-  console.log(ori_image);
-
+  //console.log(num);
+  //console.log(posX);
+  //console.log(posY);
+  //console.log(width);
+  //console.log(height);
+  //console.log(ori_image);
 });

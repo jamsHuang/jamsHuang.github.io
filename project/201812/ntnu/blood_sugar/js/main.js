@@ -254,16 +254,28 @@ $(function() {
           if(q32==false && q33==false){
             q32 = true;
             str = b2s3;
-          }else{
+          }else if(q32==true && q33==false){
+            str = b2s3;
+          }else if(q32==false && q33==true){
             str = b2s31;
+            q32 = false;
+            q33 = false;
+          }else{
+            str = b2s3;
           }
           tf = 1;
         } else if (dragtarget == 'block_3') {
           if(q32==false && q33==false){
             q33 = true;
             str = b3s3;
-          }else{
+          }else if(q32==true && q33==false){
             str = b3s31;
+            q32 = false;
+            q33 = false;
+          }else if(q32==false && q33==true){
+            str = b3s3;
+          }else{
+            str = b3s3;
           }
           tf = 1;
         } else if (dragtarget == 'block_4') {
@@ -354,16 +366,28 @@ $(function() {
           if(q62==false && q63==false){
             q62 = true;
             str = b2s6;
-          }else{
+          }else if(q62==true && q63==false){
+            str = b2s6;
+          }else if(q62==false && q63==true){
             str = b2s61;
+            q62 = false;
+            q63 = false;
+          }else{
+            str = b2s6;
           }
           tf = 1;
         } else if (dragtarget == 'block_3') {
           if(q62==false && q63==false){
             q63 = true;
             str = b3s6;
-          }else{
+          }else if(q62==true && q63==false){
             str = b3s61;
+            q62 = false;
+            q63 = false;
+          }else if(q62==false && q63==true){
+            str = b3s6;
+          }else{
+            str = b3s6;
           }
           tf = 1;
         } else if (dragtarget == 'block_4') {
@@ -454,16 +478,28 @@ $(function() {
           if(q92==false && q93==false){
             q92 = true;
             str = b2s9;
-          }else{
+          }else if(q92==true && q93==false){
+            str = b2s9;
+          }else if(q92==false && q93==true){
+            q92=false;
+            q93=false;
             str = b2s91;
+          }else{
+            str = b2s9;
           }
           tf = 1;
         } else if (dragtarget == 'block_3') {
           if(q92==false && q93==false){
             q93 = true;
             str = b3s9;
-          }else{
+          }else if(q92==true && q93==false){
+            q92=false;
+            q93=false;
             str = b3s91;
+          }else if(q92==false && q93==true){
+            str = b3s9;
+          }else{
+            str = b3s9;
           }
           tf = 1;
         } else if (dragtarget == 'block_4') {
