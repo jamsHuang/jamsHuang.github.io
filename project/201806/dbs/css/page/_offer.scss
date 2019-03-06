@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+.offer {
+  background: url("../images/offer/offer-bg-m.jpg") no-repeat center;
+  background-size: cover;
+  text-align: center;
+
+  .fp-tableCell {
+    vertical-align: top;
+  }
+
+  &__card {
+    width: 60%;
+    padding: 60px 15% 20px;
+  }
+
+  &__title {
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+
+    span {
+      color: #e80014;
+    }
+  }
+
+  &__table {
+    font-size: 13px;
+
+    td {
+      padding: 0.2rem;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid #84c5ed;
+      vertical-align: middle;
+    }
+
+    &-note {
+      padding: 0 !important;
+      background: transparent !important;
+      border-color: transparent !important;
+    }
+
+    &-point {
+      color: #e80014;
+    }
+  }
+
+  &__btn-more {
+    color: #fff;
+    background: #e80014;
+    line-height: 1;
+
+    &:hover {
+      color: #fff;
+      border: 1px solid #FFF;
+    }
+  }
+}
+@media (min-width: $media-lg) {
+  .offer {
+    background: url("../images/offer/offer-bg.jpg") no-repeat bottom;
+    background-size: cover;
+    text-align: left;
+
+    .fp-tableCell {
+      vertical-align: top;
+      padding-top: 90px;
+    }
+
+    .container {
+      //margin-top:-250px;
+    }
+
+    &__card {
+      padding: 0;
+      width: 100%;
+    }
+
+    &__title {
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    &__subtitle {
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+
+      span {
+        color: #e80014;
+      }
+    }
+
+    &__table {
+      font-size: 16px;
+
+      td {
+        padding: 1rem;
+        background: rgba(255,255,255,0.5);
+        border: 2px solid #84c5ed;
+        vertical-align: middle;
+        text-shadow: 1px 1px 3px #FFF;
+      }
+
+      &-note {
+        padding: 0 !important;
+        background: transparent !important;
+        border-color: transparent !important;
+      }
+
+      &-point {
+        color: #e80014;
+      }
+    }
+
+    &__btn-more {
+      color: #fff;
+      background: #e80014;
+      line-height: 1;
+
+      &:hover {
+        color: #fff;
+        border: 1px solid #FFF;
+      }
+    }
+  }
+}
+@media (min-width: $media-xxl) {
+  .container {
+    max-width: 1400px;
+  }
+}

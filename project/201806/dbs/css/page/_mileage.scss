@@ -1,0 +1,141 @@
+@charset "UTF-8";
+.mileage{
+  text-align: center;
+  color: #FFF;
+  background: url(../images/mileage/mileage-bg-m.jpg) no-repeat center;
+  background-size: cover;
+  height:100%;
+  .container-fluid{
+    padding-left:0;
+    padding-right:0;
+    height:100%;
+    .row{
+      height: 100%;
+    }
+  }
+  &__icon{
+    display: none;
+  }
+  &__title{
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    border-bottom:1px solid #FFF;
+    padding: 10px 20px;
+  }
+  &__text{
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 0 30px;
+  }
+  &__subtitle{
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    span{
+      color: #e80014;
+    }
+  }
+  &__left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top:50px;
+    height: 40%;
+  }
+  &__right{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+    height: 50%;
+  }
+  &__box{
+    background: rgba(0,0,0,0.5);
+        height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1px 0 0 0;
+    padding: 10% 0;
+  }
+  &__btn-more{
+    margin: 1rem 0 0 0;
+    color: #fff;
+    background: transparent;
+    border: 1px solid #FFF;
+    line-height: 1;
+    &:hover{
+      color: #0c5460;
+      background: white;
+    }
+  }
+}
+@media (min-width: $media-lg) {
+  .mileage{
+    background: url(../images/mileage/mileage-bg.jpg) no-repeat center;
+    background-size: cover;
+    &__icon{
+      display: block;
+      margin-bottom: 20px;
+    }
+    &__title{
+      display: inline-block;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      border-bottom:1px solid #FFF;
+      padding: 10px 20px;
+    }
+    &__text{
+      font-size: 15px;
+      line-height: 25px;
+    }
+    &__subtitle{
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      span{
+        color: #e80014;
+      }
+    }
+    &__left{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10% 0;
+      height: 100%;
+      padding: 0;
+    }
+    &__right{
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+          height: 100vh;
+    }
+    &__box{
+      background: rgba(0,0,0,0.5);
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 1px 0 0 0;
+      padding: 10% 0;
+    }
+    &__btn-more{
+      margin: 1rem;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #FFF;
+      line-height: 1;
+      &:hover{
+        color: #0c5460;
+        background: white;
+      }
+    }
+  }
+}

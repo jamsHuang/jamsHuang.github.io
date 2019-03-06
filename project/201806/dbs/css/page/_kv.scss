@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+.kv {
+  .slide{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+  }
+  .bg0 {
+    background-image: url("../images/kv/bg0_m.jpg");
+  }
+
+  .bg1 {
+    background-image: url("../images/kv/bg1_m.jpg");
+  }
+
+  .bg2 {
+    background-image: url("../images/kv/bg2_m.jpg");
+  }
+
+  .bg3 {
+    background-image: url("../images/kv/bg3_m.jpg");
+  }
+
+  .bg4 {
+    background-image: url("../images/kv/bg4_m.jpg");
+  }
+
+  .btnbox {
+    z-index: 3;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    width: 100%;
+
+    &__item {
+      display: inline-flex;
+      font-size: 16px;
+      line-height: 16px;
+      padding: 0 20px;
+      color: $color-white;
+      border-left: 2px solid $color-white;
+
+      a {
+        display: block;
+        color: $color-white;
+        padding-bottom: 10px;
+        padding-top: 10px;
+
+        &:hover{
+          border-bottom: 2px solid $color-white;
+        }
+      }
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+}
+@media (min-width: $media-md){
+  .kv{
+    .bg0 {
+        background-image: url("../images/kv/bg0.jpg");
+    }
+    .bg1 {
+        background-image: url("../images/kv/bg1.jpg");
+    }
+    .bg2 {
+        background-image: url("../images/kv/bg2.jpg");
+    }
+    .bg3 {
+        background-image: url("../images/kv/bg3.jpg");
+    }
+    .bg4 {
+        background-image: url("../images/kv/bg4.jpg");
+    }
+
+  }
+}
+@media (min-width: $media-lg) {
+
+  .kv {
+    .slide{
+      background-size: cover;
+      background-position: top center;
+    }
+    .bg0 {
+    }
+    .bg1 {
+    }
+    .bg2 {
+    }
+    .bg3 {
+    }
+    .bg4 {
+    }
+
+    .btnbox {
+
+      &__item {
+        font-size: 50px;
+        line-height: 50px;
+        padding: 0 50px;
+        color: $color-white;
+        border-left: 2px solid $color-white;
+
+        a {
+          display: block;
+          color: $color-white;
+        }
+
+        &:first-child {
+          border-left: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,484 @@
+@charset "UTF-8";
+
+.game {
+  background-image: url("../images/game/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &__title {
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+    top: 60px;
+    font-weight: 800;
+  }
+
+  &__subtitle {
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+    top: 100px;
+    font-weight: 800;
+  }
+
+  &__text {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    margin-left: -140px;
+    //left: 20px;
+    //margin-left: 0;
+    width: 100vw;
+  }
+
+  &__detail {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    width: 50%;
+    line-height: 16px;
+
+    &--item0 {
+      top: 0;
+      left: 0;
+    }
+
+    &--item1 {
+      top: 0;
+      left: 140px;
+    }
+
+    &--item2 {
+      top: 20px;
+      left: 0;
+    }
+
+    &--item3 {
+      top: 20px;
+      left: 140px;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -78px;
+  }
+
+  &__trunk {
+    width: 60%;
+        max-width: 450px;
+        left: 20%;
+        position: absolute;
+        bottom: 160px;
+  }
+
+  .cta {
+    position: absolute;
+    width: 100%;
+    bottom: 65px;
+    right: 0;
+    height: 80px;
+    background-image: url("../images/game/cta_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__block {
+      height: 85px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    &__ppl {
+      height: 100px;
+      position: absolute;
+      left: 50%;
+      margin-left: -160px;
+      top: 0;
+      margin-top: -20px;
+    }
+
+    &__title {
+      color: $color-white;
+      position: absolute;
+      right: 50%;
+      margin-right: -160px;
+      top: -5px;
+      width: 228px;
+      text-align: justify;
+      text-justify: inter-ideograph;
+      font-size: 24px;
+    }
+
+    &__subtitle {
+      color: $color-white;
+      position: absolute;
+      right: 50%;
+      margin-right: -160px;
+      top: 26px;
+      width: 228px;
+      text-align: justify;
+      font-size: 12px;
+      text-justify: inter-ideograph;
+    }
+
+    .btn {
+      position: absolute;
+      left: 50%;
+      bottom: 5px;
+      margin-left: -50px;
+    }
+
+    &__img {
+      width: 100%;
+      height: 70px;
+      margin-top: -20px;
+    }
+  }
+
+  &__star {
+    width: 50%;
+    min-width: 310px;
+    position: absolute;
+    bottom: 10%;
+    right: -15%;
+    pointer-events: none;
+  }
+}
+@media (min-width: $media-lg) {
+  .game {
+    &__title {
+      text-align: left;
+      width: 50vw;
+      top: 50%;
+      left: 50%;
+      margin-top: -190px;
+    }
+
+    &__subtitle {
+      text-align: left;
+      width: 50vw;
+      top: 50%;
+      left: 50%;
+      margin-top: -115px;
+    }
+
+    &__text {
+      top: 50%;
+      width: 50vw;
+      left: 52%;
+      margin-left: -2px;
+      margin-top: -45px;
+    }
+
+    &__btn {
+      top: 50%;
+      left: 50%;
+      margin-left: 0;
+    }
+
+    &__detail {
+      position: absolute;
+      width: 45%;
+      line-height: 15px;
+
+      &--item0 {
+        top: 0;
+        left: 0;
+      }
+
+      &--item1 {
+        top: 0;
+        left: 160px;
+      }
+
+      &--item2 {
+        top: 20px;
+        left: 0;
+      }
+
+      &--item3 {
+        top: 20px;
+        left: 160px;
+      }
+    }
+
+    &__trunk {
+      width: 50%;
+      max-width: 780px;
+      left: 5%;
+      bottom: 50%;
+      margin-bottom: -250px;
+    }
+
+    .cta {
+      width: 600px;
+      bottom: 0;
+      height: 80px;
+
+      &__block {
+        height: 85px;
+      }
+
+      &__ppl {
+        height: 120px;
+        left: 0;
+        margin-left: -25px;
+        margin-top: -40px;
+      }
+
+      &__title {
+        right: 50%;
+        margin-right: -100px;
+        top: 3px;
+        width: 288px;
+        font-size: 30px;
+      }
+
+      &__subtitle {
+        top: 45px;
+        margin-right: -100px;
+        width: 288px;
+        font-size: 15px;
+      }
+
+      .btn {
+        bottom: 25px;
+        margin-left: 120px;
+      }
+    }
+
+    &__star {
+      bottom: -20%;
+    }
+  }
+}
+@media (min-width: $media-xl) {
+  .game {
+    &__title {
+      text-align: left;
+      width: 50vw;
+      top: 50%;
+      left: 50%;
+      margin-top: -215px;
+    }
+
+    &__subtitle {
+      text-align: left;
+      width: 50vw;
+      top: 50%;
+      left: 50%;
+      margin-top: -134px;
+    }
+
+    &__text {
+      top: 50%;
+      width: 50vw;
+      left: 52%;
+      margin-left: -5px;
+      margin-top: -47px;
+    }
+
+    &__btn {
+      top: 50%;
+      left: 50%;
+      margin-left: 10px;
+      margin-top: 20px;
+      padding: 5px 35px;
+      font-size: 18px;
+    }
+
+    &__detail {
+      position: absolute;
+      width: 45%;
+      line-height: 15px;
+
+      &--item0 {
+        top: 0;
+        left: 0;
+      }
+
+      &--item1 {
+        top: 0;
+        left: 220px;
+      }
+
+      &--item2 {
+        top: 30px;
+        left: 0;
+      }
+
+      &--item3 {
+        top: 30px;
+        left: 220px;
+      }
+    }
+
+    &__trunk {
+      width: 740px;
+      max-width: 520px;
+      left: 50%;
+      bottom: 50%;
+      margin-left: -540px;
+      margin-bottom: -300px;
+    }
+
+    .cta {
+      width: 600px;
+      bottom: 0;
+      height: 80px;
+
+      &__block {
+        height: 85px;
+      }
+
+      &__ppl {
+        height: 120px;
+        left: 0;
+        margin-left: -25px;
+        margin-top: -40px;
+      }
+
+      &__title {
+        right: 50%;
+        margin-right: -100px;
+        top: 3px;
+        width: 288px;
+        font-size: 30px;
+      }
+
+      &__subtitle {
+        top: 45px;
+        margin-right: -100px;
+        width: 288px;
+        font-size: 15px;
+      }
+
+      .btn {
+        bottom: 25px;
+        margin-left: 120px;
+      }
+    }
+
+    &__star {
+      bottom: -20%;
+    }
+  }
+}
+@media (min-width: $media-xxl) {
+  .game {
+    &__title {
+      text-align: left;
+      width: 50vw;
+      top: 50%;
+      left: 50%;
+      margin-top: -245px;
+
+    }
+
+    &__subtitle {
+      text-align: left;
+      width: 50vw;
+      top: 50%;
+      left: 50%;
+
+      margin-top: -134px;
+    }
+
+    &__text {
+      top: 50%;
+      width: 50vw;
+      left: 52%;
+      margin-left: -5px;
+      margin-top: -47px;
+    }
+
+    &__btn {
+      top: 50%;
+      left: 50%;
+      margin-left: 10px;
+      margin-top: 20px;
+      padding: 5px 35px;
+      font-size: 18px;
+    }
+
+    &__detail {
+      position: absolute;
+      width: 45%;
+      line-height: 15px;
+
+      &--item0 {
+        top: 0;
+        left: 0;
+      }
+
+      &--item1 {
+        top: 0;
+        left: 220px;
+      }
+
+      &--item2 {
+        top: 30px;
+        left: 0;
+      }
+
+      &--item3 {
+        top: 30px;
+        left: 220px;
+      }
+    }
+
+    &__trunk {
+      width: 740px;
+      max-width: 520px;
+      left: 50%;
+      bottom: 50%;
+      margin-left: -540px;
+      margin-bottom: -300px;
+    }
+
+    .cta {
+      width: 600px;
+      bottom: 0;
+      height: 80px;
+
+      &__block {
+        height: 85px;
+      }
+
+      &__ppl {
+        height: 120px;
+        left: 0;
+        margin-left: -25px;
+        margin-top: -40px;
+      }
+
+      &__title {
+        right: 50%;
+        margin-right: -100px;
+        top: 3px;
+        width: 288px;
+        font-size: 30px;
+      }
+
+      &__subtitle {
+        top: 45px;
+        margin-right: -100px;
+        width: 288px;
+        font-size: 15px;
+      }
+
+      .btn {
+        bottom: 25px;
+        margin-left: 120px;
+      }
+    }
+
+    &__star {
+      bottom: -20%;
+    }
+  }
+}

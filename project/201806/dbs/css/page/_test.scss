@@ -1,0 +1,558 @@
+@charset "UTF-8";
+
+.test {
+  padding-top: 60px;
+  background-image: url("../images/test/bg.jpg");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(207,218,225,1);
+  width: 100vw;
+  height: 100vh;
+  .row{
+    margin-left:0;
+    margin-right:0;
+  }
+  .hr {
+    width: calc((100% - 178px)/2);
+    height: 1px;
+    margin-top: 21px;
+    border-bottom: 1px solid #000;
+  }
+
+  .title {
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 300;
+  }
+
+  .box {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 20px;
+    justify-content: center;
+    margin-top: 10px;
+
+    .item {
+      width: 78px;
+      height: 78px;
+      margin: 2px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item0 {
+      background-image: url("../images/test/btn0.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn0_r.png");
+      }
+    }
+
+    .item1 {
+      background-image: url("../images/test/btn1.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn1_r.png");
+      }
+    }
+
+    .item2 {
+      background-image: url("../images/test/btn2.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn2_r.png");
+      }
+    }
+
+    .item3 {
+      background-image: url("../images/test/btn3.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn3_r.png");
+      }
+    }
+
+    .item4 {
+      background-image: url("../images/test/btn4.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn4_r.png");
+      }
+    }
+
+    .item5 {
+      background-image: url("../images/test/btn5.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn5_r.png");
+      }
+    }
+
+    .item6 {
+      background-image: url("../images/test/btn6.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn6_r.png");
+      }
+    }
+
+    .item7 {
+      background-image: url("../images/test/btn7.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn7_r.png");
+      }
+    }
+
+    .item8 {
+      background-image: url("../images/test/btn8.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn8_r.png");
+      }
+    }
+
+    .item9 {
+      background-image: url("../images/test/btn9.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn9_r.png");
+      }
+    }
+
+    .item10 {
+      background-image: url("../images/test/btn10.png");
+
+      &:hover,
+      &__active {
+        background-image: url("../images/test/btn10_r.png");
+      }
+    }
+  }
+
+  .btnbox {
+    justify-content: center;
+    margin-top: 10px;
+
+    .btn-next {
+      border: 1px solid $color-black;
+      color: $color-black;
+      background: rgba(0,0,0,0);
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(0,0,0,1);
+        border: 1px solid $color-white;
+        color: $color-white;
+      }
+    }
+  }
+
+  .personal {
+    .fbid {
+      font-size: 30px;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 800;
+    }
+  }
+
+  .friend {
+    .friendname {
+      width: 90%;
+      margin-left: 5%;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    &__text {
+      font-size: 13px;
+      margin: 10px auto;
+    }
+  }
+
+  .calculate {
+    .row {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .title {
+      position: absolute;
+      top: 25%;
+      font-size: 50px;
+      font-weight: 800;
+      left: 50%;
+      margin-left: -125px;
+    }
+
+    .countNum {
+      position: absolute;
+      right: 50%;
+      top: 60%;
+      margin-top: -41px;
+      font-size: 45px;
+      margin-right: -37px;
+      text-align: center;
+      width: 74px;
+    }
+
+    .present {
+      position: absolute;
+      top: 60%;
+      font-size: 25px;
+      left: 50%;
+      margin-top: 10px;
+      margin-left: -10px;
+    }
+    @keyframes rotating {
+      from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    .rotating {
+      width: 200px;
+      position: absolute;
+      left: 50%;
+      margin-left: -100px;
+      top: 60%;
+      margin-top: -100px;
+      -webkit-animation: rotating 2s linear infinite;
+      -moz-animation: rotating 2s linear infinite;
+      -ms-animation: rotating 2s linear infinite;
+      -o-animation: rotating 2s linear infinite;
+      animation: rotating 2s linear infinite;
+    }
+  }
+
+  .result {
+    margin-top: -45px;
+    overflow: hidden;
+
+    .pic {
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 40vh;
+      width: 100vw;
+      margin-bottom: 0;
+      margin-right: 0;
+      padding-top: 0;
+      margin-top: 0;
+
+      &::after {
+        content: '';
+        background: linear-gradient(to bottom,rgba(207,218,225,0) 10%,rgba(207,218,225,1)100%);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    .spot {
+      position: absolute;
+      width: 360px;
+      top: 50%;
+      margin-top: -120px;
+      left: 50%;
+      min-width: 300px;
+      margin-left: -180px;
+
+      &__title {
+        margin-top: -30px;
+        font-size: 80px;
+      }
+      &__golden{
+        background-image: url("../images/test/title_bar.png");
+        width: auto;
+        height: 15px;
+        margin-top: -35px;
+      background-image: url(../images/test/title_bar.png);
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: contain;
+      }
+      &__text {
+        font-size: 13px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      &__miles {
+        width: 70%;
+        background-image: url("../images/test/mile2.png");
+        height: 110px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .btn-share {
+        width: 90px;
+        margin: 0 auto;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .notice {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 80%;
+      height: 35px;
+      background-color: $color-red;
+
+      &__text {
+        font-size: 12px;
+        position: absolute;
+        top: -20px;
+        left: 10px;
+      }
+
+      img {
+        height: 100%;
+        right: 0;
+        position: absolute;
+        margin-right: -25%;
+      }
+    }
+  }
+}
+@media (min-width: $media-lg) {
+  .test {
+    padding-top: 50px;
+    .box {
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      .item {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+    }
+
+    .btnbox {
+          margin-top: -20px;
+
+      .btn-next {
+        &:hover {}
+      }
+    }
+
+    .personal {
+      .fbid {}
+
+      .hr {}
+
+      .title {}
+    }
+
+    .friend {
+      &__text {
+        font-size: 23px;
+      }
+    }
+
+    .result {
+      margin-top: -45px;
+
+      .pic {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+
+        &::after {
+          content: '';
+          background: linear-gradient(to left,rgba(207,218,225,0) 10%,rgba(207,218,225,1)100%);
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+      }
+
+      .spot {
+        position: absolute;
+        width: 40%;
+        top: 50%;
+        margin-top: -160px;
+        left: 5%;
+        margin-left: 0;
+
+        &__title {
+          font-size: 80px;
+          //margin-top: 30px;
+        }
+        &__golden{
+
+        }
+        &__text {
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+
+        &__miles {
+          width: 70%;
+          background-image: url("../images/test/mile2.png");
+          height: 110px;
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          max-width: 300px;
+          margin: 0 auto 30px;
+        }
+
+        .btn-share {
+          width: 90px;
+          margin: 0 auto;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      .notice {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 80%;
+        height: 35px;
+        background-color: $color-red;
+
+        &__text {
+          font-size: 12px;
+          position: absolute;
+          top: -20px;
+          left: 10px;
+        }
+
+        img {
+          height: 100%;
+          right: 0;
+          position: absolute;
+          margin-right: -25%;
+        }
+      }
+    }
+  }
+}
+@media (min-width: $media-xl) {
+  .test {
+    .box {
+      margin-top: 2vh;
+      margin-left: 30px;
+
+      .item {
+        width: 145px;
+        height: 145px;
+        margin-bottom: 1vh;
+      }
+    }
+
+    .btnbox {
+      .btn-next {
+        &:hover {}
+      }
+    }
+
+    .personal {
+      .fbid {}
+
+      .hr {}
+
+      .title {}
+    }
+
+    .result {
+      .pic {
+        &::after {}
+      }
+
+      .spot {
+
+        margin-top: -220px;
+        &__title {
+          font-size: 150px;
+          //margin-bottom: 30px;
+        }
+
+        &__text {
+          font-size: 15px;
+          //margin-bottom: 30px;
+        }
+        &__miles {
+              margin: 0 auto 2vh;
+        }
+
+        .btn-share {
+          img {}
+        }
+      }
+
+      .notice {
+        width: calc(100vw - 150px);
+        height: 70px;
+
+        &__text {
+          font-size: 14px;
+          padding-bottom: 10px;
+        }
+
+        img {
+          right: 0;
+          margin-right: -150px;
+        }
+      }
+    }
+  }
+}

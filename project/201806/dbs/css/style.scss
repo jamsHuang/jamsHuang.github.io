@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+//module  (模組元件)
+@import
+"module/base",
+"module/btn",
+"module/loading",
+"module/css-table",
+"module/modal";
+
+//layout  (共用版型)
+@import
+"layout/body",
+"layout/header",
+"layout/footer";
+
+//page    (各頁面主要內容)
+@import
+"page/index",
+"page/test",
+"page/kv",
+"page/game",
+"page/offer",
+"page/mileage",
+"page/flight",
+"page/life",
+"page/detail";

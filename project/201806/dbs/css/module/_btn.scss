@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.btn{
+  border-radius: 10px;
+  color: $color-white;
+  padding: 5px 20px;
+}
+.btn-red{
+  background-color: $color-red;
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 5px 35px;
+  font-size: 18px;
+}
+.btn-white{
+  background-color: $color-white;
+  color: $color-blue;
+  font-weight: 700;
+  font-size: 12px;
+
+}

@@ -1,0 +1,156 @@
+@charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/notosansmyanmar.css);
+$font-family-base: 'Arial','Heiti TC', 'Microsoft JhengHei', 'Helvetica', 'sans-serif', 'PMingLiU', 'MingLiU','PingFangTC', 'Noto Sans Myanmar';
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-base;
+}
+
+h1 {
+  font-size: 25px;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 25px;
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+h4 {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$media-xs: 0 !default;
+$media-sm: 576px !default;
+$media-md: 768px !default;
+$media-lg: 992px !default;
+$media-xl: 1200px !default;
+$media-xxl: 1440px !default;
+//Color
+$main-color: #ff0202;
+$footer-color: #4c0000; //
+$color-black: #000;
+$color-white: #FFF;
+$color-white-two: #f0eeed; //
+$color-blue: #104562;
+$color-gray: #333;
+$color-gray1: #eeedeb;
+$color-gray2: #a7a7a7;
+$color-gray3: #d7d7d7;
+$color-gray-light: #f1f1f0;
+$color-gray-light2: #929292;
+$color-red: #ff0202;
+$color-red-alpha: rgba(137, 25, 25, 0.7);
+$color-red2: #dc2f3e;
+$color-red-dark: rgba(138,10,10,1);
+
+.square_full {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  display: inline-flex;
+  margin-right: -15px;
+  margin-left: 5px;
+  position: absolute;
+  left: -18px;
+      top: 2px;
+}
+//a-link
+a {
+  //color: $color-red;
+  cursor: pointer;
+}
+
+a:active,
+a:focus,
+a:hover,
+a:visited,
+button:focus {
+  text-decoration: none;
+  outline: none;
+  //color: $color-red-dark;
+}
+@media (min-width: $media-lg) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  h4 {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: $media-xl) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+}
+@media (min-width: $media-xxl) {
+  h1 {
+    font-size: 5.3125rem;
+  }
+
+  h2 {
+    font-size: 3.5rem;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+}

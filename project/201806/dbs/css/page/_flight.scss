@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+.flight{
+  background: #000;
+  &__top{
+    width: 100%;
+    height: calc(50% - 25px);
+    display: flex;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: url(../images/flight/bg.jpg);
+    background-size:cover;
+    background-position: center center;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+
+    &__icon{
+      img{
+        width: 40px;
+        margin-top: 30px;
+      }
+    }
+    &__title{
+      display: inline-block;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #000;
+      padding: 10px 20px;
+      color: #000;
+    }
+    &__text{
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      color: #000;
+    }
+
+    &__btn-more{
+      margin: 1rem;
+      color: #000;
+      background: transparent;
+      border: 1px solid #000;
+      line-height: 1;
+
+      &:hover{
+        color: #0c5460;
+        background: white;
+        border: 1px solid #fff;
+      }
+    }
+  }
+
+  &__bottom{
+    width: 100%;
+    height: calc(50% + 25px);
+    // display: flex;
+    margin: 0;
+    padding: 0;
+
+    &__sub{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 0 0 0;
+      padding: 0 0;
+      height: 25vh;
+      width: 50%;
+      background-size:cover;
+      background-position: center center;
+      float: left;
+    }
+
+    .sub{
+      &__0{
+        background-image: url(../images/flight/sub_0.jpg);
+      }
+      &__1{
+        background-image: url(../images/flight/sub_1.jpg);
+      }
+      &__2{
+        background-image: url(../images/flight/sub_2.jpg);
+      }
+      &__3{
+        background-image: url(../images/flight/sub_3.jpg);
+      }
+
+      &__mask{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top:0;
+        background-size: auto 100%;
+        background-image: url(../images/flight/flight-sub-mask.png);
+      }
+
+      &__content{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        left: 0;
+        text-align: center;
+        bottom: 20px;
+        font-size: 1.125em;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+        color: #fff;
+        h4{
+          margin-bottom: -30px;
+        }
+      }
+
+      &__btn-more{
+        margin: 1rem;
+        color: #fff;
+        background: transparent;
+        border: 1px solid #fff;
+        line-height: 1;
+
+        &:hover{
+          color: #0c5460;
+          background: white;
+          border: 1px solid #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $media-lg) {
+  .flight{
+    &__top{
+      height: 70vh;
+      &__icon{
+        img{
+        }
+      }
+    }
+
+    &__bottom{
+      height: 30vh;
+      &__sub{
+        height: 100%;
+        width: 25%;
+      }
+    }
+  }
+}
+
+@media (min-width: $media-xxl) {
+  .flight{
+    &__top{
+      height: 70vh;
+      &__icon{
+        img{
+          width:70px;
+        }
+      }
+    }
+
+    &__bottom{
+      height: 30vh;
+      &__sub{
+        height: 100%;
+        width: 25%;
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+.creditcard {
+  position: fixed;
+  top: 100%;
+  display: block;
+  width: 100%;
+  margin-top: -25px;
+  background-color: $color-red2;
+  height: 25px;
+  z-index: 9;
+
+  &__cta {
+    img {
+      position: absolute;
+      height: 60px;
+      top: -35px;
+      left: 0;
+    }
+
+    &__name {
+      position: absolute;
+      left: 100px;
+      color: $color-white;
+    }
+
+    &__action {
+      position: absolute;
+      right: 10px;
+      color: $color-white;
+      font-weight: 800;
+    }
+  }
+}
+.footer{
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background: #000;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 20px 0 70px 0;
+  color: #FFF;
+  a{
+    color: #FFF;
+  }
+  .copyright{
+    list-style: none;
+    padding: 0;
+    li{
+      display: inline-block;
+      padding: 0 1rem;
+      border-left: 1px solid #ccc;
+      margin-bottom: 10px;
+      &:first-child{
+        border-left: none;
+      }
+      &:last-child{
+        border-left: none;
+      }
+    }
+  }
+  .slogan{
+    font-size: 16px;
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: $media-md) {
+  .creditcard {
+    top: 70vh;
+    width: 120px;
+    margin-top: -120px;
+    height: 160px;
+    border-radius: 10px 0 0 10px;
+    right: 0px;
+    z-index: 1;
+
+    &__cta {
+      img {
+        height: 100px;
+        top: auto;
+        right: 0;
+        left: auto;
+        bottom: 0;
+      }
+
+      &__name {
+        left: auto;
+        right: 10px;
+        top: 10px;
+        font-size: 14px;
+      }
+
+      &__action {
+        right: 10px;
+        top: 26px;
+        font-size: 24px;
+      }
+    }
+  }
+  .footer{
+    background: #000;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1;
+    padding: 20px 0;
+    color: #FFF;
+    a{
+      color: #FFF;
+    }
+    .copyright{
+      list-style: none;
+      li{
+        display: inline-block;
+        padding: 0 1rem;
+        border-left: 1px solid #ccc;
+        &:first-child{
+          border-left: none;
+        }
+        &:last-child{
+          border-left: 1px solid #ccc;
+        }
+      }
+    }
+    .slogan{
+      font-size: 16px;
+      margin-bottom: 1rem;
+    }
+  }
+}
