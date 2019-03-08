@@ -1,9 +1,20 @@
 $(function() {
 
-  var url_string = window.location.href
-  var url = new URL(url_string);
-  var c = url.searchParams.get("fn");
+  // var url_string = window.location.href
+  // var url = new URL(url_string);
+  // var c = url.searchParams.get("fn");
+  var c = getUrlParameter("fn");
   //
+  function getUrlParameter(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
   var filepath = "video/" + c + ".mp4";
   var player = document.getElementById('videoPlayer');
 
