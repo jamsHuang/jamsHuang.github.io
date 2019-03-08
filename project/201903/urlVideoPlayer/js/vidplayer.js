@@ -7,7 +7,7 @@ $(function() {
   var filepath = "video/" + c + ".mp4";
   var player = document.getElementById('videoPlayer');
 
-  $('video').append('<source src="' + filepath + '" type="video/mp4">'');
+  $('video').append('<source src="' + filepath + '" type="video/mp4">');
   if(!$('video').children('source').length) { // set src&type attribute for ie9/android3.1 because it does not add the source child-elements
       $('video').attr('src', filepath ).attr('type','video/mp4');
   }
