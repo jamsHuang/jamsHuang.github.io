@@ -8,10 +8,31 @@ body {
 }
 @media (max-width: 1279px) {
   h1.pagetitle {
-    font-size: 42px;
+    font-size: 40px;
     line-height: 70px;
     letter-spacing: 0;
   }
+}
+@media (min-width: 992px){
+h1.pagetitle {
+    font-size: 54px;
+}
+}
+@media (max-width: 767px){
+.innerBanner .pagetitle {
+  font-size:40px;
+}}
+.innerBanner {
+  width:62%;
+}
+@media (max-width: 1200px){
+.innerBanner {
+  width:80%;
+}}
+@media (max-width: 767px){
+.innerBanner {
+  width:100%;
+}
 }
 
 .smart-tip {
