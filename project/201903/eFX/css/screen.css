@@ -613,7 +613,7 @@ body * {
 }
 .kv{
   position: absolute;
-  height:100%;
+  height:525px;
 }
 .kv__img {
   position: relative;
@@ -641,7 +641,7 @@ body * {
 }
 @media (max-width:991px) {
   .kv {
-
+    height:100vh;
   }
 
   .ct-kv .table-cell {
