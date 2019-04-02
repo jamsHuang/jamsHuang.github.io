@@ -586,6 +586,7 @@ body * {
 .table-cell {
   display: table-cell;
   min-height:525px;
+  height:100%;
 }
 
 .kv__words .big-number,
