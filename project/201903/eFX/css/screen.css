@@ -580,11 +580,15 @@ body * {
 }
 
 .table {
-  display: table
+  /* display: table */
+  display:flex;
+  display: -ms-flexbox;
 }
 
 .table-cell {
-  display: table-cell;
+  /* display: table-cell; */
+  display:flex;
+  display: -ms-flexbox;
   min-height:525px;
   height:100%;
 }
@@ -648,7 +652,7 @@ body * {
   }
 
   .ct-kv .table-cell {
-    display: block
+    display: flex;
   }
 }
 
