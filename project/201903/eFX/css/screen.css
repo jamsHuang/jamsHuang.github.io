@@ -580,16 +580,22 @@ body * {
 }
 
 .table {
-  display: table;
+  display:inline-flex;
   height:100%;
 }
 
 .table-cell {
-  display: table-cell;
-  min-height:525px;
-  height:100%;
+  display: flex;
+  display: -ms-flexbox;
+  flex-wrap: wrap;
+  /* min-height:525px; */
+
+    height: auto;
 }
 
+.table-cell:nth-child(1) {
+  width: calc(100% - 400px)
+}
 .kv__words .big-number,
 .kv__words p {
   display: inline-block;
@@ -613,7 +619,7 @@ body * {
 }
 .kv{
   position: absolute;
-  height:525px;
+  height:100%;
 }
 .kv__img {
   position: relative;
@@ -641,11 +647,11 @@ body * {
 }
 @media (max-width:991px) {
   .kv {
-    height:100vh;
+
   }
 
   .ct-kv .table-cell {
-    display: block
+    display: block;
   }
 }
 
