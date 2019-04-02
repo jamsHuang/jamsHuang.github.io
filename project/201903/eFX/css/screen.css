@@ -589,8 +589,7 @@ body * {
   display: -ms-flexbox;
   flex-wrap: wrap;
   /* min-height:525px; */
-
-    height: auto;
+  height: auto;
 }
 
 .table-cell:nth-child(1) {
