@@ -1,16 +1,16 @@
 var registorUrl = 'https://uat.newwebatm.citibank.com.tw/extfunc12/kanacpindexhandler/sendFormData';
 var captchaUrl = 'https://uat.newwebatm.citibank.com.tw/extfunc12/captcha.png?cc=';
 var formSubmitUrl = 'https://uat.newwebatm.citibank.com.tw/extfunc12/page/cp/thanksPage?_ar=1';
-if(window.location.hostname == 'www.citibank.com.tw'){
-    registorUrl = 'https://pat.webatm.citibank.com.tw/extfunc12/kanacpindexhandler/sendFormData';
-    captchaUrl =  'https://pat.webatm.citibank.com.tw/extfunc12/captcha.png?cc=';
-    formSubmitUrl = 'https://pat.webatm.citibank.com.tw/extfunc12/page/cp/thanksPage?_ar=1';
-}
-if(window.location.hostname != 'citidemo.agendatw.com' && window.location.protocol != 'file:' && window.location.hostname != 'localhost'){
-    if(window.location.protocol != 'https:') {
-       location.href = location.href.replace("http://", "https://");
-    }
-}
+// if(window.location.hostname == 'www.citibank.com.tw'){
+//     registorUrl = 'https://pat.webatm.citibank.com.tw/extfunc12/kanacpindexhandler/sendFormData';
+//     captchaUrl =  'https://pat.webatm.citibank.com.tw/extfunc12/captcha.png?cc=';
+//     formSubmitUrl = 'https://pat.webatm.citibank.com.tw/extfunc12/page/cp/thanksPage?_ar=1';
+// }
+// if(window.location.hostname != 'citidemo.agendatw.com' && window.location.protocol != 'file:' && window.location.hostname != 'localhost'){
+//     if(window.location.protocol != 'https:') {
+//        location.href = location.href.replace("http://", "https://");
+//     }
+// }
 var citiFormDefault;
 
 $(document).ready(function(){
@@ -211,7 +211,7 @@ $(document).ready(function(){
               return false;
             }
         });
-        
+
         if (citiFormDefault.city.value === "0") {
             checkcode = 0;
             // alert('請選擇縣市');
